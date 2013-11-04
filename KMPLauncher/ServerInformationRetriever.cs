@@ -4,6 +4,8 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Net;
+using System.Net.NetworkInformation;
+
 namespace KMPLauncher
 {
     static class ServerInformationRetriever
@@ -31,15 +33,13 @@ namespace KMPLauncher
             server.MaxPlayers = int.Parse(SplitPlayers[1]);
 
 
-            string FullPlayers = lines[3].Substring("Players: ".Length, lines[2].Length - "Players: ".Length);//Actual players
+            string FullPlayers = lines[3].Substring("Players: ".Length, lines[3].Length - "Players: ".Length);//Actual players
             String[] IndividualPlayers = FullPlayers.Split(',');
 
             foreach (string p in IndividualPlayers) server.PlayerList.Add(p.Trim());
                 
 
             server.Information = lines[4].Substring("Information: ".Length, lines[4].Length - "Information: ".Length);//Information
-
-
 
 
 

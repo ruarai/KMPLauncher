@@ -21,5 +21,19 @@ namespace KMPLauncher
         public int InactiveShipLimit;
         public int UpdateRate;
         public List<String> PlayerList = new List<string>();
+
+        public string Address
+        {
+            get
+            {
+                return IP + ":" + Port; 
+            }
+            set
+            {
+                string[] split = value.Split(':');
+                IP = split[0];
+                Port = int.Parse(split[1]);
+            }
+        }
     }
 }

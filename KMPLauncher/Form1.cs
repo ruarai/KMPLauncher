@@ -14,7 +14,7 @@ namespace KMPLauncher
     public partial class Form1 : Form
     {
         List<KMPServer> servers = new List<KMPServer>();
-
+        KMPServer selection = new KMPServer();
 
         string SERVER_CONST = "STARTSERVER";
 
@@ -31,9 +31,9 @@ namespace KMPLauncher
 
         private void RefreshServerList()
         {
-
+            RefreshButton.Enabled = false;
             listView1.Items.Clear();
-
+            
             NetworkWorker.RunWorkerAsync();
 
         }
@@ -49,8 +49,8 @@ namespace KMPLauncher
                 serveritem.SubItems.Add(s.Players + "/" + s.MaxPlayers);
                 serveritem.SubItems.Add(s.Information);
 
-
                 listView1.Items.Add(serveritem);
+
             }
         }
         private void SaveServers()
@@ -128,17 +128,19 @@ namespace KMPLauncher
 
             List<KMPServer> serversinternal = servers;
 
+            worker.ReportProgress(0);
             int index = 1;
             foreach (KMPServer s in serversinternal)
             {
                 try
                 {
-                    KMPServer filled = ServerInformationRetriever.Retrieve(s.IP, s.HTTPPort);
+                    KMPServer filled = ServerInformationRetriever.Retrieve(s.IP, s.HTTPPort);//This is terrible, I know. I wish it wasn't so mean to me and just let me do s = filled
                     s.Name = filled.Name;
                     s.MaxPlayers = filled.MaxPlayers;
                     s.Players = filled.Players;
                     s.Information = filled.Information;
                     s.Version = filled.Version;
+                    s.PlayerList = filled.PlayerList;
 
                     float relativepercentage = (float)index / (float)serversinternal.Count;
 
@@ -166,6 +168,7 @@ namespace KMPLauncher
             servers = (List<KMPServer>)e.Result;
 
             this.Text = "Kerbal Multiplayer Launcher";
+            RefreshButton.Enabled = true;
             
             PopulateServerList();
         }
@@ -174,6 +177,42 @@ namespace KMPLauncher
         {
             SaveServers();
         }
+
+        private void JoinButton_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void RefreshButton_Click(object sender, EventArgs e)
+        {
+            RefreshServerList();
+        }
+
+        private void listView1_ItemSelectionChanged(object sender, ListViewItemSelectionChangedEventArgs e)
+        {
+            selection = new KMPServer();
+            foreach (KMPServer s in servers)
+            {
+                if (s.Address == e.Item.SubItems[1].Text)
+                {
+                    selection = s;
+                    break;
+                }
+            }
+            foreach (string s in selection.PlayerList)
+            {
+                PlayerListBox.Items.Add(s);
+            }
+
+        }
+
+        private void DeleteButton_Click(object sender, EventArgs e)
+        {
+            servers.Remove(selection);
+            RefreshServerList();
+        }
+
+
 
 
     }

@@ -37,15 +37,19 @@
             this.tabControl1 = new System.Windows.Forms.TabControl();
             this.tabPage1 = new System.Windows.Forms.TabPage();
             this.tabPage2 = new System.Windows.Forms.TabPage();
+            this.groupBox1 = new System.Windows.Forms.GroupBox();
+            this.PlayerListBox = new System.Windows.Forms.ListBox();
+            this.RefreshButton = new System.Windows.Forms.Button();
             this.AddNewServer = new System.Windows.Forms.Button();
-            this.button2 = new System.Windows.Forms.Button();
+            this.JoinButton = new System.Windows.Forms.Button();
             this.textBoxName = new System.Windows.Forms.TextBox();
             this.textBoxPort = new System.Windows.Forms.TextBox();
             this.textBoxIP = new System.Windows.Forms.TextBox();
-            this.ChangeServer = new System.Windows.Forms.Button();
             this.NetworkWorker = new System.ComponentModel.BackgroundWorker();
+            this.DeleteButton = new System.Windows.Forms.Button();
             this.tabControl1.SuspendLayout();
             this.tabPage2.SuspendLayout();
+            this.groupBox1.SuspendLayout();
             this.SuspendLayout();
             // 
             // listView1
@@ -69,6 +73,7 @@
             this.listView1.TabIndex = 0;
             this.listView1.UseCompatibleStateImageBehavior = false;
             this.listView1.View = System.Windows.Forms.View.Details;
+            this.listView1.ItemSelectionChanged += new System.Windows.Forms.ListViewItemSelectionChangedEventHandler(this.listView1_ItemSelectionChanged);
             // 
             // ServerName
             // 
@@ -93,7 +98,7 @@
             // ServerDescription
             // 
             this.ServerDescription.Text = "Description";
-            this.ServerDescription.Width = 230;
+            this.ServerDescription.Width = 205;
             // 
             // tabControl1
             // 
@@ -120,12 +125,14 @@
             // 
             // tabPage2
             // 
+            this.tabPage2.Controls.Add(this.DeleteButton);
+            this.tabPage2.Controls.Add(this.groupBox1);
+            this.tabPage2.Controls.Add(this.RefreshButton);
             this.tabPage2.Controls.Add(this.AddNewServer);
-            this.tabPage2.Controls.Add(this.button2);
+            this.tabPage2.Controls.Add(this.JoinButton);
             this.tabPage2.Controls.Add(this.textBoxName);
             this.tabPage2.Controls.Add(this.textBoxPort);
             this.tabPage2.Controls.Add(this.textBoxIP);
-            this.tabPage2.Controls.Add(this.ChangeServer);
             this.tabPage2.Controls.Add(this.listView1);
             this.tabPage2.Location = new System.Drawing.Point(4, 22);
             this.tabPage2.Name = "tabPage2";
@@ -135,26 +142,59 @@
             this.tabPage2.Text = "Servers";
             this.tabPage2.UseVisualStyleBackColor = true;
             // 
+            // groupBox1
+            // 
+            this.groupBox1.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
+            this.groupBox1.Controls.Add(this.PlayerListBox);
+            this.groupBox1.Location = new System.Drawing.Point(215, 385);
+            this.groupBox1.Name = "groupBox1";
+            this.groupBox1.Size = new System.Drawing.Size(200, 93);
+            this.groupBox1.TabIndex = 9;
+            this.groupBox1.TabStop = false;
+            this.groupBox1.Text = "Players";
+            // 
+            // PlayerListBox
+            // 
+            this.PlayerListBox.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left)));
+            this.PlayerListBox.FormattingEnabled = true;
+            this.PlayerListBox.Location = new System.Drawing.Point(6, 19);
+            this.PlayerListBox.Name = "PlayerListBox";
+            this.PlayerListBox.Size = new System.Drawing.Size(188, 69);
+            this.PlayerListBox.TabIndex = 8;
+            // 
+            // RefreshButton
+            // 
+            this.RefreshButton.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
+            this.RefreshButton.Location = new System.Drawing.Point(517, 385);
+            this.RefreshButton.Name = "RefreshButton";
+            this.RefreshButton.Size = new System.Drawing.Size(75, 23);
+            this.RefreshButton.TabIndex = 7;
+            this.RefreshButton.Text = "Refresh";
+            this.RefreshButton.UseVisualStyleBackColor = true;
+            this.RefreshButton.Click += new System.EventHandler(this.RefreshButton_Click);
+            // 
             // AddNewServer
             // 
             this.AddNewServer.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
             this.AddNewServer.Location = new System.Drawing.Point(6, 454);
             this.AddNewServer.Name = "AddNewServer";
-            this.AddNewServer.Size = new System.Drawing.Size(113, 24);
+            this.AddNewServer.Size = new System.Drawing.Size(89, 24);
             this.AddNewServer.TabIndex = 6;
             this.AddNewServer.Text = "Add new server";
             this.AddNewServer.UseVisualStyleBackColor = true;
             this.AddNewServer.Click += new System.EventHandler(this.AddNewServer_Click);
             // 
-            // button2
+            // JoinButton
             // 
-            this.button2.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-            this.button2.Location = new System.Drawing.Point(517, 455);
-            this.button2.Name = "button2";
-            this.button2.Size = new System.Drawing.Size(75, 23);
-            this.button2.TabIndex = 5;
-            this.button2.Text = "Join";
-            this.button2.UseVisualStyleBackColor = true;
+            this.JoinButton.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
+            this.JoinButton.Location = new System.Drawing.Point(517, 455);
+            this.JoinButton.Name = "JoinButton";
+            this.JoinButton.Size = new System.Drawing.Size(75, 23);
+            this.JoinButton.TabIndex = 5;
+            this.JoinButton.Text = "Join";
+            this.JoinButton.UseVisualStyleBackColor = true;
+            this.JoinButton.Click += new System.EventHandler(this.JoinButton_Click);
             // 
             // textBoxName
             // 
@@ -180,22 +220,23 @@
             this.textBoxIP.Size = new System.Drawing.Size(100, 20);
             this.textBoxIP.TabIndex = 2;
             // 
-            // ChangeServer
-            // 
-            this.ChangeServer.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
-            this.ChangeServer.Location = new System.Drawing.Point(125, 454);
-            this.ChangeServer.Name = "ChangeServer";
-            this.ChangeServer.Size = new System.Drawing.Size(84, 24);
-            this.ChangeServer.TabIndex = 1;
-            this.ChangeServer.Text = "Delete Server";
-            this.ChangeServer.UseVisualStyleBackColor = true;
-            // 
             // NetworkWorker
             // 
             this.NetworkWorker.WorkerReportsProgress = true;
             this.NetworkWorker.DoWork += new System.ComponentModel.DoWorkEventHandler(this.NetworkWorker_DoWork);
             this.NetworkWorker.ProgressChanged += new System.ComponentModel.ProgressChangedEventHandler(this.NetworkWorker_ProgressChanged);
             this.NetworkWorker.RunWorkerCompleted += new System.ComponentModel.RunWorkerCompletedEventHandler(this.NetworkWorker_RunWorkerCompleted);
+            // 
+            // DeleteButton
+            // 
+            this.DeleteButton.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
+            this.DeleteButton.Location = new System.Drawing.Point(101, 454);
+            this.DeleteButton.Name = "DeleteButton";
+            this.DeleteButton.Size = new System.Drawing.Size(58, 24);
+            this.DeleteButton.TabIndex = 10;
+            this.DeleteButton.Text = "Remove";
+            this.DeleteButton.UseVisualStyleBackColor = true;
+            this.DeleteButton.Click += new System.EventHandler(this.DeleteButton_Click);
             // 
             // Form1
             // 
@@ -209,6 +250,7 @@
             this.tabControl1.ResumeLayout(false);
             this.tabPage2.ResumeLayout(false);
             this.tabPage2.PerformLayout();
+            this.groupBox1.ResumeLayout(false);
             this.ResumeLayout(false);
 
         }
@@ -224,13 +266,16 @@
         private System.Windows.Forms.ColumnHeader ServerVersion;
         private System.Windows.Forms.ColumnHeader ServerPlayers;
         private System.Windows.Forms.ColumnHeader ServerDescription;
-        private System.Windows.Forms.Button button2;
+        private System.Windows.Forms.Button JoinButton;
         private System.Windows.Forms.TextBox textBoxName;
         private System.Windows.Forms.TextBox textBoxPort;
         private System.Windows.Forms.TextBox textBoxIP;
-        private System.Windows.Forms.Button ChangeServer;
         private System.Windows.Forms.Button AddNewServer;
         private System.ComponentModel.BackgroundWorker NetworkWorker;
+        private System.Windows.Forms.Button RefreshButton;
+        private System.Windows.Forms.ListBox PlayerListBox;
+        private System.Windows.Forms.GroupBox groupBox1;
+        private System.Windows.Forms.Button DeleteButton;
     }
 }
 
