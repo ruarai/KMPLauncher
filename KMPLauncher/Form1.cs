@@ -7,7 +7,9 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+
 using System.IO;
+using System.Diagnostics;
 
 namespace KMPLauncher
 {
@@ -16,25 +18,30 @@ namespace KMPLauncher
         List<KMPServer> servers = new List<KMPServer>();
         KMPServer selection = new KMPServer();
 
-        string SERVER_CONST = "STARTSERVER";
+        readonly string SERVER_CONST = "STARTSERVER";
 
         public Form1()
         {
             InitializeComponent();
 
             LoadServers();
+            LoadUpdaterSettings();
 
             RefreshServerList();
 
             SaveServers();
+
+            CheckUpdate();
         }
 
         private void RefreshServerList()
         {
             RefreshButton.Enabled = false;
             listView1.Items.Clear();
-            
-            NetworkWorker.RunWorkerAsync();
+            if (!NetworkWorker.IsBusy)
+            {
+                NetworkWorker.RunWorkerAsync();
+            }
 
         }
 
@@ -53,6 +60,8 @@ namespace KMPLauncher
 
             }
         }
+
+        #region ServerSaveLoad
         private void SaveServers()
         {
             StreamWriter wr = new StreamWriter("servers.txt");
@@ -83,7 +92,7 @@ namespace KMPLauncher
                 file.Close();
             }
             StreamReader reader = new StreamReader("servers.txt");
-            while(reader.ReadLine() == SERVER_CONST)
+            while (reader.ReadLine() == SERVER_CONST)
             {
                 KMPServer server = new KMPServer();
                 server.Name = reader.ReadLine();
@@ -94,7 +103,8 @@ namespace KMPLauncher
             }
 
             reader.Close();
-        }
+        } 
+        #endregion
 
         private void label1_Click(object sender, EventArgs e)
         {
@@ -102,26 +112,9 @@ namespace KMPLauncher
         }
 
 
-        private void AddNewServer_Click(object sender, EventArgs e)
-        {
-            KMPServer server = new KMPServer();
-            server.Name = textBoxName.Text;
-            server.IP = textBoxIP.Text;
-            try
-            {
-                server.Port = int.Parse(textBoxPort.Text);
-            }
-            catch (Exception)
-            {
-                server.Port = 2076;
-            }
+        
 
-            servers.Add(server);
-
-
-            RefreshServerList();
-        }
-
+        #region NetworkWorker
         private void NetworkWorker_DoWork(object sender, DoWorkEventArgs e)
         {
             BackgroundWorker worker = sender as BackgroundWorker;
@@ -169,18 +162,47 @@ namespace KMPLauncher
 
             this.Text = "Kerbal Multiplayer Launcher";
             RefreshButton.Enabled = true;
-            
+
             PopulateServerList();
         }
+        
+        #endregion
 
+        #region ServerListEvents
         private void Form1_FormClosing(object sender, FormClosingEventArgs e)
         {
             SaveServers();
+            SaveUpdaterSettings();
+        }
+
+        private void AddNewServer_Click(object sender, EventArgs e)
+        {
+            KMPServer server = new KMPServer();
+            server.Name = textBoxName.Text;
+            server.IP = textBoxIP.Text;
+            try
+            {
+                server.Port = int.Parse(textBoxPort.Text);
+            }
+            catch (Exception)
+            {
+                server.Port = 2076;
+            }
+
+            servers.Add(server);
+
+
+            RefreshServerList();
         }
 
         private void JoinButton_Click(object sender, EventArgs e)
         {
+            StreamWriter wr = new StreamWriter(UpdaterSettings.KMPDirectory + @"\PluginData\KerbalMultiPlayer\KMPClientConfig",true);
 
+            
+
+
+            wr.Close();
         }
 
         private void RefreshButton_Click(object sender, EventArgs e)
@@ -204,15 +226,112 @@ namespace KMPLauncher
                 PlayerListBox.Items.Add(s);
             }
 
-        }
+        } 
+        #endregion
 
+        #region PrettyTextBoxes
         private void DeleteButton_Click(object sender, EventArgs e)
         {
             servers.Remove(selection);
             RefreshServerList();
         }
 
+        private void textBoxName_Enter(object sender, EventArgs e)
+        {
+            if (textBoxName.Text == "Name")
+            {
+                textBoxName.Text = "";
+            }
+        }
 
+        private void textBoxIP_Enter(object sender, EventArgs e)
+        {
+            if (textBoxIP.Text == "IP")
+            {
+                textBoxIP.Text = "";
+            }
+        }
+
+        private void textBoxPort_Enter(object sender, EventArgs e)
+        {
+            if (textBoxPort.Text == "Port")
+            {
+                textBoxPort.Text = "";
+            }
+        } 
+        #endregion
+
+        private void FolderBrowseButton_Click(object sender, EventArgs e)
+        {
+            folderBrowserDialog1.ShowDialog();
+            directoryPath.Text = folderBrowserDialog1.SelectedPath;
+        }
+
+        private void directoryPath_TextChanged(object sender, EventArgs e)
+        {
+            //Check if the directory contains KSP
+            if (File.Exists(directoryPath.Text + @"\KSP.exe"))
+            {
+                KSPStatusLabel.Text = "Kerbal Space Program found";
+                UpdaterSettings.KSPExecutable = directoryPath.Text + @"\KSP.exe";
+                UpdaterSettings.KSPDirectory = directoryPath.Text;
+            }
+            else
+            {
+                KSPStatusLabel.Text = "Kerbal Space Program not found";
+            }
+
+            //Check if the directory contains KSP
+            if (File.Exists(directoryPath.Text + @"\GameData\KMP\Plugins\KerbalMultiPlayer.dll"))
+            {
+                KMPStatusLabel.Text = "Kerbal Multiplayer found";
+                UpdaterSettings.KMPDirectory = directoryPath.Text + @"\GameData\KMP\Plugins";
+                UpdaterSettings.KMPExecutable = directoryPath.Text + @"\GameData\KMP\Plugins\KerbalMultiPlayer.dll";
+            }
+            else
+            {
+                KMPStatusLabel.Text = "Kerbal Multiplayer not found";
+            }
+        }
+
+        private void CheckUpdate()
+        {
+            FileVersionInfo info = FileVersionInfo.GetVersionInfo(UpdaterSettings.KMPExecutable);
+            UpdaterSettings.CurrentKMPUpdate = info.FileVersion;
+
+            KMPVersionLabel.Text = UpdaterSettings.CurrentKMPUpdate;
+
+
+
+
+        }
+
+
+        #region UpdaterSaveLoad
+        private void SaveUpdaterSettings()
+        {
+            StreamWriter wr = new StreamWriter("updater.txt");
+
+
+            wr.Write(UpdaterSettings.KSPDirectory);
+            wr.Write(Environment.NewLine);
+
+            wr.Close();
+        }
+        private void LoadUpdaterSettings()
+        {
+            if (!File.Exists("updater.txt"))
+            {
+                FileStream file = File.Create("updater.txt");
+                file.Close();
+            }
+            StreamReader reader = new StreamReader("updater.txt");
+
+            directoryPath.Text = reader.ReadLine();
+
+            reader.Close();
+        } 
+        #endregion
 
 
     }
