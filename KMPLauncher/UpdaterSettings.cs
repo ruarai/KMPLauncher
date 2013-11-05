@@ -15,6 +15,8 @@ namespace KMPLauncher
         static public string KSPExecutable;
         static public string KMPExecutable;
 
+        static public bool KSPExists;
+        static public bool KMPExists;
         
 
 
