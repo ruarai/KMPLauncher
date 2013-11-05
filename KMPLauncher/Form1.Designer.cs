@@ -383,7 +383,7 @@
             // UpdateButton
             // 
             this.UpdateButton.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.UpdateButton.Location = new System.Drawing.Point(339, 87);
+            this.UpdateButton.Location = new System.Drawing.Point(339, 97);
             this.UpdateButton.Name = "UpdateButton";
             this.UpdateButton.Size = new System.Drawing.Size(97, 23);
             this.UpdateButton.TabIndex = 9;
@@ -394,7 +394,7 @@
             // UpdateCheckButton
             // 
             this.UpdateCheckButton.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.UpdateCheckButton.Location = new System.Drawing.Point(236, 87);
+            this.UpdateCheckButton.Location = new System.Drawing.Point(236, 97);
             this.UpdateCheckButton.Name = "UpdateCheckButton";
             this.UpdateCheckButton.Size = new System.Drawing.Size(97, 23);
             this.UpdateCheckButton.TabIndex = 10;
