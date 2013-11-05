@@ -25,7 +25,6 @@ namespace KMPLauncher
             InitializeComponent();
 
 
-
             LoadServers();
             LoadUpdaterSettings();
 
@@ -331,14 +330,7 @@ namespace KMPLauncher
 
         private void CheckUpdate()
         {
-            FileVersionInfo info = FileVersionInfo.GetVersionInfo(UpdaterSettings.KMPExecutable);
-            UpdaterSettings.CurrentKMPUpdate = info.FileVersion;
-
             KMPVersionLabel.Text = UpdaterSettings.CurrentKMPUpdate;
-
-
-
-
         }
 
 
