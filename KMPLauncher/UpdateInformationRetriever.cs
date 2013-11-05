@@ -12,7 +12,7 @@ namespace KMPLauncher
     static class UpdateInformationRetriever
     {
 
-        static Uri UpdateInfoUri = new Uri("https://gist.github.com/ruarai/7312239/raw/cceba0a2d75a8e14531073295cb0c7e4489f53eb/UpdateInfo");
+        static Uri UpdateInfoUri = new Uri("http://ruarai.github.io/");
 
         public static void Retrieve()
         {
@@ -21,7 +21,7 @@ namespace KMPLauncher
 
             string page = retriever.DownloadString(UpdateInfoUri);
 
-            string[] lines = page.Split(new string[] { "\n" }, StringSplitOptions.RemoveEmptyEntries);
+            string[] lines = page.Split(new string[] { "</br>" }, StringSplitOptions.RemoveEmptyEntries);
 
 
             UpdateInfo.LatestVersion = lines[0];
