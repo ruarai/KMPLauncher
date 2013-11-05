@@ -222,40 +222,48 @@ namespace KMPLauncher
 
         private void JoinButton_Click(object sender, EventArgs e)
         {
+            UpdateUpdaterSettings();
             if (selection.Version == UpdaterSettings.CurrentKMPUpdate)
             {
-                if (!File.Exists(UpdaterSettings.KMPDirectory + @"\PluginData\KerbalMultiPlayer\KMPClientConfig.txt"))
+                if (UpdaterSettings.KSPExists & UpdaterSettings.KMPExists)
                 {
-                    if (!Directory.Exists(UpdaterSettings.KMPDirectory + @"\PluginData\"))
+                    if (!File.Exists(UpdaterSettings.KMPDirectory + @"\PluginData\KerbalMultiPlayer\KMPClientConfig.txt"))
                     {
-                        Directory.CreateDirectory(UpdaterSettings.KMPDirectory + @"\PluginData\");
-                    }
-                    if (!Directory.Exists(UpdaterSettings.KMPDirectory + @"\PluginData\KerbalMultiPlayer\"))
-                    {
-                        Directory.CreateDirectory(UpdaterSettings.KMPDirectory + @"\PluginData\KerbalMultiPlayer\");
-                    }
+                        if (!Directory.Exists(UpdaterSettings.KMPDirectory + @"\PluginData\"))
+                        {
+                            Directory.CreateDirectory(UpdaterSettings.KMPDirectory + @"\PluginData\");
+                        }
+                        if (!Directory.Exists(UpdaterSettings.KMPDirectory + @"\PluginData\KerbalMultiPlayer\"))
+                        {
+                            Directory.CreateDirectory(UpdaterSettings.KMPDirectory + @"\PluginData\KerbalMultiPlayer\");
+                        }
 
 
-                    FileStream file = File.Create(UpdaterSettings.KMPDirectory + @"\PluginData\KerbalMultiPlayer\KMPClientConfig.txt");
-                    file.Close();
+                        FileStream file = File.Create(UpdaterSettings.KMPDirectory + @"\PluginData\KerbalMultiPlayer\KMPClientConfig.txt");
+                        file.Close();
+                    }
+                    StreamWriter wr = new StreamWriter(UpdaterSettings.KMPDirectory + @"\PluginData\KerbalMultiPlayer\KMPClientConfig.txt");
+
+                    wr.WriteLine("username");
+                    wr.WriteLine(UserNameInput.Text);
+
+                    wr.WriteLine("ip");
+                    wr.WriteLine("");
+
+                    wr.WriteLine("reconnect");
+                    wr.WriteLine("True");
+
+                    wr.WriteLine("fav0");
+                    wr.WriteLine(selection.Address);
+
+                    wr.Close();
+
+                    Process.Start(UpdaterSettings.KSPExecutable);
                 }
-                StreamWriter wr = new StreamWriter(UpdaterSettings.KMPDirectory + @"\PluginData\KerbalMultiPlayer\KMPClientConfig.txt");
-
-                wr.WriteLine("username");
-                wr.WriteLine(UserNameInput.Text);
-
-                wr.WriteLine("ip");
-                wr.WriteLine("");
-
-                wr.WriteLine("reconnect");
-                wr.WriteLine("True");
-
-                wr.WriteLine("fav0");
-                wr.WriteLine(selection.Address);
-
-                wr.Close();
-
-                Process.Start(UpdaterSettings.KSPExecutable);
+                else
+                {
+                    MessageBox.Show("Please check directory settings. KSP or KMP not found.");
+                }
             }
             else
             {
@@ -345,10 +353,12 @@ namespace KMPLauncher
                 KSPStatusLabel.Text = "Kerbal Space Program found";
                 UpdaterSettings.KSPExecutable = directoryPath.Text + @"\KSP.exe";
                 UpdaterSettings.KSPDirectory = directoryPath.Text;
+                UpdaterSettings.KSPExists = true;
             }
             else
             {
                 KSPStatusLabel.Text = "Kerbal Space Program not found";
+                UpdaterSettings.KSPExists = false;
             }
 
             //Check if the directory contains KSP
@@ -357,10 +367,12 @@ namespace KMPLauncher
                 KMPStatusLabel.Text = "Kerbal Multiplayer found";
                 UpdaterSettings.KMPDirectory = directoryPath.Text + @"\GameData\KMP\Plugins";
                 UpdaterSettings.KMPExecutable = directoryPath.Text + @"\GameData\KMP\Plugins\KerbalMultiPlayer.dll";
+                UpdaterSettings.KMPExists = true;
             }
             else
             {
                 KMPStatusLabel.Text = "Kerbal Multiplayer not found";
+                UpdaterSettings.KMPExists = false;
             }
 
             CheckUpdate();

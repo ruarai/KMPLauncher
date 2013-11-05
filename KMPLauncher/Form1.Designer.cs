@@ -84,7 +84,7 @@
             this.listView1.Location = new System.Drawing.Point(6, 33);
             this.listView1.MultiSelect = false;
             this.listView1.Name = "listView1";
-            this.listView1.Size = new System.Drawing.Size(440, 381);
+            this.listView1.Size = new System.Drawing.Size(440, 153);
             this.listView1.TabIndex = 0;
             this.listView1.UseCompatibleStateImageBehavior = false;
             this.listView1.View = System.Windows.Forms.View.Details;
@@ -144,7 +144,7 @@
             this.tabPage2.Location = new System.Drawing.Point(4, 22);
             this.tabPage2.Name = "tabPage2";
             this.tabPage2.Padding = new System.Windows.Forms.Padding(3);
-            this.tabPage2.Size = new System.Drawing.Size(452, 524);
+            this.tabPage2.Size = new System.Drawing.Size(452, 296);
             this.tabPage2.TabIndex = 1;
             this.tabPage2.Text = "Servers";
             this.tabPage2.UseVisualStyleBackColor = true;
@@ -152,7 +152,7 @@
             // textBoxHTTPPort
             // 
             this.textBoxHTTPPort.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
-            this.textBoxHTTPPort.Location = new System.Drawing.Point(6, 492);
+            this.textBoxHTTPPort.Location = new System.Drawing.Point(6, 264);
             this.textBoxHTTPPort.Name = "textBoxHTTPPort";
             this.textBoxHTTPPort.Size = new System.Drawing.Size(100, 20);
             this.textBoxHTTPPort.TabIndex = 14;
@@ -179,9 +179,9 @@
             // 
             // DeleteButton
             // 
-            this.DeleteButton.Location = new System.Drawing.Point(87, 5);
+            this.DeleteButton.Location = new System.Drawing.Point(87, 6);
             this.DeleteButton.Name = "DeleteButton";
-            this.DeleteButton.Size = new System.Drawing.Size(58, 24);
+            this.DeleteButton.Size = new System.Drawing.Size(58, 23);
             this.DeleteButton.TabIndex = 10;
             this.DeleteButton.Text = "Remove";
             this.DeleteButton.UseVisualStyleBackColor = true;
@@ -191,7 +191,7 @@
             // 
             this.groupBox1.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
             this.groupBox1.Controls.Add(this.PlayerListBox);
-            this.groupBox1.Location = new System.Drawing.Point(244, 420);
+            this.groupBox1.Location = new System.Drawing.Point(244, 192);
             this.groupBox1.Name = "groupBox1";
             this.groupBox1.Size = new System.Drawing.Size(200, 93);
             this.groupBox1.TabIndex = 9;
@@ -221,9 +221,9 @@
             // AddNewServer
             // 
             this.AddNewServer.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
-            this.AddNewServer.Location = new System.Drawing.Point(112, 489);
+            this.AddNewServer.Location = new System.Drawing.Point(112, 262);
             this.AddNewServer.Name = "AddNewServer";
-            this.AddNewServer.Size = new System.Drawing.Size(47, 24);
+            this.AddNewServer.Size = new System.Drawing.Size(47, 23);
             this.AddNewServer.TabIndex = 6;
             this.AddNewServer.Text = "Add";
             this.AddNewServer.UseVisualStyleBackColor = true;
@@ -243,7 +243,7 @@
             // textBoxName
             // 
             this.textBoxName.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
-            this.textBoxName.Location = new System.Drawing.Point(6, 463);
+            this.textBoxName.Location = new System.Drawing.Point(6, 235);
             this.textBoxName.Name = "textBoxName";
             this.textBoxName.Size = new System.Drawing.Size(153, 20);
             this.textBoxName.TabIndex = 4;
@@ -253,7 +253,7 @@
             // textBoxAddress
             // 
             this.textBoxAddress.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
-            this.textBoxAddress.Location = new System.Drawing.Point(6, 432);
+            this.textBoxAddress.Location = new System.Drawing.Point(6, 204);
             this.textBoxAddress.Name = "textBoxAddress";
             this.textBoxAddress.Size = new System.Drawing.Size(153, 20);
             this.textBoxAddress.TabIndex = 2;
