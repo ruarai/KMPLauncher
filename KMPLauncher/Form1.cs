@@ -215,7 +215,21 @@ namespace KMPLauncher
         {
             if (selection.Version == UpdaterSettings.CurrentKMPUpdate)
             {
+                if (!File.Exists(UpdaterSettings.KMPDirectory + @"\PluginData\KerbalMultiPlayer\KMPClientConfig.txt"))
+                {
+                    if (!Directory.Exists(UpdaterSettings.KMPDirectory + @"\PluginData\"))
+                    {
+                        Directory.CreateDirectory(UpdaterSettings.KMPDirectory + @"\PluginData\");
+                    }
+                    if (!Directory.Exists(UpdaterSettings.KMPDirectory + @"\PluginData\KerbalMultiPlayer\"))
+                    {
+                        Directory.CreateDirectory(UpdaterSettings.KMPDirectory + @"\PluginData\KerbalMultiPlayer\");
+                    }
 
+
+                    FileStream file = File.Create(UpdaterSettings.KMPDirectory + @"\PluginData\KerbalMultiPlayer\KMPClientConfig.txt");
+                    file.Close();
+                }
                 StreamWriter wr = new StreamWriter(UpdaterSettings.KMPDirectory + @"\PluginData\KerbalMultiPlayer\KMPClientConfig.txt");
 
                 wr.WriteLine("username");
