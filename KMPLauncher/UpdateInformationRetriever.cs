@@ -12,7 +12,7 @@ namespace KMPLauncher
     static class UpdateInformationRetriever
     {
 
-        static Uri UpdateInfoUri = new Uri("http://ruarai.github.io/");
+        static Uri UpdateInfoUri = new Uri("https://dl.dropboxusercontent.com/u/6898485/index.html");
 
         public static void Retrieve()
         {

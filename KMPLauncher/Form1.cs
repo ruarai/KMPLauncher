@@ -18,21 +18,30 @@ namespace KMPLauncher
         List<KMPServer> servers = new List<KMPServer>();
         KMPServer selection = new KMPServer();
 
+        static string APP_DATA = Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData) + @"\KMPLauncher\";
+
         readonly string SERVER_CONST = "STARTSERVER";
 
         public Form1()
         {
             InitializeComponent();
 
+            InitLauncherDirectory();
 
             LoadServers();
             LoadUpdaterSettings();
 
             RefreshServerList();
 
-            SaveServers();
-
             CheckUpdate();
+        }
+
+        private void InitLauncherDirectory()
+        {
+            if (!Directory.Exists(APP_DATA))
+            {
+                Directory.CreateDirectory(APP_DATA);
+            }
         }
 
         private void RefreshServerList()
@@ -65,7 +74,7 @@ namespace KMPLauncher
         #region ServerSaveLoad
         private void SaveServers()
         {
-            StreamWriter wr = new StreamWriter("servers.txt");
+            StreamWriter wr = new StreamWriter(APP_DATA + "servers.txt");
             wr.NewLine = Environment.NewLine;
             foreach (KMPServer s in servers)
             {
@@ -87,12 +96,12 @@ namespace KMPLauncher
 
         private void LoadServers()
         {
-            if (!File.Exists("servers.txt"))
+            if (!File.Exists(APP_DATA + "servers.txt"))
             {
-                FileStream file = File.Create("servers.txt");
+                FileStream file = File.Create(APP_DATA + "servers.txt");
                 file.Close();
             }
-            StreamReader reader = new StreamReader("servers.txt");
+            StreamReader reader = new StreamReader(APP_DATA + "servers.txt");
             while (reader.ReadLine() == SERVER_CONST)
             {
                 KMPServer server = new KMPServer();
@@ -371,7 +380,7 @@ namespace KMPLauncher
         #region UpdaterSaveLoad
         private void SaveUpdaterSettings()
         {
-            StreamWriter wr = new StreamWriter("updater.txt");
+            StreamWriter wr = new StreamWriter(APP_DATA + "updater.txt");
 
 
             wr.Write(UpdaterSettings.KSPDirectory);
@@ -381,12 +390,12 @@ namespace KMPLauncher
         }
         private void LoadUpdaterSettings()
         {
-            if (!File.Exists("updater.txt"))
+            if (!File.Exists(APP_DATA + "updater.txt"))
             {
-                FileStream file = File.Create("updater.txt");
+                FileStream file = File.Create(APP_DATA + "updater.txt");
                 file.Close();
             }
-            StreamReader reader = new StreamReader("updater.txt");
+            StreamReader reader = new StreamReader(APP_DATA + "updater.txt");
 
             directoryPath.Text = reader.ReadLine();
 
