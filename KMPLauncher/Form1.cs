@@ -24,6 +24,8 @@ namespace KMPLauncher
         {
             InitializeComponent();
 
+
+
             LoadServers();
             LoadUpdaterSettings();
 
@@ -128,7 +130,6 @@ namespace KMPLauncher
                 try
                 {
                     KMPServer filled = ServerInformationRetriever.Retrieve(s.IP, s.HTTPPort);//This is terrible, I know. I wish it wasn't so mean to me and just let me do s = filled
-                    s.Name = filled.Name;
                     s.MaxPlayers = filled.MaxPlayers;
                     s.Players = filled.Players;
                     s.Information = filled.Information;
@@ -154,6 +155,7 @@ namespace KMPLauncher
         private void NetworkWorker_ProgressChanged(object sender, ProgressChangedEventArgs e)
         {
             this.Text = "Kerbal Multiplayer Launcher - Refreshing: " + e.ProgressPercentage + "%";
+            
         }
 
         private void NetworkWorker_RunWorkerCompleted(object sender, RunWorkerCompletedEventArgs e)
@@ -179,15 +181,30 @@ namespace KMPLauncher
         {
             KMPServer server = new KMPServer();
             server.Name = textBoxName.Text;
-            server.IP = textBoxIP.Text;
+
+            string address = textBoxAddress.Text;
+            string[] splitaddress = address.Split(':');
+
+            server.IP = splitaddress[0];
             try
             {
-                server.Port = int.Parse(textBoxPort.Text);
+                server.Port = int.Parse(splitaddress[1]);
             }
             catch (Exception)
             {
                 server.Port = 2076;
             }
+
+
+            try
+            {
+                server.HTTPPort = int.Parse(textBoxHTTPPort.Text);
+            }
+            catch (Exception)
+            {
+                server.HTTPPort = 8081;
+            }
+
 
             servers.Add(server);
 
@@ -197,12 +214,23 @@ namespace KMPLauncher
 
         private void JoinButton_Click(object sender, EventArgs e)
         {
-            StreamWriter wr = new StreamWriter(UpdaterSettings.KMPDirectory + @"\PluginData\KerbalMultiPlayer\KMPClientConfig",true);
+            StreamWriter wr = new StreamWriter(UpdaterSettings.KMPDirectory + @"\PluginData\KerbalMultiPlayer\KMPClientConfig.txt");
+           
+            wr.WriteLine("username");
+            wr.WriteLine(UserNameInput.Text);
 
-            
+            wr.WriteLine("ip");
+            wr.WriteLine("");
 
+            wr.WriteLine("reconnect");
+            wr.WriteLine("True");
+
+            wr.WriteLine("fav0");
+            wr.WriteLine(selection.Address);
 
             wr.Close();
+
+            Process.Start(UpdaterSettings.KSPExecutable);
         }
 
         private void RefreshButton_Click(object sender, EventArgs e)
@@ -221,6 +249,8 @@ namespace KMPLauncher
                     break;
                 }
             }
+
+            PlayerListBox.Items.Clear();
             foreach (string s in selection.PlayerList)
             {
                 PlayerListBox.Items.Add(s);
@@ -246,19 +276,24 @@ namespace KMPLauncher
 
         private void textBoxIP_Enter(object sender, EventArgs e)
         {
-            if (textBoxIP.Text == "IP")
+            if (textBoxAddress.Text == "Address")
             {
-                textBoxIP.Text = "";
+                textBoxAddress.Text = "";
             }
         }
 
-        private void textBoxPort_Enter(object sender, EventArgs e)
+
+
+
+        private void textBoxHTTPAddress_Enter(object sender, EventArgs e)
         {
-            if (textBoxPort.Text == "Port")
+            if (textBoxHTTPPort.Text == "HTTP Port")
             {
-                textBoxPort.Text = "";
+                textBoxHTTPPort.Text = "";
             }
-        } 
+        }
+
+
         #endregion
 
         private void FolderBrowseButton_Click(object sender, EventArgs e)
@@ -332,6 +367,10 @@ namespace KMPLauncher
             reader.Close();
         } 
         #endregion
+
+
+
+       
 
 
     }
