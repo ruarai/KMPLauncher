@@ -59,6 +59,8 @@
             this.label1 = new System.Windows.Forms.Label();
             this.NetworkWorker = new System.ComponentModel.BackgroundWorker();
             this.folderBrowserDialog1 = new System.Windows.Forms.FolderBrowserDialog();
+            this.UpdateButton = new System.Windows.Forms.Button();
+            this.UpdateCheckButton = new System.Windows.Forms.Button();
             this.tabControl1.SuspendLayout();
             this.tabPage2.SuspendLayout();
             this.groupBox1.SuspendLayout();
@@ -123,7 +125,7 @@
             this.tabControl1.Location = new System.Drawing.Point(12, 12);
             this.tabControl1.Name = "tabControl1";
             this.tabControl1.SelectedIndex = 0;
-            this.tabControl1.Size = new System.Drawing.Size(460, 550);
+            this.tabControl1.Size = new System.Drawing.Size(460, 322);
             this.tabControl1.TabIndex = 1;
             // 
             // tabPage2
@@ -260,6 +262,8 @@
             // 
             // tabPage1
             // 
+            this.tabPage1.Controls.Add(this.UpdateCheckButton);
+            this.tabPage1.Controls.Add(this.UpdateButton);
             this.tabPage1.Controls.Add(this.KMPLatestUpdateLabel);
             this.tabPage1.Controls.Add(this.label3);
             this.tabPage1.Controls.Add(this.KMPVersionLabel);
@@ -272,13 +276,14 @@
             this.tabPage1.Location = new System.Drawing.Point(4, 22);
             this.tabPage1.Name = "tabPage1";
             this.tabPage1.Padding = new System.Windows.Forms.Padding(3);
-            this.tabPage1.Size = new System.Drawing.Size(452, 524);
+            this.tabPage1.Size = new System.Drawing.Size(452, 296);
             this.tabPage1.TabIndex = 0;
             this.tabPage1.Text = "Updater";
             this.tabPage1.UseVisualStyleBackColor = true;
             // 
             // KMPLatestUpdateLabel
             // 
+            this.KMPLatestUpdateLabel.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.KMPLatestUpdateLabel.AutoSize = true;
             this.KMPLatestUpdateLabel.Location = new System.Drawing.Point(396, 71);
             this.KMPLatestUpdateLabel.Name = "KMPLatestUpdateLabel";
@@ -288,6 +293,7 @@
             // 
             // label3
             // 
+            this.label3.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.label3.AutoSize = true;
             this.label3.Location = new System.Drawing.Point(288, 71);
             this.label3.Name = "label3";
@@ -297,6 +303,7 @@
             // 
             // KMPVersionLabel
             // 
+            this.KMPVersionLabel.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.KMPVersionLabel.AutoSize = true;
             this.KMPVersionLabel.Location = new System.Drawing.Point(396, 48);
             this.KMPVersionLabel.Name = "KMPVersionLabel";
@@ -306,6 +313,7 @@
             // 
             // label2
             // 
+            this.label2.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.label2.AutoSize = true;
             this.label2.Location = new System.Drawing.Point(242, 48);
             this.label2.Name = "label2";
@@ -333,6 +341,7 @@
             // 
             // FolderBrowseButton
             // 
+            this.FolderBrowseButton.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.FolderBrowseButton.Location = new System.Drawing.Point(373, 10);
             this.FolderBrowseButton.Name = "FolderBrowseButton";
             this.FolderBrowseButton.Size = new System.Drawing.Size(75, 23);
@@ -343,6 +352,8 @@
             // 
             // directoryPath
             // 
+            this.directoryPath.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
             this.directoryPath.Location = new System.Drawing.Point(85, 12);
             this.directoryPath.Name = "directoryPath";
             this.directoryPath.Size = new System.Drawing.Size(282, 20);
@@ -369,11 +380,33 @@
             // 
             this.folderBrowserDialog1.RootFolder = System.Environment.SpecialFolder.ProgramFilesX86;
             // 
+            // UpdateButton
+            // 
+            this.UpdateButton.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.UpdateButton.Location = new System.Drawing.Point(339, 87);
+            this.UpdateButton.Name = "UpdateButton";
+            this.UpdateButton.Size = new System.Drawing.Size(97, 23);
+            this.UpdateButton.TabIndex = 9;
+            this.UpdateButton.Text = "Update KMP";
+            this.UpdateButton.UseVisualStyleBackColor = true;
+            this.UpdateButton.Click += new System.EventHandler(this.UpdateButton_Click);
+            // 
+            // UpdateCheckButton
+            // 
+            this.UpdateCheckButton.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.UpdateCheckButton.Location = new System.Drawing.Point(236, 87);
+            this.UpdateCheckButton.Name = "UpdateCheckButton";
+            this.UpdateCheckButton.Size = new System.Drawing.Size(97, 23);
+            this.UpdateCheckButton.TabIndex = 10;
+            this.UpdateCheckButton.Text = "Refresh Checks";
+            this.UpdateCheckButton.UseVisualStyleBackColor = true;
+            this.UpdateCheckButton.Click += new System.EventHandler(this.UpdateCheckButton_Click);
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(484, 590);
+            this.ClientSize = new System.Drawing.Size(484, 362);
             this.Controls.Add(this.tabControl1);
             this.MinimumSize = new System.Drawing.Size(500, 400);
             this.Name = "Form1";
@@ -422,6 +455,8 @@
         private System.Windows.Forms.Label label5;
         private System.Windows.Forms.TextBox UserNameInput;
         private System.Windows.Forms.TextBox textBoxHTTPPort;
+        private System.Windows.Forms.Button UpdateButton;
+        private System.Windows.Forms.Button UpdateCheckButton;
     }
 }
 

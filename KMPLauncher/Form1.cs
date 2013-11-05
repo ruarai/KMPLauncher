@@ -213,23 +213,31 @@ namespace KMPLauncher
 
         private void JoinButton_Click(object sender, EventArgs e)
         {
-            StreamWriter wr = new StreamWriter(UpdaterSettings.KMPDirectory + @"\PluginData\KerbalMultiPlayer\KMPClientConfig.txt");
-           
-            wr.WriteLine("username");
-            wr.WriteLine(UserNameInput.Text);
+            if (selection.Version == UpdaterSettings.CurrentKMPUpdate)
+            {
 
-            wr.WriteLine("ip");
-            wr.WriteLine("");
+                StreamWriter wr = new StreamWriter(UpdaterSettings.KMPDirectory + @"\PluginData\KerbalMultiPlayer\KMPClientConfig.txt");
 
-            wr.WriteLine("reconnect");
-            wr.WriteLine("True");
+                wr.WriteLine("username");
+                wr.WriteLine(UserNameInput.Text);
 
-            wr.WriteLine("fav0");
-            wr.WriteLine(selection.Address);
+                wr.WriteLine("ip");
+                wr.WriteLine("");
 
-            wr.Close();
+                wr.WriteLine("reconnect");
+                wr.WriteLine("True");
 
-            Process.Start(UpdaterSettings.KSPExecutable);
+                wr.WriteLine("fav0");
+                wr.WriteLine(selection.Address);
+
+                wr.Close();
+
+                Process.Start(UpdaterSettings.KSPExecutable);
+            }
+            else
+            {
+                MessageBox.Show("Version mis-match.");
+            }
         }
 
         private void RefreshButton_Click(object sender, EventArgs e)
@@ -303,6 +311,11 @@ namespace KMPLauncher
 
         private void directoryPath_TextChanged(object sender, EventArgs e)
         {
+            UpdateUpdaterSettings();
+        }
+
+        private void UpdateUpdaterSettings()
+        {
             //Check if the directory contains KSP
             if (File.Exists(directoryPath.Text + @"\KSP.exe"))
             {
@@ -326,12 +339,19 @@ namespace KMPLauncher
             {
                 KMPStatusLabel.Text = "Kerbal Multiplayer not found";
             }
+
+            CheckUpdate();
         }
 
         private void CheckUpdate()
         {
             KMPVersionLabel.Text = UpdaterSettings.CurrentKMPUpdate;
+
+            UpdateInformationRetriever.Retrieve();
+
+            KMPLatestUpdateLabel.Text = UpdateInfo.LatestVersion;
         }
+
 
 
         #region UpdaterSaveLoad
@@ -359,6 +379,16 @@ namespace KMPLauncher
             reader.Close();
         } 
         #endregion
+
+        private void UpdateButton_Click(object sender, EventArgs e)
+        {
+            KMPUpdater.Update(UpdateInfo.DownloadURL);
+        }
+
+        private void UpdateCheckButton_Click(object sender, EventArgs e)
+        {
+            UpdateUpdaterSettings();
+        }
 
 
 

@@ -18,9 +18,18 @@ namespace KMPLauncher
 
         public static string CurrentKMPUpdate
         {
-            get { return FileVersionInfo.GetVersionInfo(UpdaterSettings.KMPExecutable).FileVersion; }
+            get
+            {
+                try
+                {
+                    return FileVersionInfo.GetVersionInfo(UpdaterSettings.KMPExecutable).FileVersion;
+                }
+                catch (Exception e)
+                {
+                    return "0.0.0.0";
+                }
+            }
         }
-        static public string LatestKMPUpdate;
 
         
     }
