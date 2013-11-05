@@ -13,7 +13,7 @@ using System.Diagnostics;
 
 namespace KMPLauncher
 {
-    public partial class Form1 : Form
+    public partial class LauncherForm : Form
     {
         List<KMPServer> servers = new List<KMPServer>();
         KMPServer selection = new KMPServer();
@@ -22,7 +22,7 @@ namespace KMPLauncher
 
         readonly string SERVER_CONST = "STARTSERVER";
 
-        public Form1()
+        public LauncherForm()
         {
             InitializeComponent();
 
