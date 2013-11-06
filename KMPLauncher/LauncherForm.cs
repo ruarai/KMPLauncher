@@ -71,6 +71,12 @@ namespace KMPLauncher
                 serveritem.SubItems.Add(s.Version);
                 serveritem.SubItems.Add(s.Players + "/" + s.MaxPlayers);
                 serveritem.SubItems.Add(s.Information);
+
+                if (s.Information == "-NO HTTP CONNECTION-")
+                {
+                    serveritem.ForeColor = Color.DarkRed;
+                }
+
                 serveritem.Group = PlayerServerGroup;
 
                 listView1.Groups.Add(PlayerServerGroup);
@@ -159,7 +165,7 @@ namespace KMPLauncher
                 }
                 catch (System.Net.WebException)
                 {
-                    s.Information = "-NO CONNECTION-";
+                    s.Information = "-NO HTTP CONNECTION-";
                 }
                 index++;
             }
@@ -398,8 +404,14 @@ namespace KMPLauncher
             }
 
             KMPLatestUpdateLabel.Text = UpdateInfo.LatestVersion;
-
-            ChangelogGroupBox.Text = "Update Changelog (KMP Version " + UpdateInfo.LatestVersion.Trim() + ")";
+            try
+            {
+                ChangelogGroupBox.Text = "Update Changelog (KMP Version " + UpdateInfo.LatestVersion.Trim() + ")";
+            }
+            catch
+            {
+                ChangelogGroupBox.Text = "Update Changelog";
+            }
             ChangelogBox.Text = ChangelogRetriever.Retrieve();
         } 
         #endregion

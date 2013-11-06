@@ -376,7 +376,7 @@
             this.FolderBrowseButton.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.FolderBrowseButton.Location = new System.Drawing.Point(673, 10);
             this.FolderBrowseButton.Name = "FolderBrowseButton";
-            this.FolderBrowseButton.Size = new System.Drawing.Size(75, 23);
+            this.FolderBrowseButton.Size = new System.Drawing.Size(63, 23);
             this.FolderBrowseButton.TabIndex = 2;
             this.FolderBrowseButton.Text = "Browse...";
             this.FolderBrowseButton.UseVisualStyleBackColor = true;
