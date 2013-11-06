@@ -13,8 +13,14 @@ namespace KMPLauncher
         public static string Retrieve()
         {
             WebClient retriever = new WebClient();
-
-            return retriever.DownloadString("https://dl.dropboxusercontent.com/u/6898485/changelog.txt");
+            try
+            {
+                return retriever.DownloadString("https://dl.dropboxusercontent.com/u/6898485/changelog.txt");
+            }
+            catch (WebException)
+            {
+                return "No connection to changelog.";
+            }
         }
     }
 }
