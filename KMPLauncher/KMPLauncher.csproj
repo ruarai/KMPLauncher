@@ -61,9 +61,6 @@
     <Compile Include="KMPServer.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="Retriever.cs">
-      <SubType>Component</SubType>
-    </Compile>
     <Compile Include="ServerInformationRetriever.cs" />
     <Compile Include="KMPUpdater.cs" />
     <Compile Include="UpdateInfo.cs" />
