@@ -64,11 +64,14 @@
             this.folderBrowserDialog1 = new System.Windows.Forms.FolderBrowserDialog();
             this.groupBox2 = new System.Windows.Forms.GroupBox();
             this.ServerInformationListBox = new System.Windows.Forms.ListBox();
+            this.ChangelogBox = new System.Windows.Forms.RichTextBox();
+            this.ChangelogGroupBox = new System.Windows.Forms.GroupBox();
             this.tabControl1.SuspendLayout();
             this.tabPage2.SuspendLayout();
             this.groupBox1.SuspendLayout();
             this.tabPage1.SuspendLayout();
             this.groupBox2.SuspendLayout();
+            this.ChangelogGroupBox.SuspendLayout();
             this.SuspendLayout();
             // 
             // listView1
@@ -118,7 +121,7 @@
             // ServerDescription
             // 
             this.ServerDescription.Text = "Description";
-            this.ServerDescription.Width = 205;
+            this.ServerDescription.Width = 390;
             // 
             // tabControl1
             // 
@@ -268,6 +271,7 @@
             // 
             // tabPage1
             // 
+            this.tabPage1.Controls.Add(this.ChangelogGroupBox);
             this.tabPage1.Controls.Add(this.UpdateCheckButton);
             this.tabPage1.Controls.Add(this.UpdateButton);
             this.tabPage1.Controls.Add(this.KMPLatestUpdateLabel);
@@ -282,7 +286,7 @@
             this.tabPage1.Location = new System.Drawing.Point(4, 22);
             this.tabPage1.Name = "tabPage1";
             this.tabPage1.Padding = new System.Windows.Forms.Padding(3);
-            this.tabPage1.Size = new System.Drawing.Size(452, 296);
+            this.tabPage1.Size = new System.Drawing.Size(752, 312);
             this.tabPage1.TabIndex = 0;
             this.tabPage1.Text = "Updater";
             this.tabPage1.UseVisualStyleBackColor = true;
@@ -290,7 +294,7 @@
             // UpdateCheckButton
             // 
             this.UpdateCheckButton.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.UpdateCheckButton.Location = new System.Drawing.Point(236, 97);
+            this.UpdateCheckButton.Location = new System.Drawing.Point(536, 97);
             this.UpdateCheckButton.Name = "UpdateCheckButton";
             this.UpdateCheckButton.Size = new System.Drawing.Size(97, 23);
             this.UpdateCheckButton.TabIndex = 10;
@@ -301,7 +305,7 @@
             // UpdateButton
             // 
             this.UpdateButton.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.UpdateButton.Location = new System.Drawing.Point(339, 97);
+            this.UpdateButton.Location = new System.Drawing.Point(639, 97);
             this.UpdateButton.Name = "UpdateButton";
             this.UpdateButton.Size = new System.Drawing.Size(97, 23);
             this.UpdateButton.TabIndex = 9;
@@ -313,7 +317,7 @@
             // 
             this.KMPLatestUpdateLabel.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.KMPLatestUpdateLabel.AutoSize = true;
-            this.KMPLatestUpdateLabel.Location = new System.Drawing.Point(396, 71);
+            this.KMPLatestUpdateLabel.Location = new System.Drawing.Point(696, 71);
             this.KMPLatestUpdateLabel.Name = "KMPLatestUpdateLabel";
             this.KMPLatestUpdateLabel.Size = new System.Drawing.Size(40, 13);
             this.KMPLatestUpdateLabel.TabIndex = 8;
@@ -323,7 +327,7 @@
             // 
             this.label3.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.label3.AutoSize = true;
-            this.label3.Location = new System.Drawing.Point(288, 71);
+            this.label3.Location = new System.Drawing.Point(588, 71);
             this.label3.Name = "label3";
             this.label3.Size = new System.Drawing.Size(102, 13);
             this.label3.TabIndex = 7;
@@ -333,7 +337,7 @@
             // 
             this.KMPVersionLabel.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.KMPVersionLabel.AutoSize = true;
-            this.KMPVersionLabel.Location = new System.Drawing.Point(396, 48);
+            this.KMPVersionLabel.Location = new System.Drawing.Point(696, 48);
             this.KMPVersionLabel.Name = "KMPVersionLabel";
             this.KMPVersionLabel.Size = new System.Drawing.Size(40, 13);
             this.KMPVersionLabel.TabIndex = 6;
@@ -343,7 +347,7 @@
             // 
             this.label2.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(242, 48);
+            this.label2.Location = new System.Drawing.Point(542, 48);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(148, 13);
             this.label2.TabIndex = 5;
@@ -370,7 +374,7 @@
             // FolderBrowseButton
             // 
             this.FolderBrowseButton.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.FolderBrowseButton.Location = new System.Drawing.Point(373, 10);
+            this.FolderBrowseButton.Location = new System.Drawing.Point(673, 10);
             this.FolderBrowseButton.Name = "FolderBrowseButton";
             this.FolderBrowseButton.Size = new System.Drawing.Size(75, 23);
             this.FolderBrowseButton.TabIndex = 2;
@@ -384,7 +388,7 @@
             | System.Windows.Forms.AnchorStyles.Right)));
             this.directoryPath.Location = new System.Drawing.Point(85, 12);
             this.directoryPath.Name = "directoryPath";
-            this.directoryPath.Size = new System.Drawing.Size(282, 20);
+            this.directoryPath.Size = new System.Drawing.Size(582, 20);
             this.directoryPath.TabIndex = 1;
             this.directoryPath.TextChanged += new System.EventHandler(this.directoryPath_TextChanged);
             // 
@@ -429,6 +433,31 @@
             this.ServerInformationListBox.Size = new System.Drawing.Size(207, 69);
             this.ServerInformationListBox.TabIndex = 9;
             // 
+            // ChangelogBox
+            // 
+            this.ChangelogBox.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.ChangelogBox.Location = new System.Drawing.Point(6, 19);
+            this.ChangelogBox.Name = "ChangelogBox";
+            this.ChangelogBox.ReadOnly = true;
+            this.ChangelogBox.Size = new System.Drawing.Size(715, 147);
+            this.ChangelogBox.TabIndex = 11;
+            this.ChangelogBox.Text = "";
+            // 
+            // ChangelogGroupBox
+            // 
+            this.ChangelogGroupBox.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.ChangelogGroupBox.Controls.Add(this.ChangelogBox);
+            this.ChangelogGroupBox.Location = new System.Drawing.Point(9, 134);
+            this.ChangelogGroupBox.Name = "ChangelogGroupBox";
+            this.ChangelogGroupBox.Size = new System.Drawing.Size(727, 172);
+            this.ChangelogGroupBox.TabIndex = 12;
+            this.ChangelogGroupBox.TabStop = false;
+            this.ChangelogGroupBox.Text = "Changelog";
+            // 
             // LauncherForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -447,6 +476,7 @@
             this.tabPage1.ResumeLayout(false);
             this.tabPage1.PerformLayout();
             this.groupBox2.ResumeLayout(false);
+            this.ChangelogGroupBox.ResumeLayout(false);
             this.ResumeLayout(false);
 
         }
@@ -488,6 +518,8 @@
         private System.Windows.Forms.Button UpdateCheckButton;
         private System.Windows.Forms.GroupBox groupBox2;
         private System.Windows.Forms.ListBox ServerInformationListBox;
+        private System.Windows.Forms.GroupBox ChangelogGroupBox;
+        private System.Windows.Forms.RichTextBox ChangelogBox;
     }
 }
 
