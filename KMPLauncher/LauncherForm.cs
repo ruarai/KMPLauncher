@@ -375,8 +375,14 @@ namespace KMPLauncher
         private void CheckUpdate()
         {
             KMPVersionLabel.Text = UpdaterSettings.CurrentKMPUpdate;
-
-            UpdateInformationRetriever.Retrieve();
+            try
+            {
+                UpdateInformationRetriever.Retrieve();
+            }
+            catch (System.Net.WebException)
+            {
+                MessageBox.Show("Failed to retrieve latest KMP version!");
+            }
 
             KMPLatestUpdateLabel.Text = UpdateInfo.LatestVersion;
         } 
