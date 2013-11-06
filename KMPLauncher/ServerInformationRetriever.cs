@@ -14,7 +14,9 @@ namespace KMPLauncher
         {
             KMPServer server = new KMPServer();
 
-            Retriever retriever = new Retriever();
+            WebClient retriever = new WebClient();
+
+            retriever.Headers.Add("KMPLAUNCHER", "SERVER_INFO_REQUEST");//Mostly unneeded. Only a courtesy thing for server owners.
 
             string url = "http://" + IP + ":" + HTTPPort + "/";//Make a nice URL out of the IP and Port
             
