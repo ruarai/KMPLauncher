@@ -16,7 +16,8 @@ namespace KMPLauncher
     public partial class LauncherForm : Form
     {
         List<KMPServer> PlayerServers = new List<KMPServer>();
-        KMPServer selection = new KMPServer();
+
+        KMPServer selection = new KMPServer();//The server the user had last selected
 
         ListViewGroup PlayerServerGroup = new ListViewGroup("Player Added Servers");
 
