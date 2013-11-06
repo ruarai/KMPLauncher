@@ -251,7 +251,7 @@ namespace KMPLauncher
                     }
                     StreamWriter wr = new StreamWriter(UpdaterSettings.KMPDirectory + @"\PluginData\KerbalMultiPlayer\KMPClientConfig.txt");
 
-                    wr.WriteLine("username");
+                    wr.WriteLine("username");//Very lazy way to do this, I know.
                     wr.WriteLine(UserNameInput.Text);
 
                     wr.WriteLine("ip");
