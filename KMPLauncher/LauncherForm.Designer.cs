@@ -356,7 +356,7 @@
             // KMPStatusLabel
             // 
             this.KMPStatusLabel.AutoSize = true;
-            this.KMPStatusLabel.Location = new System.Drawing.Point(6, 71);
+            this.KMPStatusLabel.Location = new System.Drawing.Point(12, 71);
             this.KMPStatusLabel.Name = "KMPStatusLabel";
             this.KMPStatusLabel.Size = new System.Drawing.Size(138, 13);
             this.KMPStatusLabel.TabIndex = 4;
@@ -365,7 +365,7 @@
             // KSPStatusLabel
             // 
             this.KSPStatusLabel.AutoSize = true;
-            this.KSPStatusLabel.Location = new System.Drawing.Point(6, 48);
+            this.KSPStatusLabel.Location = new System.Drawing.Point(12, 48);
             this.KSPStatusLabel.Name = "KSPStatusLabel";
             this.KSPStatusLabel.Size = new System.Drawing.Size(161, 13);
             this.KSPStatusLabel.TabIndex = 3;
@@ -386,16 +386,16 @@
             // 
             this.directoryPath.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.directoryPath.Location = new System.Drawing.Point(85, 12);
+            this.directoryPath.Location = new System.Drawing.Point(91, 12);
             this.directoryPath.Name = "directoryPath";
-            this.directoryPath.Size = new System.Drawing.Size(582, 20);
+            this.directoryPath.Size = new System.Drawing.Size(576, 20);
             this.directoryPath.TabIndex = 1;
             this.directoryPath.TextChanged += new System.EventHandler(this.directoryPath_TextChanged);
             // 
             // label1
             // 
             this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(6, 15);
+            this.label1.Location = new System.Drawing.Point(12, 15);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(73, 13);
             this.label1.TabIndex = 0;
