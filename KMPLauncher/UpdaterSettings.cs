@@ -28,7 +28,7 @@ namespace KMPLauncher
                 {
                     return FileVersionInfo.GetVersionInfo(UpdaterSettings.KMPExecutable).FileVersion;
                 }
-                catch (Exception e)
+                catch (Exception)
                 {
                     return "0.0.0.0";
                 }
