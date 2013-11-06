@@ -15,8 +15,10 @@ namespace KMPLauncher
 {
     public partial class LauncherForm : Form
     {
-        List<KMPServer> servers = new List<KMPServer>();
+        List<KMPServer> PlayerServers = new List<KMPServer>();
         KMPServer selection = new KMPServer();
+
+        ListViewGroup PlayerServerGroup = new ListViewGroup("Player Added Servers");
 
         static string APP_DATA = Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData) + @"\KMPLauncher\";
 
@@ -48,6 +50,8 @@ namespace KMPLauncher
         {
             RefreshButton.Enabled = false;
             listView1.Items.Clear();
+
+
             if (!NetworkWorker.IsBusy)
             {
                 NetworkWorker.RunWorkerAsync();
@@ -58,16 +62,17 @@ namespace KMPLauncher
 
         private void PopulateServerList()
         {
-            foreach (KMPServer s in servers)
+            foreach (KMPServer s in PlayerServers)
             {
                 ListViewItem serveritem = new ListViewItem(s.Name);
                 serveritem.SubItems.Add(s.IP + ":" + s.Port);
                 serveritem.SubItems.Add(s.Version);
                 serveritem.SubItems.Add(s.Players + "/" + s.MaxPlayers);
                 serveritem.SubItems.Add(s.Information);
+                serveritem.Group = PlayerServerGroup;
 
+                listView1.Groups.Add(PlayerServerGroup);
                 listView1.Items.Add(serveritem);
-
             }
         }
 
@@ -76,7 +81,7 @@ namespace KMPLauncher
         {
             StreamWriter wr = new StreamWriter(APP_DATA + "servers.txt");
             wr.NewLine = Environment.NewLine;
-            foreach (KMPServer s in servers)
+            foreach (KMPServer s in PlayerServers)
             {
                 wr.Write(SERVER_CONST);
                 wr.Write(Environment.NewLine);
@@ -109,7 +114,7 @@ namespace KMPLauncher
                 server.IP = reader.ReadLine();
                 server.Port = int.Parse(reader.ReadLine());
 
-                servers.Add(server);
+                PlayerServers.Add(server);
             }
 
             reader.Close();
@@ -129,11 +134,11 @@ namespace KMPLauncher
         {
             BackgroundWorker worker = sender as BackgroundWorker;
 
-            List<KMPServer> serversinternal = servers;
+            List<KMPServer> Playerserversinternal = PlayerServers;
 
             worker.ReportProgress(0);
             int index = 1;
-            foreach (KMPServer s in serversinternal)
+            foreach (KMPServer s in Playerserversinternal)
             {
                 try
                 {
@@ -144,7 +149,7 @@ namespace KMPLauncher
                     s.Version = filled.Version;
                     s.PlayerList = filled.PlayerList;
 
-                    float relativepercentage = (float)index / (float)serversinternal.Count;
+                    float relativepercentage = (float)index / (float)Playerserversinternal.Count;
 
                     int percentage = Convert.ToInt32(relativepercentage * 100.0f);
 
@@ -157,7 +162,7 @@ namespace KMPLauncher
                 }
                 index++;
             }
-            e.Result = serversinternal;
+            e.Result = Playerserversinternal;
         }
 
         private void NetworkWorker_ProgressChanged(object sender, ProgressChangedEventArgs e)
@@ -168,7 +173,7 @@ namespace KMPLauncher
 
         private void NetworkWorker_RunWorkerCompleted(object sender, RunWorkerCompletedEventArgs e)
         {
-            servers = (List<KMPServer>)e.Result;
+            PlayerServers = (List<KMPServer>)e.Result;
 
             this.Text = "Kerbal Multiplayer Launcher";
             RefreshButton.Enabled = true;
@@ -214,7 +219,7 @@ namespace KMPLauncher
             }
 
 
-            servers.Add(server);
+            PlayerServers.Add(server);
 
 
             RefreshServerList();
@@ -279,7 +284,7 @@ namespace KMPLauncher
         private void listView1_ItemSelectionChanged(object sender, ListViewItemSelectionChangedEventArgs e)
         {
             selection = new KMPServer();
-            foreach (KMPServer s in servers)
+            foreach (KMPServer s in PlayerServers)
             {
                 if (s.Address == e.Item.SubItems[1].Text)
                 {
@@ -300,7 +305,7 @@ namespace KMPLauncher
         #region PrettyTextBoxes
         private void DeleteButton_Click(object sender, EventArgs e)
         {
-            servers.Remove(selection);
+            PlayerServers.Remove(selection);
             RefreshServerList();
         }
 

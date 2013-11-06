@@ -48,6 +48,8 @@
             this.textBoxName = new System.Windows.Forms.TextBox();
             this.textBoxAddress = new System.Windows.Forms.TextBox();
             this.tabPage1 = new System.Windows.Forms.TabPage();
+            this.UpdateCheckButton = new System.Windows.Forms.Button();
+            this.UpdateButton = new System.Windows.Forms.Button();
             this.KMPLatestUpdateLabel = new System.Windows.Forms.Label();
             this.label3 = new System.Windows.Forms.Label();
             this.KMPVersionLabel = new System.Windows.Forms.Label();
@@ -59,8 +61,6 @@
             this.label1 = new System.Windows.Forms.Label();
             this.NetworkWorker = new System.ComponentModel.BackgroundWorker();
             this.folderBrowserDialog1 = new System.Windows.Forms.FolderBrowserDialog();
-            this.UpdateButton = new System.Windows.Forms.Button();
-            this.UpdateCheckButton = new System.Windows.Forms.Button();
             this.tabControl1.SuspendLayout();
             this.tabPage2.SuspendLayout();
             this.groupBox1.SuspendLayout();
@@ -81,6 +81,7 @@
             this.ServerPlayers,
             this.ServerDescription});
             this.listView1.FullRowSelect = true;
+            this.listView1.HeaderStyle = System.Windows.Forms.ColumnHeaderStyle.Nonclickable;
             this.listView1.Location = new System.Drawing.Point(6, 33);
             this.listView1.MultiSelect = false;
             this.listView1.Name = "listView1";
@@ -281,6 +282,28 @@
             this.tabPage1.Text = "Updater";
             this.tabPage1.UseVisualStyleBackColor = true;
             // 
+            // UpdateCheckButton
+            // 
+            this.UpdateCheckButton.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.UpdateCheckButton.Location = new System.Drawing.Point(236, 97);
+            this.UpdateCheckButton.Name = "UpdateCheckButton";
+            this.UpdateCheckButton.Size = new System.Drawing.Size(97, 23);
+            this.UpdateCheckButton.TabIndex = 10;
+            this.UpdateCheckButton.Text = "Refresh Checks";
+            this.UpdateCheckButton.UseVisualStyleBackColor = true;
+            this.UpdateCheckButton.Click += new System.EventHandler(this.UpdateCheckButton_Click);
+            // 
+            // UpdateButton
+            // 
+            this.UpdateButton.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.UpdateButton.Location = new System.Drawing.Point(339, 97);
+            this.UpdateButton.Name = "UpdateButton";
+            this.UpdateButton.Size = new System.Drawing.Size(97, 23);
+            this.UpdateButton.TabIndex = 9;
+            this.UpdateButton.Text = "Update KMP";
+            this.UpdateButton.UseVisualStyleBackColor = true;
+            this.UpdateButton.Click += new System.EventHandler(this.UpdateButton_Click);
+            // 
             // KMPLatestUpdateLabel
             // 
             this.KMPLatestUpdateLabel.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
@@ -380,36 +403,14 @@
             // 
             this.folderBrowserDialog1.RootFolder = System.Environment.SpecialFolder.ProgramFilesX86;
             // 
-            // UpdateButton
-            // 
-            this.UpdateButton.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.UpdateButton.Location = new System.Drawing.Point(339, 97);
-            this.UpdateButton.Name = "UpdateButton";
-            this.UpdateButton.Size = new System.Drawing.Size(97, 23);
-            this.UpdateButton.TabIndex = 9;
-            this.UpdateButton.Text = "Update KMP";
-            this.UpdateButton.UseVisualStyleBackColor = true;
-            this.UpdateButton.Click += new System.EventHandler(this.UpdateButton_Click);
-            // 
-            // UpdateCheckButton
-            // 
-            this.UpdateCheckButton.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.UpdateCheckButton.Location = new System.Drawing.Point(236, 97);
-            this.UpdateCheckButton.Name = "UpdateCheckButton";
-            this.UpdateCheckButton.Size = new System.Drawing.Size(97, 23);
-            this.UpdateCheckButton.TabIndex = 10;
-            this.UpdateCheckButton.Text = "Refresh Checks";
-            this.UpdateCheckButton.UseVisualStyleBackColor = true;
-            this.UpdateCheckButton.Click += new System.EventHandler(this.UpdateCheckButton_Click);
-            // 
-            // Form1
+            // LauncherForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(484, 362);
             this.Controls.Add(this.tabControl1);
             this.MinimumSize = new System.Drawing.Size(500, 400);
-            this.Name = "Form1";
+            this.Name = "LauncherForm";
             this.Text = "Kerbal Multiplayer Launcher";
             this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.Form1_FormClosing);
             this.tabControl1.ResumeLayout(false);
