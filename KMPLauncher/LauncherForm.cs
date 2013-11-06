@@ -399,7 +399,7 @@ namespace KMPLauncher
 
             KMPLatestUpdateLabel.Text = UpdateInfo.LatestVersion;
 
-            ChangelogGroupBox.Text = "Update Changelog (KMP Version " + UpdateInfo.LatestVersion + ")";
+            ChangelogGroupBox.Text = "Update Changelog (KMP Version " + UpdateInfo.LatestVersion.Trim() + ")";
             ChangelogBox.Text = ChangelogRetriever.Retrieve();
         } 
         #endregion
