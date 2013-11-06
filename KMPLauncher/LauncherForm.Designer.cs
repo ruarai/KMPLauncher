@@ -37,6 +37,8 @@
             this.ServerDescription = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.tabControl1 = new System.Windows.Forms.TabControl();
             this.tabPage2 = new System.Windows.Forms.TabPage();
+            this.groupBox2 = new System.Windows.Forms.GroupBox();
+            this.ServerInformationListBox = new System.Windows.Forms.ListBox();
             this.textBoxHTTPPort = new System.Windows.Forms.TextBox();
             this.label5 = new System.Windows.Forms.Label();
             this.UserNameInput = new System.Windows.Forms.TextBox();
@@ -49,6 +51,8 @@
             this.textBoxName = new System.Windows.Forms.TextBox();
             this.textBoxAddress = new System.Windows.Forms.TextBox();
             this.tabPage1 = new System.Windows.Forms.TabPage();
+            this.ChangelogGroupBox = new System.Windows.Forms.GroupBox();
+            this.ChangelogBox = new System.Windows.Forms.RichTextBox();
             this.UpdateCheckButton = new System.Windows.Forms.Button();
             this.UpdateButton = new System.Windows.Forms.Button();
             this.KMPLatestUpdateLabel = new System.Windows.Forms.Label();
@@ -62,15 +66,11 @@
             this.label1 = new System.Windows.Forms.Label();
             this.NetworkWorker = new System.ComponentModel.BackgroundWorker();
             this.folderBrowserDialog1 = new System.Windows.Forms.FolderBrowserDialog();
-            this.groupBox2 = new System.Windows.Forms.GroupBox();
-            this.ServerInformationListBox = new System.Windows.Forms.ListBox();
-            this.ChangelogBox = new System.Windows.Forms.RichTextBox();
-            this.ChangelogGroupBox = new System.Windows.Forms.GroupBox();
             this.tabControl1.SuspendLayout();
             this.tabPage2.SuspendLayout();
+            this.groupBox2.SuspendLayout();
             this.groupBox1.SuspendLayout();
             this.tabPage1.SuspendLayout();
-            this.groupBox2.SuspendLayout();
             this.ChangelogGroupBox.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -157,6 +157,27 @@
             this.tabPage2.TabIndex = 1;
             this.tabPage2.Text = "Servers";
             this.tabPage2.UseVisualStyleBackColor = true;
+            // 
+            // groupBox2
+            // 
+            this.groupBox2.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
+            this.groupBox2.Controls.Add(this.ServerInformationListBox);
+            this.groupBox2.Location = new System.Drawing.Point(320, 208);
+            this.groupBox2.Name = "groupBox2";
+            this.groupBox2.Size = new System.Drawing.Size(218, 93);
+            this.groupBox2.TabIndex = 10;
+            this.groupBox2.TabStop = false;
+            this.groupBox2.Text = "Server Information";
+            // 
+            // ServerInformationListBox
+            // 
+            this.ServerInformationListBox.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left)));
+            this.ServerInformationListBox.FormattingEnabled = true;
+            this.ServerInformationListBox.Location = new System.Drawing.Point(6, 19);
+            this.ServerInformationListBox.Name = "ServerInformationListBox";
+            this.ServerInformationListBox.Size = new System.Drawing.Size(207, 69);
+            this.ServerInformationListBox.TabIndex = 9;
             // 
             // textBoxHTTPPort
             // 
@@ -291,6 +312,31 @@
             this.tabPage1.Text = "Updater";
             this.tabPage1.UseVisualStyleBackColor = true;
             // 
+            // ChangelogGroupBox
+            // 
+            this.ChangelogGroupBox.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.ChangelogGroupBox.Controls.Add(this.ChangelogBox);
+            this.ChangelogGroupBox.Location = new System.Drawing.Point(9, 134);
+            this.ChangelogGroupBox.Name = "ChangelogGroupBox";
+            this.ChangelogGroupBox.Size = new System.Drawing.Size(727, 172);
+            this.ChangelogGroupBox.TabIndex = 12;
+            this.ChangelogGroupBox.TabStop = false;
+            this.ChangelogGroupBox.Text = "Changelog";
+            // 
+            // ChangelogBox
+            // 
+            this.ChangelogBox.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.ChangelogBox.Location = new System.Drawing.Point(6, 19);
+            this.ChangelogBox.Name = "ChangelogBox";
+            this.ChangelogBox.ReadOnly = true;
+            this.ChangelogBox.Size = new System.Drawing.Size(715, 147);
+            this.ChangelogBox.TabIndex = 11;
+            this.ChangelogBox.Text = "";
+            // 
             // UpdateCheckButton
             // 
             this.UpdateCheckButton.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
@@ -412,52 +458,6 @@
             // 
             this.folderBrowserDialog1.RootFolder = System.Environment.SpecialFolder.ProgramFilesX86;
             // 
-            // groupBox2
-            // 
-            this.groupBox2.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-            this.groupBox2.Controls.Add(this.ServerInformationListBox);
-            this.groupBox2.Location = new System.Drawing.Point(320, 208);
-            this.groupBox2.Name = "groupBox2";
-            this.groupBox2.Size = new System.Drawing.Size(218, 93);
-            this.groupBox2.TabIndex = 10;
-            this.groupBox2.TabStop = false;
-            this.groupBox2.Text = "Server Information";
-            // 
-            // ServerInformationListBox
-            // 
-            this.ServerInformationListBox.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Left)));
-            this.ServerInformationListBox.FormattingEnabled = true;
-            this.ServerInformationListBox.Location = new System.Drawing.Point(6, 19);
-            this.ServerInformationListBox.Name = "ServerInformationListBox";
-            this.ServerInformationListBox.Size = new System.Drawing.Size(207, 69);
-            this.ServerInformationListBox.TabIndex = 9;
-            // 
-            // ChangelogBox
-            // 
-            this.ChangelogBox.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.ChangelogBox.Location = new System.Drawing.Point(6, 19);
-            this.ChangelogBox.Name = "ChangelogBox";
-            this.ChangelogBox.ReadOnly = true;
-            this.ChangelogBox.Size = new System.Drawing.Size(715, 147);
-            this.ChangelogBox.TabIndex = 11;
-            this.ChangelogBox.Text = "";
-            // 
-            // ChangelogGroupBox
-            // 
-            this.ChangelogGroupBox.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.ChangelogGroupBox.Controls.Add(this.ChangelogBox);
-            this.ChangelogGroupBox.Location = new System.Drawing.Point(9, 134);
-            this.ChangelogGroupBox.Name = "ChangelogGroupBox";
-            this.ChangelogGroupBox.Size = new System.Drawing.Size(727, 172);
-            this.ChangelogGroupBox.TabIndex = 12;
-            this.ChangelogGroupBox.TabStop = false;
-            this.ChangelogGroupBox.Text = "Changelog";
-            // 
             // LauncherForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -472,10 +472,10 @@
             this.tabControl1.ResumeLayout(false);
             this.tabPage2.ResumeLayout(false);
             this.tabPage2.PerformLayout();
+            this.groupBox2.ResumeLayout(false);
             this.groupBox1.ResumeLayout(false);
             this.tabPage1.ResumeLayout(false);
             this.tabPage1.PerformLayout();
-            this.groupBox2.ResumeLayout(false);
             this.ChangelogGroupBox.ResumeLayout(false);
             this.ResumeLayout(false);
 
