@@ -465,6 +465,22 @@ namespace KMPLauncher
         } 
         #endregion
 
+        private void KMPForumLink_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
+        {
+            Process.Start("http://forum.kerbalspaceprogram.com/threads/55835-Kmp-0-22-wip-alpha");
+        }
+
+        private void KMPGithubLink_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
+        {
+            Process.Start("https://github.com/TehGimp/KerbalMultiPlayer");
+        }
+
+        private void KMPIssuesLink_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
+        {
+            Process.Start("https://github.com/TehGimp/KerbalMultiPlayer/issues");
+        }
+
+
 
 
 

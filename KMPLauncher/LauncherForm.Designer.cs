@@ -51,16 +51,24 @@
             this.textBoxName = new System.Windows.Forms.TextBox();
             this.textBoxAddress = new System.Windows.Forms.TextBox();
             this.tabPage1 = new System.Windows.Forms.TabPage();
-            this.ChangelogGroupBox = new System.Windows.Forms.GroupBox();
-            this.ChangelogBox = new System.Windows.Forms.RichTextBox();
+            this.groupBox4 = new System.Windows.Forms.GroupBox();
+            this.KMPIssuesLink = new System.Windows.Forms.LinkLabel();
+            this.KMPGithubLink = new System.Windows.Forms.LinkLabel();
+            this.KMPForumLink = new System.Windows.Forms.LinkLabel();
+            this.label7 = new System.Windows.Forms.Label();
+            this.label6 = new System.Windows.Forms.Label();
+            this.label4 = new System.Windows.Forms.Label();
+            this.groupBox3 = new System.Windows.Forms.GroupBox();
+            this.KSPStatusLabel = new System.Windows.Forms.Label();
+            this.KMPStatusLabel = new System.Windows.Forms.Label();
             this.UpdateCheckButton = new System.Windows.Forms.Button();
             this.UpdateButton = new System.Windows.Forms.Button();
+            this.label2 = new System.Windows.Forms.Label();
+            this.KMPVersionLabel = new System.Windows.Forms.Label();
             this.KMPLatestUpdateLabel = new System.Windows.Forms.Label();
             this.label3 = new System.Windows.Forms.Label();
-            this.KMPVersionLabel = new System.Windows.Forms.Label();
-            this.label2 = new System.Windows.Forms.Label();
-            this.KMPStatusLabel = new System.Windows.Forms.Label();
-            this.KSPStatusLabel = new System.Windows.Forms.Label();
+            this.ChangelogGroupBox = new System.Windows.Forms.GroupBox();
+            this.ChangelogBox = new System.Windows.Forms.RichTextBox();
             this.FolderBrowseButton = new System.Windows.Forms.Button();
             this.directoryPath = new System.Windows.Forms.TextBox();
             this.label1 = new System.Windows.Forms.Label();
@@ -71,6 +79,8 @@
             this.groupBox2.SuspendLayout();
             this.groupBox1.SuspendLayout();
             this.tabPage1.SuspendLayout();
+            this.groupBox4.SuspendLayout();
+            this.groupBox3.SuspendLayout();
             this.ChangelogGroupBox.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -130,6 +140,7 @@
             | System.Windows.Forms.AnchorStyles.Right)));
             this.tabControl1.Controls.Add(this.tabPage2);
             this.tabControl1.Controls.Add(this.tabPage1);
+            this.tabControl1.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.tabControl1.Location = new System.Drawing.Point(12, 12);
             this.tabControl1.Name = "tabControl1";
             this.tabControl1.SelectedIndex = 0;
@@ -292,15 +303,9 @@
             // 
             // tabPage1
             // 
+            this.tabPage1.Controls.Add(this.groupBox4);
+            this.tabPage1.Controls.Add(this.groupBox3);
             this.tabPage1.Controls.Add(this.ChangelogGroupBox);
-            this.tabPage1.Controls.Add(this.UpdateCheckButton);
-            this.tabPage1.Controls.Add(this.UpdateButton);
-            this.tabPage1.Controls.Add(this.KMPLatestUpdateLabel);
-            this.tabPage1.Controls.Add(this.label3);
-            this.tabPage1.Controls.Add(this.KMPVersionLabel);
-            this.tabPage1.Controls.Add(this.label2);
-            this.tabPage1.Controls.Add(this.KMPStatusLabel);
-            this.tabPage1.Controls.Add(this.KSPStatusLabel);
             this.tabPage1.Controls.Add(this.FolderBrowseButton);
             this.tabPage1.Controls.Add(this.directoryPath);
             this.tabPage1.Controls.Add(this.label1);
@@ -309,8 +314,182 @@
             this.tabPage1.Padding = new System.Windows.Forms.Padding(3);
             this.tabPage1.Size = new System.Drawing.Size(752, 312);
             this.tabPage1.TabIndex = 0;
-            this.tabPage1.Text = "Updater";
+            this.tabPage1.Text = "Updater - Changelog - Resources";
             this.tabPage1.UseVisualStyleBackColor = true;
+            // 
+            // groupBox4
+            // 
+            this.groupBox4.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.groupBox4.Controls.Add(this.KMPIssuesLink);
+            this.groupBox4.Controls.Add(this.KMPGithubLink);
+            this.groupBox4.Controls.Add(this.KMPForumLink);
+            this.groupBox4.Controls.Add(this.label7);
+            this.groupBox4.Controls.Add(this.label6);
+            this.groupBox4.Controls.Add(this.label4);
+            this.groupBox4.Location = new System.Drawing.Point(230, 38);
+            this.groupBox4.Name = "groupBox4";
+            this.groupBox4.Size = new System.Drawing.Size(506, 103);
+            this.groupBox4.TabIndex = 14;
+            this.groupBox4.TabStop = false;
+            this.groupBox4.Text = "KMP Resources";
+            // 
+            // KMPIssuesLink
+            // 
+            this.KMPIssuesLink.AutoSize = true;
+            this.KMPIssuesLink.Location = new System.Drawing.Point(143, 68);
+            this.KMPIssuesLink.Name = "KMPIssuesLink";
+            this.KMPIssuesLink.Size = new System.Drawing.Size(263, 13);
+            this.KMPIssuesLink.TabIndex = 16;
+            this.KMPIssuesLink.TabStop = true;
+            this.KMPIssuesLink.Text = "https://github.com/TehGimp/KerbalMultiPlayer/issues";
+            this.KMPIssuesLink.LinkClicked += new System.Windows.Forms.LinkLabelLinkClickedEventHandler(this.KMPIssuesLink_LinkClicked);
+            // 
+            // KMPGithubLink
+            // 
+            this.KMPGithubLink.AutoSize = true;
+            this.KMPGithubLink.Location = new System.Drawing.Point(143, 42);
+            this.KMPGithubLink.Name = "KMPGithubLink";
+            this.KMPGithubLink.Size = new System.Drawing.Size(229, 13);
+            this.KMPGithubLink.TabIndex = 15;
+            this.KMPGithubLink.TabStop = true;
+            this.KMPGithubLink.Text = "https://github.com/TehGimp/KerbalMultiPlayer";
+            this.KMPGithubLink.LinkClicked += new System.Windows.Forms.LinkLabelLinkClickedEventHandler(this.KMPGithubLink_LinkClicked);
+            // 
+            // KMPForumLink
+            // 
+            this.KMPForumLink.AutoSize = true;
+            this.KMPForumLink.Location = new System.Drawing.Point(143, 16);
+            this.KMPForumLink.Name = "KMPForumLink";
+            this.KMPForumLink.Size = new System.Drawing.Size(357, 13);
+            this.KMPForumLink.TabIndex = 14;
+            this.KMPForumLink.TabStop = true;
+            this.KMPForumLink.Text = "http://forum.kerbalspaceprogram.com/threads/55835-Kmp-0-22-wip-alpha";
+            this.KMPForumLink.LinkClicked += new System.Windows.Forms.LinkLabelLinkClickedEventHandler(this.KMPForumLink_LinkClicked);
+            // 
+            // label7
+            // 
+            this.label7.AutoSize = true;
+            this.label7.Location = new System.Drawing.Point(13, 68);
+            this.label7.Name = "label7";
+            this.label7.Size = new System.Drawing.Size(130, 13);
+            this.label7.TabIndex = 13;
+            this.label7.Text = "KMP GitHub Issues Page:";
+            // 
+            // label6
+            // 
+            this.label6.AutoSize = true;
+            this.label6.Location = new System.Drawing.Point(46, 42);
+            this.label6.Name = "label6";
+            this.label6.Size = new System.Drawing.Size(97, 13);
+            this.label6.TabIndex = 12;
+            this.label6.Text = "KMP GitHub Page:";
+            // 
+            // label4
+            // 
+            this.label4.AutoSize = true;
+            this.label4.Location = new System.Drawing.Point(6, 16);
+            this.label4.Name = "label4";
+            this.label4.Size = new System.Drawing.Size(137, 13);
+            this.label4.TabIndex = 11;
+            this.label4.Text = "Official KMP Forum Thread:";
+            // 
+            // groupBox3
+            // 
+            this.groupBox3.Controls.Add(this.KSPStatusLabel);
+            this.groupBox3.Controls.Add(this.KMPStatusLabel);
+            this.groupBox3.Controls.Add(this.UpdateCheckButton);
+            this.groupBox3.Controls.Add(this.UpdateButton);
+            this.groupBox3.Controls.Add(this.label2);
+            this.groupBox3.Controls.Add(this.KMPVersionLabel);
+            this.groupBox3.Controls.Add(this.KMPLatestUpdateLabel);
+            this.groupBox3.Controls.Add(this.label3);
+            this.groupBox3.Location = new System.Drawing.Point(15, 38);
+            this.groupBox3.Name = "groupBox3";
+            this.groupBox3.Size = new System.Drawing.Size(209, 103);
+            this.groupBox3.TabIndex = 13;
+            this.groupBox3.TabStop = false;
+            this.groupBox3.Text = "Updater";
+            // 
+            // KSPStatusLabel
+            // 
+            this.KSPStatusLabel.AutoSize = true;
+            this.KSPStatusLabel.Location = new System.Drawing.Point(6, 16);
+            this.KSPStatusLabel.Name = "KSPStatusLabel";
+            this.KSPStatusLabel.Size = new System.Drawing.Size(161, 13);
+            this.KSPStatusLabel.TabIndex = 3;
+            this.KSPStatusLabel.Text = "Kerbal Space Program not found";
+            // 
+            // KMPStatusLabel
+            // 
+            this.KMPStatusLabel.AutoSize = true;
+            this.KMPStatusLabel.Location = new System.Drawing.Point(6, 29);
+            this.KMPStatusLabel.Name = "KMPStatusLabel";
+            this.KMPStatusLabel.Size = new System.Drawing.Size(138, 13);
+            this.KMPStatusLabel.TabIndex = 4;
+            this.KMPStatusLabel.Text = "Kerbal Multiplayer not found";
+            // 
+            // UpdateCheckButton
+            // 
+            this.UpdateCheckButton.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.UpdateCheckButton.Location = new System.Drawing.Point(6, 74);
+            this.UpdateCheckButton.Name = "UpdateCheckButton";
+            this.UpdateCheckButton.Size = new System.Drawing.Size(97, 23);
+            this.UpdateCheckButton.TabIndex = 10;
+            this.UpdateCheckButton.Text = "Refresh Checks";
+            this.UpdateCheckButton.UseVisualStyleBackColor = true;
+            this.UpdateCheckButton.Click += new System.EventHandler(this.UpdateCheckButton_Click);
+            // 
+            // UpdateButton
+            // 
+            this.UpdateButton.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.UpdateButton.Location = new System.Drawing.Point(109, 74);
+            this.UpdateButton.Name = "UpdateButton";
+            this.UpdateButton.Size = new System.Drawing.Size(94, 23);
+            this.UpdateButton.TabIndex = 9;
+            this.UpdateButton.Text = "Update KMP";
+            this.UpdateButton.UseVisualStyleBackColor = true;
+            this.UpdateButton.Click += new System.EventHandler(this.UpdateButton_Click);
+            // 
+            // label2
+            // 
+            this.label2.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.label2.AutoSize = true;
+            this.label2.Location = new System.Drawing.Point(6, 42);
+            this.label2.Name = "label2";
+            this.label2.Size = new System.Drawing.Size(148, 13);
+            this.label2.TabIndex = 5;
+            this.label2.Text = "Current installed KMP version:";
+            // 
+            // KMPVersionLabel
+            // 
+            this.KMPVersionLabel.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.KMPVersionLabel.AutoSize = true;
+            this.KMPVersionLabel.Location = new System.Drawing.Point(160, 42);
+            this.KMPVersionLabel.Name = "KMPVersionLabel";
+            this.KMPVersionLabel.Size = new System.Drawing.Size(40, 13);
+            this.KMPVersionLabel.TabIndex = 6;
+            this.KMPVersionLabel.Text = "0.0.0.0";
+            // 
+            // KMPLatestUpdateLabel
+            // 
+            this.KMPLatestUpdateLabel.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.KMPLatestUpdateLabel.AutoSize = true;
+            this.KMPLatestUpdateLabel.Location = new System.Drawing.Point(114, 55);
+            this.KMPLatestUpdateLabel.Name = "KMPLatestUpdateLabel";
+            this.KMPLatestUpdateLabel.Size = new System.Drawing.Size(40, 13);
+            this.KMPLatestUpdateLabel.TabIndex = 8;
+            this.KMPLatestUpdateLabel.Text = "0.0.0.0";
+            // 
+            // label3
+            // 
+            this.label3.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.label3.AutoSize = true;
+            this.label3.Location = new System.Drawing.Point(6, 55);
+            this.label3.Name = "label3";
+            this.label3.Size = new System.Drawing.Size(102, 13);
+            this.label3.TabIndex = 7;
+            this.label3.Text = "Latest KMP version:";
             // 
             // ChangelogGroupBox
             // 
@@ -318,9 +497,9 @@
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.ChangelogGroupBox.Controls.Add(this.ChangelogBox);
-            this.ChangelogGroupBox.Location = new System.Drawing.Point(9, 134);
+            this.ChangelogGroupBox.Location = new System.Drawing.Point(9, 147);
             this.ChangelogGroupBox.Name = "ChangelogGroupBox";
-            this.ChangelogGroupBox.Size = new System.Drawing.Size(727, 172);
+            this.ChangelogGroupBox.Size = new System.Drawing.Size(727, 159);
             this.ChangelogGroupBox.TabIndex = 12;
             this.ChangelogGroupBox.TabStop = false;
             this.ChangelogGroupBox.Text = "Changelog";
@@ -333,89 +512,9 @@
             this.ChangelogBox.Location = new System.Drawing.Point(6, 19);
             this.ChangelogBox.Name = "ChangelogBox";
             this.ChangelogBox.ReadOnly = true;
-            this.ChangelogBox.Size = new System.Drawing.Size(715, 147);
+            this.ChangelogBox.Size = new System.Drawing.Size(715, 134);
             this.ChangelogBox.TabIndex = 11;
             this.ChangelogBox.Text = "";
-            // 
-            // UpdateCheckButton
-            // 
-            this.UpdateCheckButton.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.UpdateCheckButton.Location = new System.Drawing.Point(536, 97);
-            this.UpdateCheckButton.Name = "UpdateCheckButton";
-            this.UpdateCheckButton.Size = new System.Drawing.Size(97, 23);
-            this.UpdateCheckButton.TabIndex = 10;
-            this.UpdateCheckButton.Text = "Refresh Checks";
-            this.UpdateCheckButton.UseVisualStyleBackColor = true;
-            this.UpdateCheckButton.Click += new System.EventHandler(this.UpdateCheckButton_Click);
-            // 
-            // UpdateButton
-            // 
-            this.UpdateButton.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.UpdateButton.Location = new System.Drawing.Point(639, 97);
-            this.UpdateButton.Name = "UpdateButton";
-            this.UpdateButton.Size = new System.Drawing.Size(97, 23);
-            this.UpdateButton.TabIndex = 9;
-            this.UpdateButton.Text = "Update KMP";
-            this.UpdateButton.UseVisualStyleBackColor = true;
-            this.UpdateButton.Click += new System.EventHandler(this.UpdateButton_Click);
-            // 
-            // KMPLatestUpdateLabel
-            // 
-            this.KMPLatestUpdateLabel.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.KMPLatestUpdateLabel.AutoSize = true;
-            this.KMPLatestUpdateLabel.Location = new System.Drawing.Point(696, 71);
-            this.KMPLatestUpdateLabel.Name = "KMPLatestUpdateLabel";
-            this.KMPLatestUpdateLabel.Size = new System.Drawing.Size(40, 13);
-            this.KMPLatestUpdateLabel.TabIndex = 8;
-            this.KMPLatestUpdateLabel.Text = "0.0.0.0";
-            // 
-            // label3
-            // 
-            this.label3.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.label3.AutoSize = true;
-            this.label3.Location = new System.Drawing.Point(588, 71);
-            this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(102, 13);
-            this.label3.TabIndex = 7;
-            this.label3.Text = "Latest KMP version:";
-            // 
-            // KMPVersionLabel
-            // 
-            this.KMPVersionLabel.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.KMPVersionLabel.AutoSize = true;
-            this.KMPVersionLabel.Location = new System.Drawing.Point(696, 48);
-            this.KMPVersionLabel.Name = "KMPVersionLabel";
-            this.KMPVersionLabel.Size = new System.Drawing.Size(40, 13);
-            this.KMPVersionLabel.TabIndex = 6;
-            this.KMPVersionLabel.Text = "0.0.0.0";
-            // 
-            // label2
-            // 
-            this.label2.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(542, 48);
-            this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(148, 13);
-            this.label2.TabIndex = 5;
-            this.label2.Text = "Current installed KMP version:";
-            // 
-            // KMPStatusLabel
-            // 
-            this.KMPStatusLabel.AutoSize = true;
-            this.KMPStatusLabel.Location = new System.Drawing.Point(12, 71);
-            this.KMPStatusLabel.Name = "KMPStatusLabel";
-            this.KMPStatusLabel.Size = new System.Drawing.Size(138, 13);
-            this.KMPStatusLabel.TabIndex = 4;
-            this.KMPStatusLabel.Text = "Kerbal Multiplayer not found";
-            // 
-            // KSPStatusLabel
-            // 
-            this.KSPStatusLabel.AutoSize = true;
-            this.KSPStatusLabel.Location = new System.Drawing.Point(12, 48);
-            this.KSPStatusLabel.Name = "KSPStatusLabel";
-            this.KSPStatusLabel.Size = new System.Drawing.Size(161, 13);
-            this.KSPStatusLabel.TabIndex = 3;
-            this.KSPStatusLabel.Text = "Kerbal Space Program not found";
             // 
             // FolderBrowseButton
             // 
@@ -476,6 +575,10 @@
             this.groupBox1.ResumeLayout(false);
             this.tabPage1.ResumeLayout(false);
             this.tabPage1.PerformLayout();
+            this.groupBox4.ResumeLayout(false);
+            this.groupBox4.PerformLayout();
+            this.groupBox3.ResumeLayout(false);
+            this.groupBox3.PerformLayout();
             this.ChangelogGroupBox.ResumeLayout(false);
             this.ResumeLayout(false);
 
@@ -520,6 +623,14 @@
         private System.Windows.Forms.ListBox ServerInformationListBox;
         private System.Windows.Forms.GroupBox ChangelogGroupBox;
         private System.Windows.Forms.RichTextBox ChangelogBox;
+        private System.Windows.Forms.GroupBox groupBox3;
+        private System.Windows.Forms.GroupBox groupBox4;
+        private System.Windows.Forms.Label label7;
+        private System.Windows.Forms.Label label6;
+        private System.Windows.Forms.Label label4;
+        private System.Windows.Forms.LinkLabel KMPIssuesLink;
+        private System.Windows.Forms.LinkLabel KMPGithubLink;
+        private System.Windows.Forms.LinkLabel KMPForumLink;
     }
 }
 
