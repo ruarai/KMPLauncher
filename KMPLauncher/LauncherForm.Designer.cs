@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(LauncherForm));
             this.listView1 = new System.Windows.Forms.ListView();
             this.ServerName = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.ServerAddress = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
@@ -61,10 +62,13 @@
             this.label1 = new System.Windows.Forms.Label();
             this.NetworkWorker = new System.ComponentModel.BackgroundWorker();
             this.folderBrowserDialog1 = new System.Windows.Forms.FolderBrowserDialog();
+            this.groupBox2 = new System.Windows.Forms.GroupBox();
+            this.ServerInformationListBox = new System.Windows.Forms.ListBox();
             this.tabControl1.SuspendLayout();
             this.tabPage2.SuspendLayout();
             this.groupBox1.SuspendLayout();
             this.tabPage1.SuspendLayout();
+            this.groupBox2.SuspendLayout();
             this.SuspendLayout();
             // 
             // listView1
@@ -85,7 +89,7 @@
             this.listView1.Location = new System.Drawing.Point(6, 33);
             this.listView1.MultiSelect = false;
             this.listView1.Name = "listView1";
-            this.listView1.Size = new System.Drawing.Size(440, 153);
+            this.listView1.Size = new System.Drawing.Size(740, 153);
             this.listView1.TabIndex = 0;
             this.listView1.UseCompatibleStateImageBehavior = false;
             this.listView1.View = System.Windows.Forms.View.Details;
@@ -126,11 +130,12 @@
             this.tabControl1.Location = new System.Drawing.Point(12, 12);
             this.tabControl1.Name = "tabControl1";
             this.tabControl1.SelectedIndex = 0;
-            this.tabControl1.Size = new System.Drawing.Size(460, 322);
+            this.tabControl1.Size = new System.Drawing.Size(760, 322);
             this.tabControl1.TabIndex = 1;
             // 
             // tabPage2
             // 
+            this.tabPage2.Controls.Add(this.groupBox2);
             this.tabPage2.Controls.Add(this.textBoxHTTPPort);
             this.tabPage2.Controls.Add(this.label5);
             this.tabPage2.Controls.Add(this.UserNameInput);
@@ -145,7 +150,7 @@
             this.tabPage2.Location = new System.Drawing.Point(4, 22);
             this.tabPage2.Name = "tabPage2";
             this.tabPage2.Padding = new System.Windows.Forms.Padding(3);
-            this.tabPage2.Size = new System.Drawing.Size(452, 296);
+            this.tabPage2.Size = new System.Drawing.Size(752, 296);
             this.tabPage2.TabIndex = 1;
             this.tabPage2.Text = "Servers";
             this.tabPage2.UseVisualStyleBackColor = true;
@@ -164,7 +169,7 @@
             // 
             this.label5.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.label5.AutoSize = true;
-            this.label5.Location = new System.Drawing.Point(200, 12);
+            this.label5.Location = new System.Drawing.Point(500, 12);
             this.label5.Name = "label5";
             this.label5.Size = new System.Drawing.Size(38, 13);
             this.label5.TabIndex = 13;
@@ -173,7 +178,7 @@
             // UserNameInput
             // 
             this.UserNameInput.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.UserNameInput.Location = new System.Drawing.Point(244, 9);
+            this.UserNameInput.Location = new System.Drawing.Point(544, 9);
             this.UserNameInput.Name = "UserNameInput";
             this.UserNameInput.Size = new System.Drawing.Size(121, 20);
             this.UserNameInput.TabIndex = 11;
@@ -192,7 +197,7 @@
             // 
             this.groupBox1.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
             this.groupBox1.Controls.Add(this.PlayerListBox);
-            this.groupBox1.Location = new System.Drawing.Point(244, 192);
+            this.groupBox1.Location = new System.Drawing.Point(544, 192);
             this.groupBox1.Name = "groupBox1";
             this.groupBox1.Size = new System.Drawing.Size(200, 93);
             this.groupBox1.TabIndex = 9;
@@ -233,7 +238,7 @@
             // JoinButton
             // 
             this.JoinButton.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.JoinButton.Location = new System.Drawing.Point(371, 7);
+            this.JoinButton.Location = new System.Drawing.Point(671, 7);
             this.JoinButton.Name = "JoinButton";
             this.JoinButton.Size = new System.Drawing.Size(75, 23);
             this.JoinButton.TabIndex = 5;
@@ -403,13 +408,35 @@
             // 
             this.folderBrowserDialog1.RootFolder = System.Environment.SpecialFolder.ProgramFilesX86;
             // 
+            // groupBox2
+            // 
+            this.groupBox2.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
+            this.groupBox2.Controls.Add(this.ServerInformationListBox);
+            this.groupBox2.Location = new System.Drawing.Point(320, 192);
+            this.groupBox2.Name = "groupBox2";
+            this.groupBox2.Size = new System.Drawing.Size(218, 93);
+            this.groupBox2.TabIndex = 10;
+            this.groupBox2.TabStop = false;
+            this.groupBox2.Text = "Server Information";
+            // 
+            // ServerInformationListBox
+            // 
+            this.ServerInformationListBox.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left)));
+            this.ServerInformationListBox.FormattingEnabled = true;
+            this.ServerInformationListBox.Location = new System.Drawing.Point(6, 19);
+            this.ServerInformationListBox.Name = "ServerInformationListBox";
+            this.ServerInformationListBox.Size = new System.Drawing.Size(207, 69);
+            this.ServerInformationListBox.TabIndex = 9;
+            // 
             // LauncherForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(484, 362);
+            this.ClientSize = new System.Drawing.Size(784, 362);
             this.Controls.Add(this.tabControl1);
-            this.MinimumSize = new System.Drawing.Size(500, 400);
+            this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
+            this.MinimumSize = new System.Drawing.Size(800, 400);
             this.Name = "LauncherForm";
             this.Text = "Kerbal Multiplayer Launcher";
             this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.Form1_FormClosing);
@@ -419,6 +446,7 @@
             this.groupBox1.ResumeLayout(false);
             this.tabPage1.ResumeLayout(false);
             this.tabPage1.PerformLayout();
+            this.groupBox2.ResumeLayout(false);
             this.ResumeLayout(false);
 
         }
@@ -458,6 +486,8 @@
         private System.Windows.Forms.TextBox textBoxHTTPPort;
         private System.Windows.Forms.Button UpdateButton;
         private System.Windows.Forms.Button UpdateCheckButton;
+        private System.Windows.Forms.GroupBox groupBox2;
+        private System.Windows.Forms.ListBox ServerInformationListBox;
     }
 }
 

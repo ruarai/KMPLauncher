@@ -23,6 +23,7 @@ namespace KMPLauncher
         public bool Screenshots;
         public int InactiveShipLimit;
         public int UpdateRate;
+        public int ScreenshotHeight;
 
         public List<String> PlayerList = new List<string>();
 

@@ -144,6 +144,11 @@ namespace KMPLauncher
                     s.Information = filled.Information;
                     s.Version = filled.Version;
                     s.PlayerList = filled.PlayerList;
+                    s.UpdateRate = filled.UpdateRate;
+                    s.Whitelisted = filled.Whitelisted;
+                    s.Screenshots = filled.Screenshots;
+                    s.ScreenshotHeight = filled.ScreenshotHeight;
+                    s.InactiveShipLimit = filled.InactiveShipLimit;
 
                     float relativepercentage = (float)index / (float)Playerserversinternal.Count;
 
@@ -289,6 +294,14 @@ namespace KMPLauncher
                     break;
                 }
             }
+
+            ServerInformationListBox.Items.Clear();
+
+            ServerInformationListBox.Items.Add("Whitelist: " + selection.Whitelisted.ToString().ToLower());
+            ServerInformationListBox.Items.Add("Screenshots: " + selection.Screenshots.ToString().ToLower());
+            ServerInformationListBox.Items.Add("Screenshot Height: " + selection.ScreenshotHeight.ToString());
+            ServerInformationListBox.Items.Add("Update Rate: " + selection.UpdateRate.ToString());
+            ServerInformationListBox.Items.Add("Inactive Ship Limit: " + selection.InactiveShipLimit.ToString());
 
             PlayerListBox.Items.Clear();
             foreach (string s in selection.PlayerList)
