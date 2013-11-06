@@ -89,7 +89,7 @@
             this.listView1.Location = new System.Drawing.Point(6, 33);
             this.listView1.MultiSelect = false;
             this.listView1.Name = "listView1";
-            this.listView1.Size = new System.Drawing.Size(740, 153);
+            this.listView1.Size = new System.Drawing.Size(740, 169);
             this.listView1.TabIndex = 0;
             this.listView1.UseCompatibleStateImageBehavior = false;
             this.listView1.View = System.Windows.Forms.View.Details;
@@ -130,7 +130,7 @@
             this.tabControl1.Location = new System.Drawing.Point(12, 12);
             this.tabControl1.Name = "tabControl1";
             this.tabControl1.SelectedIndex = 0;
-            this.tabControl1.Size = new System.Drawing.Size(760, 322);
+            this.tabControl1.Size = new System.Drawing.Size(760, 338);
             this.tabControl1.TabIndex = 1;
             // 
             // tabPage2
@@ -150,7 +150,7 @@
             this.tabPage2.Location = new System.Drawing.Point(4, 22);
             this.tabPage2.Name = "tabPage2";
             this.tabPage2.Padding = new System.Windows.Forms.Padding(3);
-            this.tabPage2.Size = new System.Drawing.Size(752, 296);
+            this.tabPage2.Size = new System.Drawing.Size(752, 312);
             this.tabPage2.TabIndex = 1;
             this.tabPage2.Text = "Servers";
             this.tabPage2.UseVisualStyleBackColor = true;
@@ -158,7 +158,7 @@
             // textBoxHTTPPort
             // 
             this.textBoxHTTPPort.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
-            this.textBoxHTTPPort.Location = new System.Drawing.Point(6, 264);
+            this.textBoxHTTPPort.Location = new System.Drawing.Point(6, 280);
             this.textBoxHTTPPort.Name = "textBoxHTTPPort";
             this.textBoxHTTPPort.Size = new System.Drawing.Size(100, 20);
             this.textBoxHTTPPort.TabIndex = 14;
@@ -197,7 +197,7 @@
             // 
             this.groupBox1.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
             this.groupBox1.Controls.Add(this.PlayerListBox);
-            this.groupBox1.Location = new System.Drawing.Point(544, 192);
+            this.groupBox1.Location = new System.Drawing.Point(544, 208);
             this.groupBox1.Name = "groupBox1";
             this.groupBox1.Size = new System.Drawing.Size(200, 93);
             this.groupBox1.TabIndex = 9;
@@ -227,7 +227,7 @@
             // AddNewServer
             // 
             this.AddNewServer.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
-            this.AddNewServer.Location = new System.Drawing.Point(112, 262);
+            this.AddNewServer.Location = new System.Drawing.Point(112, 278);
             this.AddNewServer.Name = "AddNewServer";
             this.AddNewServer.Size = new System.Drawing.Size(47, 23);
             this.AddNewServer.TabIndex = 6;
@@ -249,7 +249,7 @@
             // textBoxName
             // 
             this.textBoxName.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
-            this.textBoxName.Location = new System.Drawing.Point(6, 235);
+            this.textBoxName.Location = new System.Drawing.Point(6, 251);
             this.textBoxName.Name = "textBoxName";
             this.textBoxName.Size = new System.Drawing.Size(153, 20);
             this.textBoxName.TabIndex = 4;
@@ -259,7 +259,7 @@
             // textBoxAddress
             // 
             this.textBoxAddress.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
-            this.textBoxAddress.Location = new System.Drawing.Point(6, 204);
+            this.textBoxAddress.Location = new System.Drawing.Point(6, 220);
             this.textBoxAddress.Name = "textBoxAddress";
             this.textBoxAddress.Size = new System.Drawing.Size(153, 20);
             this.textBoxAddress.TabIndex = 2;
@@ -412,7 +412,7 @@
             // 
             this.groupBox2.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
             this.groupBox2.Controls.Add(this.ServerInformationListBox);
-            this.groupBox2.Location = new System.Drawing.Point(320, 192);
+            this.groupBox2.Location = new System.Drawing.Point(320, 208);
             this.groupBox2.Name = "groupBox2";
             this.groupBox2.Size = new System.Drawing.Size(218, 93);
             this.groupBox2.TabIndex = 10;
