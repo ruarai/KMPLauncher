@@ -10,13 +10,13 @@ namespace KMPLauncher
 {
     static class ServerInformationRetriever
     {
-        public static KMPServer Retrieve(string IP, int Port)
+        public static KMPServer Retrieve(string IP, int HTTPPort)
         {
             KMPServer server = new KMPServer();
 
             WebClient retriever = new WebClient();
 
-            string url = "http://" + IP + ":" + Port + "/";
+            string url = "http://" + IP + ":" + HTTPPort + "/";//Make a nice URL out of the IP and Port
             
             string page = retriever.DownloadString(url);
 
