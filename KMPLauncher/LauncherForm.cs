@@ -46,6 +46,7 @@ namespace KMPLauncher
             }
         }
 
+        #region ServerListing
         private void RefreshServerList()
         {
             RefreshButton.Enabled = false;
@@ -74,7 +75,8 @@ namespace KMPLauncher
                 listView1.Groups.Add(PlayerServerGroup);
                 listView1.Items.Add(serveritem);
             }
-        }
+        } 
+        #endregion
 
         #region ServerSaveLoad
         private void SaveServers()
@@ -121,15 +123,8 @@ namespace KMPLauncher
         } 
         #endregion
 
-        private void label1_Click(object sender, EventArgs e)
-        {
-            NetworkWorker.RunWorkerAsync();
-        }
 
-
-        
-
-        #region NetworkWorker
+        #region ServerListRetriever
         private void NetworkWorker_DoWork(object sender, DoWorkEventArgs e)
         {
             BackgroundWorker worker = sender as BackgroundWorker;
@@ -182,6 +177,7 @@ namespace KMPLauncher
         }
         
         #endregion
+
 
         #region ServerListEvents
         private void Form1_FormClosing(object sender, FormClosingEventArgs e)
@@ -339,17 +335,9 @@ namespace KMPLauncher
 
         #endregion
 
-        private void FolderBrowseButton_Click(object sender, EventArgs e)
-        {
-            folderBrowserDialog1.ShowDialog();
-            directoryPath.Text = folderBrowserDialog1.SelectedPath;
-        }
+        
 
-        private void directoryPath_TextChanged(object sender, EventArgs e)
-        {
-            UpdateUpdaterSettings();
-        }
-
+        #region Updater
         private void UpdateUpdaterSettings()
         {
             //Check if the directory contains KSP
@@ -390,9 +378,8 @@ namespace KMPLauncher
             UpdateInformationRetriever.Retrieve();
 
             KMPLatestUpdateLabel.Text = UpdateInfo.LatestVersion;
-        }
-
-
+        } 
+        #endregion
 
         #region UpdaterSaveLoad
         private void SaveUpdaterSettings()
@@ -420,6 +407,18 @@ namespace KMPLauncher
         } 
         #endregion
 
+        #region UpdateEvents
+        private void FolderBrowseButton_Click(object sender, EventArgs e)
+        {
+            folderBrowserDialog1.ShowDialog();
+            directoryPath.Text = folderBrowserDialog1.SelectedPath;
+        }
+
+        private void directoryPath_TextChanged(object sender, EventArgs e)
+        {
+            UpdateUpdaterSettings();
+        }
+
         private void UpdateButton_Click(object sender, EventArgs e)
         {
             KMPUpdater.Update(UpdateInfo.DownloadURL);
@@ -428,7 +427,8 @@ namespace KMPLauncher
         private void UpdateCheckButton_Click(object sender, EventArgs e)
         {
             UpdateUpdaterSettings();
-        }
+        } 
+        #endregion
 
 
 
