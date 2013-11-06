@@ -14,7 +14,7 @@ namespace KMPLauncher
         {
             KMPServer server = new KMPServer();
 
-            WebClient retriever = new WebClient();
+            Retriever retriever = new Retriever();
 
             string url = "http://" + IP + ":" + HTTPPort + "/";//Make a nice URL out of the IP and Port
             
