@@ -272,9 +272,9 @@
             // textBoxName
             // 
             this.textBoxName.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
-            this.textBoxName.Location = new System.Drawing.Point(9, 280);
+            this.textBoxName.Location = new System.Drawing.Point(9, 227);
             this.textBoxName.Name = "textBoxName";
-            this.textBoxName.Size = new System.Drawing.Size(97, 20);
+            this.textBoxName.Size = new System.Drawing.Size(150, 20);
             this.textBoxName.TabIndex = 4;
             this.textBoxName.Text = "Name";
             this.textBoxName.Enter += new System.EventHandler(this.textBoxName_Enter);
