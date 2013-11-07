@@ -14,7 +14,6 @@ namespace KMPLauncher
 
         public string Version;
 
-        public int HTTPPort = 8081;
 
         public int Players;
         public int MaxPlayers;

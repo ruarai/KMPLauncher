@@ -144,8 +144,8 @@ namespace KMPLauncher
             {
                 try
                 {
-                    KMPServer filled = ServerInformationRetriever.Retrieve(s.IP, s.HTTPPort);//This is terrible, I know. I wish it wasn't so mean to me and just let me do s = filled
-                    s.MaxPlayers = filled.MaxPlayers;
+                    KMPServer filled = ServerInformationRetriever.Retrieve(s.IP, 8081);
+                    s.MaxPlayers = filled.MaxPlayers;//This is terrible, I know. I wish it wasn't so mean to me and just let me do s = filled
                     s.Players = filled.Players;
                     s.Information = filled.Information;
                     s.Version = filled.Version;
@@ -217,14 +217,6 @@ namespace KMPLauncher
             }
 
 
-            try
-            {
-                server.HTTPPort = int.Parse(textBoxHTTPPort.Text);
-            }
-            catch (Exception)
-            {
-                server.HTTPPort = 8081;
-            }
 
 
             PlayerServers.Add(server);
@@ -344,13 +336,6 @@ namespace KMPLauncher
 
 
 
-        private void textBoxHTTPAddress_Enter(object sender, EventArgs e)
-        {
-            if (textBoxHTTPPort.Text == "HTTP Port")
-            {
-                textBoxHTTPPort.Text = "";
-            }
-        }
 
 
         #endregion

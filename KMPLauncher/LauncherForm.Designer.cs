@@ -39,7 +39,6 @@
             this.tabPage2 = new System.Windows.Forms.TabPage();
             this.groupBox2 = new System.Windows.Forms.GroupBox();
             this.ServerInformationListBox = new System.Windows.Forms.ListBox();
-            this.textBoxHTTPPort = new System.Windows.Forms.TextBox();
             this.label5 = new System.Windows.Forms.Label();
             this.UserNameInput = new System.Windows.Forms.TextBox();
             this.DeleteButton = new System.Windows.Forms.Button();
@@ -150,7 +149,6 @@
             // tabPage2
             // 
             this.tabPage2.Controls.Add(this.groupBox2);
-            this.tabPage2.Controls.Add(this.textBoxHTTPPort);
             this.tabPage2.Controls.Add(this.label5);
             this.tabPage2.Controls.Add(this.UserNameInput);
             this.tabPage2.Controls.Add(this.DeleteButton);
@@ -189,16 +187,6 @@
             this.ServerInformationListBox.Name = "ServerInformationListBox";
             this.ServerInformationListBox.Size = new System.Drawing.Size(207, 69);
             this.ServerInformationListBox.TabIndex = 9;
-            // 
-            // textBoxHTTPPort
-            // 
-            this.textBoxHTTPPort.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
-            this.textBoxHTTPPort.Location = new System.Drawing.Point(6, 280);
-            this.textBoxHTTPPort.Name = "textBoxHTTPPort";
-            this.textBoxHTTPPort.Size = new System.Drawing.Size(100, 20);
-            this.textBoxHTTPPort.TabIndex = 14;
-            this.textBoxHTTPPort.Text = "HTTP Port";
-            this.textBoxHTTPPort.Enter += new System.EventHandler(this.textBoxHTTPAddress_Enter);
             // 
             // label5
             // 
@@ -284,9 +272,9 @@
             // textBoxName
             // 
             this.textBoxName.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
-            this.textBoxName.Location = new System.Drawing.Point(6, 251);
+            this.textBoxName.Location = new System.Drawing.Point(9, 280);
             this.textBoxName.Name = "textBoxName";
-            this.textBoxName.Size = new System.Drawing.Size(153, 20);
+            this.textBoxName.Size = new System.Drawing.Size(97, 20);
             this.textBoxName.TabIndex = 4;
             this.textBoxName.Text = "Name";
             this.textBoxName.Enter += new System.EventHandler(this.textBoxName_Enter);
@@ -294,9 +282,9 @@
             // textBoxAddress
             // 
             this.textBoxAddress.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
-            this.textBoxAddress.Location = new System.Drawing.Point(6, 220);
+            this.textBoxAddress.Location = new System.Drawing.Point(9, 252);
             this.textBoxAddress.Name = "textBoxAddress";
-            this.textBoxAddress.Size = new System.Drawing.Size(153, 20);
+            this.textBoxAddress.Size = new System.Drawing.Size(150, 20);
             this.textBoxAddress.TabIndex = 2;
             this.textBoxAddress.Text = "Address";
             this.textBoxAddress.Enter += new System.EventHandler(this.textBoxIP_Enter);
@@ -616,7 +604,6 @@
         private System.Windows.Forms.Label KMPLatestUpdateLabel;
         private System.Windows.Forms.Label label5;
         private System.Windows.Forms.TextBox UserNameInput;
-        private System.Windows.Forms.TextBox textBoxHTTPPort;
         private System.Windows.Forms.Button UpdateButton;
         private System.Windows.Forms.Button UpdateCheckButton;
         private System.Windows.Forms.GroupBox groupBox2;
