@@ -28,6 +28,7 @@ namespace KMPLauncher
         public LauncherForm()
         {
             InitializeComponent();
+            ChangelogBox.BackColor = System.Drawing.SystemColors.Window;
 
             InitLauncherDirectory();
 
@@ -250,7 +251,7 @@ namespace KMPLauncher
                     StreamWriter wr = new StreamWriter(UpdaterSettings.KMPDirectory + @"\PluginData\KerbalMultiPlayer\KMPClientConfig.txt");
 
                     wr.WriteLine("username");//Very lazy way to do this, I know.
-                    wr.WriteLine(UserNameInput.Text);
+                    wr.WriteLine(UpdaterSettings.Username);
 
                     wr.WriteLine("ip");
                     wr.WriteLine("");
@@ -263,7 +264,13 @@ namespace KMPLauncher
 
                     wr.Close();
 
-                    Process.Start(UpdaterSettings.KSPExecutable);
+                    ProcessStartInfo startInfo = new ProcessStartInfo();
+
+                    startInfo.WorkingDirectory = APP_DATA;
+
+                    startInfo.FileName = UpdaterSettings.KSPExecutable;
+
+                    Process.Start(startInfo);
                 }
                 else
                 {
@@ -319,7 +326,7 @@ namespace KMPLauncher
 
         private void textBoxName_Enter(object sender, EventArgs e)
         {
-            if (textBoxName.Text == "Name")
+            if (textBoxName.Text == "Name")//This code will reset the textbox when the user clicks
             {
                 textBoxName.Text = "";
             }
@@ -410,6 +417,9 @@ namespace KMPLauncher
             wr.Write(UpdaterSettings.KSPDirectory);
             wr.Write(Environment.NewLine);
 
+            wr.Write(UpdaterSettings.Username);
+            wr.Write(Environment.NewLine);
+
             wr.Close();
         }
         private void LoadUpdaterSettings()
@@ -422,6 +432,9 @@ namespace KMPLauncher
             StreamReader reader = new StreamReader(APP_DATA + "updater.txt");
 
             directoryPath.Text = reader.ReadLine();
+
+            UpdaterSettings.Username = reader.ReadLine();
+            UserNameInput.Text = UpdaterSettings.Username;
 
             reader.Close();
         } 
@@ -450,6 +463,7 @@ namespace KMPLauncher
         } 
         #endregion
 
+        #region Links
         private void KMPForumLink_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
         {
             Process.Start("http://forum.kerbalspaceprogram.com/threads/55835-Kmp-0-22-wip-alpha");
@@ -463,6 +477,28 @@ namespace KMPLauncher
         private void KMPIssuesLink_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
         {
             Process.Start("https://github.com/TehGimp/KerbalMultiPlayer/issues");
+        } 
+        #endregion
+
+        private void UserNameInput_TextChanged(object sender, EventArgs e)
+        {
+            UpdaterSettings.Username = UserNameInput.Text;
+        }
+
+        private void ReloadLogButton_Click(object sender, EventArgs e)
+        {
+            LoadLog();
+        }
+
+        private void LoadLog()
+        {
+            StreamReader reader = new StreamReader(APP_DATA + "KSP.log");
+            KSPLogBox.Text = reader.ReadToEnd();
+        }
+
+        private void Logging_Enter(object sender, EventArgs e)
+        {
+            LoadLog();
         }
 
 

@@ -71,6 +71,10 @@
             this.FolderBrowseButton = new System.Windows.Forms.Button();
             this.directoryPath = new System.Windows.Forms.TextBox();
             this.label1 = new System.Windows.Forms.Label();
+            this.Logging = new System.Windows.Forms.TabPage();
+            this.groupBox5 = new System.Windows.Forms.GroupBox();
+            this.ReloadLogButton = new System.Windows.Forms.Button();
+            this.KSPLogBox = new System.Windows.Forms.RichTextBox();
             this.NetworkWorker = new System.ComponentModel.BackgroundWorker();
             this.folderBrowserDialog1 = new System.Windows.Forms.FolderBrowserDialog();
             this.tabControl1.SuspendLayout();
@@ -81,6 +85,8 @@
             this.groupBox4.SuspendLayout();
             this.groupBox3.SuspendLayout();
             this.ChangelogGroupBox.SuspendLayout();
+            this.Logging.SuspendLayout();
+            this.groupBox5.SuspendLayout();
             this.SuspendLayout();
             // 
             // listView1
@@ -139,6 +145,7 @@
             | System.Windows.Forms.AnchorStyles.Right)));
             this.tabControl1.Controls.Add(this.tabPage2);
             this.tabControl1.Controls.Add(this.tabPage1);
+            this.tabControl1.Controls.Add(this.Logging);
             this.tabControl1.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.tabControl1.Location = new System.Drawing.Point(12, 12);
             this.tabControl1.Name = "tabControl1";
@@ -205,6 +212,7 @@
             this.UserNameInput.Name = "UserNameInput";
             this.UserNameInput.Size = new System.Drawing.Size(121, 20);
             this.UserNameInput.TabIndex = 11;
+            this.UserNameInput.TextChanged += new System.EventHandler(this.UserNameInput_TextChanged);
             // 
             // DeleteButton
             // 
@@ -534,6 +542,52 @@
             this.label1.TabIndex = 0;
             this.label1.Text = "KSP Directory";
             // 
+            // Logging
+            // 
+            this.Logging.Controls.Add(this.groupBox5);
+            this.Logging.Location = new System.Drawing.Point(4, 22);
+            this.Logging.Name = "Logging";
+            this.Logging.Padding = new System.Windows.Forms.Padding(3);
+            this.Logging.Size = new System.Drawing.Size(752, 312);
+            this.Logging.TabIndex = 2;
+            this.Logging.Text = "Logs";
+            this.Logging.UseVisualStyleBackColor = true;
+            this.Logging.Enter += new System.EventHandler(this.Logging_Enter);
+            // 
+            // groupBox5
+            // 
+            this.groupBox5.Controls.Add(this.ReloadLogButton);
+            this.groupBox5.Controls.Add(this.KSPLogBox);
+            this.groupBox5.Location = new System.Drawing.Point(6, 6);
+            this.groupBox5.Name = "groupBox5";
+            this.groupBox5.Size = new System.Drawing.Size(740, 300);
+            this.groupBox5.TabIndex = 0;
+            this.groupBox5.TabStop = false;
+            this.groupBox5.Text = "Kerbal Space Program Log";
+            // 
+            // ReloadLogButton
+            // 
+            this.ReloadLogButton.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
+            this.ReloadLogButton.Location = new System.Drawing.Point(659, 271);
+            this.ReloadLogButton.Name = "ReloadLogButton";
+            this.ReloadLogButton.Size = new System.Drawing.Size(75, 23);
+            this.ReloadLogButton.TabIndex = 13;
+            this.ReloadLogButton.Text = "Reload Log";
+            this.ReloadLogButton.UseVisualStyleBackColor = true;
+            this.ReloadLogButton.Click += new System.EventHandler(this.ReloadLogButton_Click);
+            // 
+            // KSPLogBox
+            // 
+            this.KSPLogBox.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.KSPLogBox.Location = new System.Drawing.Point(6, 19);
+            this.KSPLogBox.Name = "KSPLogBox";
+            this.KSPLogBox.ReadOnly = true;
+            this.KSPLogBox.Size = new System.Drawing.Size(728, 246);
+            this.KSPLogBox.TabIndex = 12;
+            this.KSPLogBox.Text = "";
+            // 
             // NetworkWorker
             // 
             this.NetworkWorker.WorkerReportsProgress = true;
@@ -568,6 +622,8 @@
             this.groupBox3.ResumeLayout(false);
             this.groupBox3.PerformLayout();
             this.ChangelogGroupBox.ResumeLayout(false);
+            this.Logging.ResumeLayout(false);
+            this.groupBox5.ResumeLayout(false);
             this.ResumeLayout(false);
 
         }
@@ -618,6 +674,10 @@
         private System.Windows.Forms.LinkLabel KMPIssuesLink;
         private System.Windows.Forms.LinkLabel KMPGithubLink;
         private System.Windows.Forms.LinkLabel KMPForumLink;
+        private System.Windows.Forms.TabPage Logging;
+        private System.Windows.Forms.GroupBox groupBox5;
+        private System.Windows.Forms.Button ReloadLogButton;
+        private System.Windows.Forms.RichTextBox KSPLogBox;
     }
 }
 

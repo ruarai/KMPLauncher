@@ -17,8 +17,8 @@ namespace KMPLauncher
 
         static public bool KSPExists;
         static public bool KMPExists;
-        
 
+        static public string Username;
 
         public static string CurrentKMPUpdate
         {
