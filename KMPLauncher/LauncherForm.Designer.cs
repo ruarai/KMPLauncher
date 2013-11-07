@@ -475,7 +475,7 @@
             // 
             this.KMPLatestUpdateLabel.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.KMPLatestUpdateLabel.AutoSize = true;
-            this.KMPLatestUpdateLabel.Location = new System.Drawing.Point(114, 55);
+            this.KMPLatestUpdateLabel.Location = new System.Drawing.Point(160, 55);
             this.KMPLatestUpdateLabel.Name = "KMPLatestUpdateLabel";
             this.KMPLatestUpdateLabel.Size = new System.Drawing.Size(40, 13);
             this.KMPLatestUpdateLabel.TabIndex = 8;
