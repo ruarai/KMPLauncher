@@ -12,8 +12,8 @@ namespace KMPLauncher
     static class UpdateInformationRetriever
     {
 
-        static Uri UpdateInfoUri = new Uri("https://dl.dropboxusercontent.com/u/6898485/index.html");//This is where the information for downloading is always stored
-        //The HTML file itself looks like
+        static Uri UpdateInfoUri = new Uri("https://dl.dropboxusercontent.com/u/6898485/updateinfo.txt");//This is where the information for downloading is always stored
+        //The file itself looks like
         //0.1.2.0
         //http://www.kerbalspaceport.com/wp/wp-content/themes/kerbal/inc/download.php?f=uploads/2013/11/KMP_Client3.zip
         
@@ -25,7 +25,7 @@ namespace KMPLauncher
 
             string page = retriever.DownloadString(UpdateInfoUri);
 
-            string[] lines = page.Split(new string[] { "</br>" }, StringSplitOptions.RemoveEmptyEntries);//We want to split the HTML file into it's line breaks
+            string[] lines = page.Split(new string[] { "\n" }, StringSplitOptions.RemoveEmptyEntries);//Split file into lines
 
 
             UpdateInfo.LatestVersion = lines[0];
