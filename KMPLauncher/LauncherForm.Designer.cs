@@ -72,11 +72,12 @@
             this.directoryPath = new System.Windows.Forms.TextBox();
             this.label1 = new System.Windows.Forms.Label();
             this.Logging = new System.Windows.Forms.TabPage();
-            this.groupBox5 = new System.Windows.Forms.GroupBox();
+            this.LogGroupBox = new System.Windows.Forms.GroupBox();
             this.ReloadLogButton = new System.Windows.Forms.Button();
             this.KSPLogBox = new System.Windows.Forms.RichTextBox();
             this.NetworkWorker = new System.ComponentModel.BackgroundWorker();
             this.folderBrowserDialog1 = new System.Windows.Forms.FolderBrowserDialog();
+            this.KMPLogLink = new System.Windows.Forms.LinkLabel();
             this.tabControl1.SuspendLayout();
             this.tabPage2.SuspendLayout();
             this.groupBox2.SuspendLayout();
@@ -86,7 +87,7 @@
             this.groupBox3.SuspendLayout();
             this.ChangelogGroupBox.SuspendLayout();
             this.Logging.SuspendLayout();
-            this.groupBox5.SuspendLayout();
+            this.LogGroupBox.SuspendLayout();
             this.SuspendLayout();
             // 
             // listView1
@@ -544,7 +545,7 @@
             // 
             // Logging
             // 
-            this.Logging.Controls.Add(this.groupBox5);
+            this.Logging.Controls.Add(this.LogGroupBox);
             this.Logging.Location = new System.Drawing.Point(4, 22);
             this.Logging.Name = "Logging";
             this.Logging.Padding = new System.Windows.Forms.Padding(3);
@@ -554,16 +555,17 @@
             this.Logging.UseVisualStyleBackColor = true;
             this.Logging.Enter += new System.EventHandler(this.Logging_Enter);
             // 
-            // groupBox5
+            // LogGroupBox
             // 
-            this.groupBox5.Controls.Add(this.ReloadLogButton);
-            this.groupBox5.Controls.Add(this.KSPLogBox);
-            this.groupBox5.Location = new System.Drawing.Point(6, 6);
-            this.groupBox5.Name = "groupBox5";
-            this.groupBox5.Size = new System.Drawing.Size(740, 300);
-            this.groupBox5.TabIndex = 0;
-            this.groupBox5.TabStop = false;
-            this.groupBox5.Text = "Kerbal Space Program Log";
+            this.LogGroupBox.Controls.Add(this.KMPLogLink);
+            this.LogGroupBox.Controls.Add(this.ReloadLogButton);
+            this.LogGroupBox.Controls.Add(this.KSPLogBox);
+            this.LogGroupBox.Location = new System.Drawing.Point(6, 6);
+            this.LogGroupBox.Name = "LogGroupBox";
+            this.LogGroupBox.Size = new System.Drawing.Size(740, 300);
+            this.LogGroupBox.TabIndex = 0;
+            this.LogGroupBox.TabStop = false;
+            this.LogGroupBox.Text = "Kerbal Space Program Log";
             // 
             // ReloadLogButton
             // 
@@ -599,6 +601,17 @@
             // 
             this.folderBrowserDialog1.RootFolder = System.Environment.SpecialFolder.ProgramFilesX86;
             // 
+            // KMPLogLink
+            // 
+            this.KMPLogLink.AutoSize = true;
+            this.KMPLogLink.Location = new System.Drawing.Point(15, 276);
+            this.KMPLogLink.Name = "KMPLogLink";
+            this.KMPLogLink.Size = new System.Drawing.Size(49, 13);
+            this.KMPLogLink.TabIndex = 14;
+            this.KMPLogLink.TabStop = true;
+            this.KMPLogLink.Text = "KSP Log";
+            this.KMPLogLink.LinkClicked += new System.Windows.Forms.LinkLabelLinkClickedEventHandler(this.KMPLogLink_LinkClicked);
+            // 
             // LauncherForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -623,7 +636,8 @@
             this.groupBox3.PerformLayout();
             this.ChangelogGroupBox.ResumeLayout(false);
             this.Logging.ResumeLayout(false);
-            this.groupBox5.ResumeLayout(false);
+            this.LogGroupBox.ResumeLayout(false);
+            this.LogGroupBox.PerformLayout();
             this.ResumeLayout(false);
 
         }
@@ -675,9 +689,10 @@
         private System.Windows.Forms.LinkLabel KMPGithubLink;
         private System.Windows.Forms.LinkLabel KMPForumLink;
         private System.Windows.Forms.TabPage Logging;
-        private System.Windows.Forms.GroupBox groupBox5;
+        private System.Windows.Forms.GroupBox LogGroupBox;
         private System.Windows.Forms.Button ReloadLogButton;
         private System.Windows.Forms.RichTextBox KSPLogBox;
+        private System.Windows.Forms.LinkLabel KMPLogLink;
     }
 }
 

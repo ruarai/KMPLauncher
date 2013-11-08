@@ -494,13 +494,50 @@ namespace KMPLauncher
 
         private void LoadLog()
         {
-            StreamReader reader = new StreamReader(APP_DATA + "KSP.log");
-            KSPLogBox.Text = reader.ReadToEnd();
+            try
+            {
+                StreamReader reader = new StreamReader(APP_DATA + "KSP.log");
+
+                string log = reader.ReadToEnd();
+
+                KSPLogBox.Text = log;
+
+                string[] lines = log.Split(new string[] { "\n" }, StringSplitOptions.RemoveEmptyEntries);
+
+                string startedInfo = "";
+                foreach (string s in lines)
+                {
+                    if (s.StartsWith("Log started:"))
+                    {
+                        startedInfo = s;
+                        break;
+                    }
+                }
+
+                string LogCreationDate = startedInfo.Replace("Log started:", "");
+
+                LogGroupBox.Text = "Kerbal Space Program Log " + "(" + LogCreationDate.Trim() + ")";
+
+
+                
+            }
+            catch (FileNotFoundException)
+            {
+                KSPLogBox.Text = "No log found.";
+            }
+
+            KMPLogLink.Text = APP_DATA + "KSP.log";
         }
 
         private void Logging_Enter(object sender, EventArgs e)
         {
             LoadLog();
+        }
+
+        private void KMPLogLink_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
+        {
+            Process.Start(APP_DATA + "KSP.log");
+            
         }
 
 
