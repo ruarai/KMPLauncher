@@ -488,7 +488,10 @@ namespace KMPLauncher
         private void FolderBrowseButton_Click(object sender, EventArgs e)
         {
             folderBrowserDialog1.ShowDialog();
-            directoryPath.Text = folderBrowserDialog1.SelectedPath;
+            if (Directory.Exists(folderBrowserDialog1.SelectedPath))
+            {
+                directoryPath.Text = folderBrowserDialog1.SelectedPath;
+            }
         }
 
         private void directoryPath_TextChanged(object sender, EventArgs e)
