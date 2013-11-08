@@ -73,11 +73,12 @@
             this.label1 = new System.Windows.Forms.Label();
             this.Logging = new System.Windows.Forms.TabPage();
             this.LogGroupBox = new System.Windows.Forms.GroupBox();
+            this.KMPLogLink = new System.Windows.Forms.LinkLabel();
             this.ReloadLogButton = new System.Windows.Forms.Button();
             this.KSPLogBox = new System.Windows.Forms.RichTextBox();
-            this.NetworkWorker = new System.ComponentModel.BackgroundWorker();
+            this.ServerlistNetworker = new System.ComponentModel.BackgroundWorker();
             this.folderBrowserDialog1 = new System.Windows.Forms.FolderBrowserDialog();
-            this.KMPLogLink = new System.Windows.Forms.LinkLabel();
+            this.EditButton = new System.Windows.Forms.Button();
             this.tabControl1.SuspendLayout();
             this.tabPage2.SuspendLayout();
             this.groupBox2.SuspendLayout();
@@ -156,6 +157,7 @@
             // 
             // tabPage2
             // 
+            this.tabPage2.Controls.Add(this.EditButton);
             this.tabPage2.Controls.Add(this.groupBox2);
             this.tabPage2.Controls.Add(this.label5);
             this.tabPage2.Controls.Add(this.UserNameInput);
@@ -557,6 +559,9 @@
             // 
             // LogGroupBox
             // 
+            this.LogGroupBox.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
             this.LogGroupBox.Controls.Add(this.KMPLogLink);
             this.LogGroupBox.Controls.Add(this.ReloadLogButton);
             this.LogGroupBox.Controls.Add(this.KSPLogBox);
@@ -566,6 +571,18 @@
             this.LogGroupBox.TabIndex = 0;
             this.LogGroupBox.TabStop = false;
             this.LogGroupBox.Text = "Kerbal Space Program Log";
+            // 
+            // KMPLogLink
+            // 
+            this.KMPLogLink.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
+            this.KMPLogLink.AutoSize = true;
+            this.KMPLogLink.Location = new System.Drawing.Point(15, 276);
+            this.KMPLogLink.Name = "KMPLogLink";
+            this.KMPLogLink.Size = new System.Drawing.Size(49, 13);
+            this.KMPLogLink.TabIndex = 14;
+            this.KMPLogLink.TabStop = true;
+            this.KMPLogLink.Text = "KSP Log";
+            this.KMPLogLink.LinkClicked += new System.Windows.Forms.LinkLabelLinkClickedEventHandler(this.KMPLogLink_LinkClicked);
             // 
             // ReloadLogButton
             // 
@@ -590,27 +607,27 @@
             this.KSPLogBox.TabIndex = 12;
             this.KSPLogBox.Text = "";
             // 
-            // NetworkWorker
+            // ServerlistNetworker
             // 
-            this.NetworkWorker.WorkerReportsProgress = true;
-            this.NetworkWorker.DoWork += new System.ComponentModel.DoWorkEventHandler(this.NetworkWorker_DoWork);
-            this.NetworkWorker.ProgressChanged += new System.ComponentModel.ProgressChangedEventHandler(this.NetworkWorker_ProgressChanged);
-            this.NetworkWorker.RunWorkerCompleted += new System.ComponentModel.RunWorkerCompletedEventHandler(this.NetworkWorker_RunWorkerCompleted);
+            this.ServerlistNetworker.WorkerReportsProgress = true;
+            this.ServerlistNetworker.DoWork += new System.ComponentModel.DoWorkEventHandler(this.ServerlistNetworker_DoWork);
+            this.ServerlistNetworker.ProgressChanged += new System.ComponentModel.ProgressChangedEventHandler(this.ServerlistNetworker_ProgressChanged);
+            this.ServerlistNetworker.RunWorkerCompleted += new System.ComponentModel.RunWorkerCompletedEventHandler(this.ServerlistNetworker_RunWorkerCompleted);
             // 
             // folderBrowserDialog1
             // 
             this.folderBrowserDialog1.RootFolder = System.Environment.SpecialFolder.ProgramFilesX86;
             // 
-            // KMPLogLink
+            // EditButton
             // 
-            this.KMPLogLink.AutoSize = true;
-            this.KMPLogLink.Location = new System.Drawing.Point(15, 276);
-            this.KMPLogLink.Name = "KMPLogLink";
-            this.KMPLogLink.Size = new System.Drawing.Size(49, 13);
-            this.KMPLogLink.TabIndex = 14;
-            this.KMPLogLink.TabStop = true;
-            this.KMPLogLink.Text = "KSP Log";
-            this.KMPLogLink.LinkClicked += new System.Windows.Forms.LinkLabelLinkClickedEventHandler(this.KMPLogLink_LinkClicked);
+            this.EditButton.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
+            this.EditButton.Location = new System.Drawing.Point(59, 278);
+            this.EditButton.Name = "EditButton";
+            this.EditButton.Size = new System.Drawing.Size(47, 23);
+            this.EditButton.TabIndex = 14;
+            this.EditButton.Text = "Edit";
+            this.EditButton.UseVisualStyleBackColor = true;
+            this.EditButton.Click += new System.EventHandler(this.EditButton_Click);
             // 
             // LauncherForm
             // 
@@ -657,7 +674,7 @@
         private System.Windows.Forms.TextBox textBoxName;
         private System.Windows.Forms.TextBox textBoxAddress;
         private System.Windows.Forms.Button AddNewServer;
-        private System.ComponentModel.BackgroundWorker NetworkWorker;
+        private System.ComponentModel.BackgroundWorker ServerlistNetworker;
         private System.Windows.Forms.Button RefreshButton;
         private System.Windows.Forms.ListBox PlayerListBox;
         private System.Windows.Forms.GroupBox groupBox1;
@@ -693,6 +710,7 @@
         private System.Windows.Forms.Button ReloadLogButton;
         private System.Windows.Forms.RichTextBox KSPLogBox;
         private System.Windows.Forms.LinkLabel KMPLogLink;
+        private System.Windows.Forms.Button EditButton;
     }
 }
 

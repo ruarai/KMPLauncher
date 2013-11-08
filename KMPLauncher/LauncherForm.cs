@@ -55,9 +55,9 @@ namespace KMPLauncher
             listView1.Items.Clear();
 
 
-            if (!NetworkWorker.IsBusy)
+            if (!ServerlistNetworker.IsBusy)
             {
-                NetworkWorker.RunWorkerAsync();
+                ServerlistNetworker.RunWorkerAsync();
             }
 
         }
@@ -133,7 +133,7 @@ namespace KMPLauncher
 
 
         #region ServerListRetriever
-        private void NetworkWorker_DoWork(object sender, DoWorkEventArgs e)
+        private void ServerlistNetworker_DoWork(object sender, DoWorkEventArgs e)
         {
             BackgroundWorker worker = sender as BackgroundWorker;
 
@@ -175,13 +175,13 @@ namespace KMPLauncher
             e.Result = Playerserversinternal;
         }
 
-        private void NetworkWorker_ProgressChanged(object sender, ProgressChangedEventArgs e)
+        private void ServerlistNetworker_ProgressChanged(object sender, ProgressChangedEventArgs e)
         {
             this.Text = "Kerbal Multiplayer Launcher - Refreshing: " + e.ProgressPercentage + "%";
             
         }
 
-        private void NetworkWorker_RunWorkerCompleted(object sender, RunWorkerCompletedEventArgs e)
+        private void ServerlistNetworker_RunWorkerCompleted(object sender, RunWorkerCompletedEventArgs e)
         {
             PlayerServers = (List<KMPServer>)e.Result;
 
@@ -223,6 +223,34 @@ namespace KMPLauncher
 
 
             PlayerServers.Add(server);
+
+
+            RefreshServerList();
+        }
+
+        private void EditButton_Click(object sender, EventArgs e)
+        {
+            PlayerServers.Remove(selection);
+
+            selection.Name = textBoxName.Text;
+
+            string address = textBoxAddress.Text;
+            string[] splitaddress = address.Split(':');
+
+            selection.IP = splitaddress[0];
+            try
+            {
+                selection.Port = int.Parse(splitaddress[1]);
+            }
+            catch (Exception)
+            {
+                selection.Port = 2076;
+            }
+
+
+
+
+            PlayerServers.Add(selection);
 
 
             RefreshServerList();
@@ -308,6 +336,11 @@ namespace KMPLauncher
                     break;
                 }
             }
+
+            textBoxName.Text = selection.Name;
+            textBoxAddress.Text = selection.Address;
+            
+
 
             ServerInformationListBox.Items.Clear();
 
@@ -517,9 +550,22 @@ namespace KMPLauncher
                     }
                 }
 
-                string LogCreationDate = startedInfo.Replace("Log started:", "");
+                string LogCreationDate = startedInfo.Replace("Log started:", "").Trim();
 
-                LogGroupBox.Text = "Kerbal Space Program Log " + "(" + LogCreationDate.Trim() + ")";
+
+                DateTime CreationDateTime = Convert.ToDateTime(LogCreationDate);
+
+
+                string TimeSince = "";
+                TimeSpan ts = DateTime.Now.Subtract(CreationDateTime);
+                if (ts.TotalHours < 1)
+                    TimeSince = ts.Minutes + " minutes ago";
+                else if (ts.TotalDays < 1)
+                    TimeSince = ts.Hours + " hours ago";
+                else
+                    TimeSince = ts.Days + " days ago";
+
+                LogGroupBox.Text = "Kerbal Space Program Log " + "(created " + TimeSince + ")";
 
 
 
@@ -544,6 +590,8 @@ namespace KMPLauncher
         }
         
         #endregion
+
+        
 
 
 
