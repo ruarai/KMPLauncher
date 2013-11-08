@@ -73,7 +73,7 @@ namespace KMPLauncher
                 serveritem.SubItems.Add(s.Players + "/" + s.MaxPlayers);
                 serveritem.SubItems.Add(s.Information);
 
-                if (s.Information == "-NO HTTP CONNECTION-")
+                if (!s.HasHTTPConnection)
                 {
                     serveritem.ForeColor = Color.DarkRed;
                 }
@@ -156,6 +156,7 @@ namespace KMPLauncher
                     s.Screenshots = filled.Screenshots;
                     s.ScreenshotHeight = filled.ScreenshotHeight;
                     s.InactiveShipLimit = filled.InactiveShipLimit;
+                    s.HasHTTPConnection = true;
 
                     float relativepercentage = (float)index / (float)Playerserversinternal.Count;
 
@@ -167,6 +168,7 @@ namespace KMPLauncher
                 catch (System.Net.WebException)
                 {
                     s.Information = "-NO HTTP CONNECTION-";
+                    s.HasHTTPConnection = false;
                 }
                 index++;
             }
@@ -303,7 +305,7 @@ namespace KMPLauncher
             ServerInformationListBox.Items.Clear();
 
             ServerInformationListBox.Items.Add("Whitelist: " + selection.Whitelisted.ToString().ToLower());
-            ServerInformationListBox.Items.Add("Screenshots: " + selection.Screenshots.ToString().ToLower());
+            ServerInformationListBox.Items.Add("Screenshots Save: " + selection.Screenshots.ToString().ToLower());
             ServerInformationListBox.Items.Add("Screenshot Height: " + selection.ScreenshotHeight.ToString());
             ServerInformationListBox.Items.Add("Update Rate: " + selection.UpdateRate.ToString());
             ServerInformationListBox.Items.Add("Inactive Ship Limit: " + selection.InactiveShipLimit.ToString());
@@ -500,6 +502,7 @@ namespace KMPLauncher
         {
             LoadLog();
         }
+
 
 
 

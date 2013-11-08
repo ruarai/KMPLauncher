@@ -12,17 +12,22 @@ namespace KMPLauncher
         public string IP;
         public int Port;
 
+        public bool HasHTTPConnection;
+
         public string Version;
 
 
         public int Players;
         public int MaxPlayers;
+
         public string Information;
         public bool Whitelisted;
         public bool Screenshots;
         public int InactiveShipLimit;
         public int UpdateRate;
         public int ScreenshotHeight;
+
+
 
         public List<String> PlayerList = new List<string>();
 
