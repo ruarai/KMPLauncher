@@ -146,6 +146,7 @@ namespace KMPLauncher
                 try
                 {
                     KMPServer filled = ServerInformationRetriever.Retrieve(s.IP, 8081);
+
                     s.MaxPlayers = filled.MaxPlayers;//This is terrible, I know. I wish it wasn't so mean to me and just let me do s = filled
                     s.Players = filled.Players;
                     s.Information = filled.Information;
@@ -157,6 +158,8 @@ namespace KMPLauncher
                     s.ScreenshotHeight = filled.ScreenshotHeight;
                     s.InactiveShipLimit = filled.InactiveShipLimit;
                     s.HasHTTPConnection = true;
+
+
 
                     float relativepercentage = (float)index / (float)Playerserversinternal.Count;
 
