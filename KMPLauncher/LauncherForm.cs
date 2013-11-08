@@ -228,6 +228,13 @@ namespace KMPLauncher
             RefreshServerList();
         }
 
+
+        private void UserNameInput_TextChanged(object sender, EventArgs e)
+        {
+            UpdaterSettings.Username = UserNameInput.Text;
+        }
+
+
         private void JoinButton_Click(object sender, EventArgs e)
         {
             UpdateUpdaterSettings();
@@ -482,11 +489,7 @@ namespace KMPLauncher
         } 
         #endregion
 
-        private void UserNameInput_TextChanged(object sender, EventArgs e)
-        {
-            UpdaterSettings.Username = UserNameInput.Text;
-        }
-
+        #region LogViewer
         private void ReloadLogButton_Click(object sender, EventArgs e)
         {
             LoadLog();
@@ -519,7 +522,7 @@ namespace KMPLauncher
                 LogGroupBox.Text = "Kerbal Space Program Log " + "(" + LogCreationDate.Trim() + ")";
 
 
-                
+
             }
             catch (FileNotFoundException)
             {
@@ -537,9 +540,10 @@ namespace KMPLauncher
         private void KMPLogLink_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
         {
             Process.Start(APP_DATA + "KSP.log");
-            
-        }
 
+        }
+        
+        #endregion
 
 
 
