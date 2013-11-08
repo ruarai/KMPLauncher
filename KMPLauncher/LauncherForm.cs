@@ -17,7 +17,7 @@ namespace KMPLauncher
         ListViewGroup PlayerServerGroup = new ListViewGroup("Player Added Servers");
 
         string LAUNCHER_FOLDER = Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData) + @"\KMPLauncher\";
-        string SERVER_FILE = "server.dat";
+        string SERVER_FILE = "servers.dat";
         string UPDATER_FILE = "updater.dat";
 
         readonly string SERVER_CONST = "STARTSERVER";
