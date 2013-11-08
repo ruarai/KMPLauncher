@@ -7,6 +7,7 @@ using System.Windows.Forms;
 
 using System.Net;
 using Ionic.Zip;
+using System.IO;
 
 
 
@@ -15,7 +16,7 @@ namespace KMPLauncher
     static class KMPUpdater
     {
 
-        static string APP_DATA = Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData) + @"\KMPLauncher\";
+        static string LAUNCHER_FOLDER = Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData) + @"\KMPLauncher\";
 
         public static void Update(string UpdateFileURL)
         {
@@ -25,15 +26,18 @@ namespace KMPLauncher
 
             downloader.DownloadFileCompleted += downloader_DownloadFileCompleted;
 
-            downloader.DownloadFileAsync(downloadUri, APP_DATA + "update.zip");
+            downloader.DownloadFileAsync(downloadUri, LAUNCHER_FOLDER + "update.zip");
 
             
         }
 
         static void downloader_DownloadFileCompleted(object sender, System.ComponentModel.AsyncCompletedEventArgs e)
         {
-            ZipFile z = ZipFile.Read(APP_DATA + "update.zip");
+            ZipFile z = ZipFile.Read(LAUNCHER_FOLDER + "update.zip");
             z.ExtractAll(UpdaterSettings.KSPDirectory, ExtractExistingFileAction.OverwriteSilently);
+
+            File.Delete(LAUNCHER_FOLDER + "update.zip");
+            
 
             MessageBox.Show("Downloaded and updated KMP.");
             
