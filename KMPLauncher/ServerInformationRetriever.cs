@@ -25,6 +25,10 @@ namespace KMPLauncher
             string[] lines = page.Split(new string[] { "\n" }, StringSplitOptions.RemoveEmptyEntries);
 
 
+
+
+
+
             server.Version = lines[0].Substring("Version: ".Length, lines[0].Length - "Version: ".Length);//Version
 
 
