@@ -22,6 +22,8 @@ namespace KMPLauncher
         ListViewGroup PlayerServerGroup = new ListViewGroup("Player Added Servers");
 
         string LAUNCHER_FOLDER = Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData) + @"\KMPLauncher\";
+        string SERVER_FILE = "servers.dat";
+        string UPDATE_FILE = "updater.dat";
 
         readonly string SERVER_CONST = "STARTSERVER";
 
@@ -89,7 +91,7 @@ namespace KMPLauncher
         #region ServerSaveLoad
         private void SaveServers()
         {
-            StreamWriter wr = new StreamWriter(LAUNCHER_FOLDER + "servers.txt");
+            StreamWriter wr = new StreamWriter(LAUNCHER_FOLDER + "servers.dat");
             wr.NewLine = Environment.NewLine;
             foreach (KMPServer s in PlayerServers)
             {
@@ -111,12 +113,12 @@ namespace KMPLauncher
 
         private void LoadServers()
         {
-            if (!File.Exists(LAUNCHER_FOLDER + "servers.txt"))
+            if (!File.Exists(LAUNCHER_FOLDER + "servers.dat"))
             {
-                FileStream file = File.Create(LAUNCHER_FOLDER + "servers.txt");
+                FileStream file = File.Create(LAUNCHER_FOLDER + "servers.dat");
                 file.Close();
             }
-            StreamReader reader = new StreamReader(LAUNCHER_FOLDER + "servers.txt");
+            StreamReader reader = new StreamReader(LAUNCHER_FOLDER + "servers.dat");
             while (reader.ReadLine() == SERVER_CONST)
             {
                 KMPServer server = new KMPServer();
@@ -458,7 +460,7 @@ namespace KMPLauncher
         #region UpdaterSaveLoad
         private void SaveUpdaterSettings()
         {
-            StreamWriter wr = new StreamWriter(LAUNCHER_FOLDER + "updater.txt");
+            StreamWriter wr = new StreamWriter(LAUNCHER_FOLDER + "updater.dat");
 
 
             wr.Write(UpdaterSettings.KSPDirectory);
@@ -471,12 +473,12 @@ namespace KMPLauncher
         }
         private void LoadUpdaterSettings()
         {
-            if (!File.Exists(LAUNCHER_FOLDER + "updater.txt"))
+            if (!File.Exists(LAUNCHER_FOLDER + "updater.dat"))
             {
-                FileStream file = File.Create(LAUNCHER_FOLDER + "updater.txt");
+                FileStream file = File.Create(LAUNCHER_FOLDER + "updater.dat");
                 file.Close();
             }
-            StreamReader reader = new StreamReader(LAUNCHER_FOLDER + "updater.txt");
+            StreamReader reader = new StreamReader(LAUNCHER_FOLDER + "updater.dat");
 
             directoryPath.Text = reader.ReadLine();
 
