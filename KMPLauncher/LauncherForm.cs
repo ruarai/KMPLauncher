@@ -21,7 +21,7 @@ namespace KMPLauncher
 
         ListViewGroup PlayerServerGroup = new ListViewGroup("Player Added Servers");
 
-        string APP_DATA = Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData) + @"\KMPLauncher\";
+        string LAUNCHER_FOLDER = Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData) + @"\KMPLauncher\";
 
         readonly string SERVER_CONST = "STARTSERVER";
 
@@ -42,9 +42,9 @@ namespace KMPLauncher
 
         private void InitLauncherDirectory()
         {
-            if (!Directory.Exists(APP_DATA))
+            if (!Directory.Exists(LAUNCHER_FOLDER))
             {
-                Directory.CreateDirectory(APP_DATA);
+                Directory.CreateDirectory(LAUNCHER_FOLDER);
             }
         }
 
@@ -89,7 +89,7 @@ namespace KMPLauncher
         #region ServerSaveLoad
         private void SaveServers()
         {
-            StreamWriter wr = new StreamWriter(APP_DATA + "servers.txt");
+            StreamWriter wr = new StreamWriter(LAUNCHER_FOLDER + "servers.txt");
             wr.NewLine = Environment.NewLine;
             foreach (KMPServer s in PlayerServers)
             {
@@ -111,20 +111,22 @@ namespace KMPLauncher
 
         private void LoadServers()
         {
-            if (!File.Exists(APP_DATA + "servers.txt"))
+            if (!File.Exists(LAUNCHER_FOLDER + "servers.txt"))
             {
-                FileStream file = File.Create(APP_DATA + "servers.txt");
+                FileStream file = File.Create(LAUNCHER_FOLDER + "servers.txt");
                 file.Close();
             }
-            StreamReader reader = new StreamReader(APP_DATA + "servers.txt");
+            StreamReader reader = new StreamReader(LAUNCHER_FOLDER + "servers.txt");
             while (reader.ReadLine() == SERVER_CONST)
             {
                 KMPServer server = new KMPServer();
                 server.Name = reader.ReadLine();
                 server.IP = reader.ReadLine();
                 server.Port = int.Parse(reader.ReadLine());
-
-                PlayerServers.Add(server);
+                if (!String.IsNullOrEmpty(server.IP))
+                {
+                    PlayerServers.Add(server);
+                }
             }
 
             reader.Close();
@@ -306,7 +308,7 @@ namespace KMPLauncher
 
                     ProcessStartInfo startInfo = new ProcessStartInfo();
 
-                    startInfo.WorkingDirectory = APP_DATA;
+                    startInfo.WorkingDirectory = LAUNCHER_FOLDER;
 
                     startInfo.FileName = UpdaterSettings.KSPExecutable;
 
@@ -456,7 +458,7 @@ namespace KMPLauncher
         #region UpdaterSaveLoad
         private void SaveUpdaterSettings()
         {
-            StreamWriter wr = new StreamWriter(APP_DATA + "updater.txt");
+            StreamWriter wr = new StreamWriter(LAUNCHER_FOLDER + "updater.txt");
 
 
             wr.Write(UpdaterSettings.KSPDirectory);
@@ -469,12 +471,12 @@ namespace KMPLauncher
         }
         private void LoadUpdaterSettings()
         {
-            if (!File.Exists(APP_DATA + "updater.txt"))
+            if (!File.Exists(LAUNCHER_FOLDER + "updater.txt"))
             {
-                FileStream file = File.Create(APP_DATA + "updater.txt");
+                FileStream file = File.Create(LAUNCHER_FOLDER + "updater.txt");
                 file.Close();
             }
-            StreamReader reader = new StreamReader(APP_DATA + "updater.txt");
+            StreamReader reader = new StreamReader(LAUNCHER_FOLDER + "updater.txt");
 
             directoryPath.Text = reader.ReadLine();
 
@@ -535,7 +537,7 @@ namespace KMPLauncher
         {
             try
             {
-                StreamReader reader = new StreamReader(APP_DATA + "KSP.log");
+                StreamReader reader = new StreamReader(LAUNCHER_FOLDER + "KSP.log");
 
                 string log = reader.ReadToEnd();
 
@@ -578,7 +580,7 @@ namespace KMPLauncher
                 KSPLogBox.Text = "No log found.";
             }
 
-            KMPLogLink.Text = APP_DATA + "KSP.log";
+            KMPLogLink.Text = LAUNCHER_FOLDER + "KSP.log";
         }
 
         private void Logging_Enter(object sender, EventArgs e)
@@ -588,7 +590,7 @@ namespace KMPLauncher
 
         private void KMPLogLink_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
         {
-            Process.Start(APP_DATA + "KSP.log");
+            Process.Start(LAUNCHER_FOLDER + "KSP.log");
 
         }
         
