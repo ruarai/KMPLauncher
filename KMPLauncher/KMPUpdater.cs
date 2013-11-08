@@ -27,8 +27,6 @@ namespace KMPLauncher
             downloader.DownloadFileCompleted += downloader_DownloadFileCompleted;
 
             downloader.DownloadFileAsync(downloadUri, LAUNCHER_FOLDER + "update.zip");
-
-            
         }
 
         static void downloader_DownloadFileCompleted(object sender, System.ComponentModel.AsyncCompletedEventArgs e)
