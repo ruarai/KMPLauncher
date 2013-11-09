@@ -29,6 +29,8 @@ namespace KMPLauncher
             ZipFile z = ZipFile.Read(UpdaterSettings.LAUNCHER_FOLDER + UpdaterSettings.UPDATE_FILE);
             z.ExtractAll(UpdaterSettings.KSPDirectory, ExtractExistingFileAction.OverwriteSilently);
 
+            z.Dispose();
+
             File.Delete(UpdaterSettings.LAUNCHER_FOLDER + UpdaterSettings.UPDATE_FILE);
             
 
