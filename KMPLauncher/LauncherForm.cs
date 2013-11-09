@@ -304,7 +304,7 @@ namespace KMPLauncher
 
                     ProcessStartInfo startInfo = new ProcessStartInfo();
 
-                    startInfo.WorkingDirectory = UpdaterSettings.LAUNCHER_FOLDER;
+                    startInfo.WorkingDirectory = UpdaterSettings.KSPDirectory;
 
                     startInfo.FileName = UpdaterSettings.KSPExecutable;
 
@@ -544,7 +544,7 @@ namespace KMPLauncher
         {
             try
             {
-                StreamReader reader = new StreamReader(UpdaterSettings.LAUNCHER_FOLDER + "KSP.log");
+                StreamReader reader = new StreamReader(UpdaterSettings.KSPDirectory + @"\KSP.log");
 
                 string log = reader.ReadToEnd();
 
@@ -571,11 +571,20 @@ namespace KMPLauncher
                 string TimeSince = "";
                 TimeSpan ts = DateTime.Now.Subtract(CreationDateTime);
                 if (ts.TotalHours < 1)
-                    TimeSince = ts.Minutes + " minutes ago";
+                    if (ts.Minutes == 1)
+                        TimeSince = ts.Minutes + " minute ago";
+                    else
+                        TimeSince = ts.Minutes + " minutes ago";
                 else if (ts.TotalDays < 1)
-                    TimeSince = ts.Hours + " hours ago";
+                    if (ts.Hours == 1)
+                        TimeSince = ts.Hours + " hour ago";
+                    else
+                        TimeSince = ts.Hours + " hours ago";
                 else
-                    TimeSince = ts.Days + " days ago";
+                    if (ts.Days == 1)
+                        TimeSince = ts.Days + " day ago";
+                    else
+                        TimeSince = ts.Days + " days ago";
 
                 LogGroupBox.Text = "Kerbal Space Program Log " + "(created " + TimeSince + ")";
 
@@ -587,7 +596,7 @@ namespace KMPLauncher
                 KSPLogBox.Text = "No log found.";
             }
 
-            KMPLogLink.Text = UpdaterSettings.LAUNCHER_FOLDER + "KSP.log";
+            KMPLogLink.Text = UpdaterSettings.KSPDirectory + @"\KSP.log";
         }
 
         private void Logging_Enter(object sender, EventArgs e)
