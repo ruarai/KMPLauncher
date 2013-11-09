@@ -346,8 +346,9 @@ namespace KMPLauncher
 
             textBoxName.Text = selection.Name;
             textBoxAddress.Text = selection.Address;
-            
-            
+
+            textBoxAddress.ForeColor = SystemColors.WindowText;
+            textBoxName.ForeColor = SystemColors.WindowText;
 
             ServerInformationListBox.Items.Clear();
 
