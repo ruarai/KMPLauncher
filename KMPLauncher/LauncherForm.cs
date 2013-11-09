@@ -23,6 +23,7 @@ namespace KMPLauncher
         {
             InitializeComponent();
             ChangelogBox.BackColor = System.Drawing.SystemColors.Window;
+            KSPLogBox.BackColor = System.Drawing.SystemColors.Window;
 
             InitLauncherDirectory();
 
