@@ -16,6 +16,12 @@ namespace KMPLauncher
 
         static public string Username;
 
+        public static string LAUNCHER_FOLDER = Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData) + @"\KMPLauncher\";
+        public static string UPDATE_FILE = "updatetemporary.zip";
+        public static string SERVER_FILE = "servers.dat";
+        public static string UPDATER_FILE = "updater.dat";
+
+
         public static string CurrentKMPUpdate
         {
             get
