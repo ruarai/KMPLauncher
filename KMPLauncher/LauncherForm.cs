@@ -378,6 +378,7 @@ namespace KMPLauncher
             if (textBoxName.Text == "Name")//This code will reset the textbox when the user clicks
             {
                 textBoxName.Text = "";
+                textBoxName.ForeColor = SystemColors.WindowText;
             }
         }
 
@@ -386,6 +387,7 @@ namespace KMPLauncher
             if (textBoxAddress.Text == "Address")
             {
                 textBoxAddress.Text = "";
+                textBoxAddress.ForeColor = SystemColors.WindowText;
             }
         }
 

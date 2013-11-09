@@ -294,6 +294,7 @@
             // textBoxName
             // 
             this.textBoxName.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
+            this.textBoxName.ForeColor = System.Drawing.SystemColors.InactiveCaptionText;
             this.textBoxName.Location = new System.Drawing.Point(9, 227);
             this.textBoxName.Name = "textBoxName";
             this.textBoxName.Size = new System.Drawing.Size(150, 20);
@@ -304,6 +305,7 @@
             // textBoxAddress
             // 
             this.textBoxAddress.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
+            this.textBoxAddress.ForeColor = System.Drawing.SystemColors.InactiveCaptionText;
             this.textBoxAddress.Location = new System.Drawing.Point(9, 252);
             this.textBoxAddress.Name = "textBoxAddress";
             this.textBoxAddress.Size = new System.Drawing.Size(150, 20);
