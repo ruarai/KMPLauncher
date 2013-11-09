@@ -13,6 +13,7 @@ namespace KMPLauncher
         List<KMPServer> PlayerServers = new List<KMPServer>();
 
         KMPServer selection = new KMPServer();//The server the user had last selected
+        ListViewItem lastselecteditem = new ListViewItem();
 
         ListViewGroup PlayerServerGroup = new ListViewGroup("Player Added Servers");
 
@@ -325,8 +326,14 @@ namespace KMPLauncher
             RefreshServerList();
         }
 
-        private void listView1_ItemSelectionChanged(object sender, ListViewItemSelectionChangedEventArgs e)
+        private void ServerInformationListBox_ItemSelectionChanged(object sender, ListViewItemSelectionChangedEventArgs e)
         {
+            lastselecteditem.BackColor = SystemColors.Window;//Remove highlight from last selection
+
+            e.Item.BackColor = SystemColors.Highlight;//Add highlight to new selection
+
+            lastselecteditem = e.Item;//Make this 'last selection'
+
             selection = new KMPServer();
             foreach (KMPServer s in PlayerServers)
             {
@@ -340,7 +347,7 @@ namespace KMPLauncher
             textBoxName.Text = selection.Name;
             textBoxAddress.Text = selection.Address;
             
-
+            
 
             ServerInformationListBox.Items.Clear();
 
