@@ -550,6 +550,7 @@ namespace KMPLauncher
 
                 KSPLogBox.Text = log;
 
+
                 string[] lines = log.Split(new string[] { "\n" }, StringSplitOptions.RemoveEmptyEntries);
 
                 string startedInfo = "";
