@@ -21,12 +21,16 @@ namespace KMPLauncher
 
             string page = retriever.DownloadString(UpdateInfoUri);
 
+
             string[] lines = page.Split(new string[] { "\n" }, StringSplitOptions.RemoveEmptyEntries);//Split file into lines
 
 
             UpdateInfo.LatestVersion = lines[0];
             UpdateInfo.DownloadURL = lines[1];
-
+            UpdateInfo.ForumURL = lines[2];
+            UpdateInfo.GitHubURL = lines[3];
+            UpdateInfo.GitHubIssuesURL = lines[4];
         }
+
     }
 }

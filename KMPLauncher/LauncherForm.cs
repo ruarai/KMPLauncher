@@ -266,59 +266,7 @@ namespace KMPLauncher
 
         private void JoinButton_Click(object sender, EventArgs e)
         {
-            UpdateUpdaterSettings();
-            if (selection.Version == UpdaterSettings.CurrentKMPUpdate)
-            {
-                if (UpdaterSettings.KSPExists & UpdaterSettings.KMPExists)
-                {
-                    if (!File.Exists(UpdaterSettings.KMPDirectory + @"\PluginData\KerbalMultiPlayer\KMPClientConfig.txt"))
-                    {
-                        if (!Directory.Exists(UpdaterSettings.KMPDirectory + @"\PluginData\"))
-                        {
-                            Directory.CreateDirectory(UpdaterSettings.KMPDirectory + @"\PluginData\");
-                        }
-                        if (!Directory.Exists(UpdaterSettings.KMPDirectory + @"\PluginData\KerbalMultiPlayer\"))
-                        {
-                            Directory.CreateDirectory(UpdaterSettings.KMPDirectory + @"\PluginData\KerbalMultiPlayer\");
-                        }
-
-
-                        FileStream file = File.Create(UpdaterSettings.KMPDirectory + @"\PluginData\KerbalMultiPlayer\KMPClientConfig.txt");
-                        file.Close();
-                    }
-                    StreamWriter wr = new StreamWriter(UpdaterSettings.KMPDirectory + @"\PluginData\KerbalMultiPlayer\KMPClientConfig.txt");
-
-                    wr.WriteLine("username");//Very lazy way to do this, I know.
-                    wr.WriteLine(UpdaterSettings.Username);
-
-                    wr.WriteLine("ip");
-                    wr.WriteLine("");
-
-                    wr.WriteLine("reconnect");
-                    wr.WriteLine("True");
-
-                    wr.WriteLine("fav0");
-                    wr.WriteLine(selection.Address);
-
-                    wr.Close();
-
-                    ProcessStartInfo startInfo = new ProcessStartInfo();
-
-                    startInfo.WorkingDirectory = UpdaterSettings.KSPDirectory;
-
-                    startInfo.FileName = UpdaterSettings.KSPExecutable;
-
-                    Process.Start(startInfo);
-                }
-                else
-                {
-                    MessageBox.Show("Please check directory settings. KSP or KMP not found.");
-                }
-            }
-            else
-            {
-                MessageBox.Show("Version mis-match.");
-            }
+            KMPJoiner.JoinKMPServer(selection);
         }
 
         private void RefreshButton_Click(object sender, EventArgs e)
@@ -456,6 +404,11 @@ namespace KMPLauncher
             {
                 ChangelogGroupBox.Text = "Update Changelog";
             }
+
+            KMPForumLink.Text = UpdateInfo.ForumURL;
+            KMPGithubLink.Text = UpdateInfo.GitHubURL;
+            KMPIssuesLink.Text = UpdateInfo.GitHubIssuesURL;
+
             ChangelogBox.Text = ChangelogRetriever.Retrieve();
         } 
         #endregion
@@ -521,17 +474,17 @@ namespace KMPLauncher
         #region Links
         private void KMPForumLink_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
         {
-            Process.Start("http://forum.kerbalspaceprogram.com/threads/55835-Kmp-0-22-wip-alpha");
+            Process.Start(KMPForumLink.Text);
         }
 
         private void KMPGithubLink_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
         {
-            Process.Start("https://github.com/TehGimp/KerbalMultiPlayer");
+            Process.Start(KMPGithubLink.Text);
         }
 
         private void KMPIssuesLink_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
         {
-            Process.Start("https://github.com/TehGimp/KerbalMultiPlayer/issues");
+            Process.Start(KMPIssuesLink.Text);
         } 
         #endregion
 
