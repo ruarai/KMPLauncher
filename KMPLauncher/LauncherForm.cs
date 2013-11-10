@@ -266,6 +266,7 @@ namespace KMPLauncher
 
         private void JoinButton_Click(object sender, EventArgs e)
         {
+            UpdateUpdaterSettings();
             KMPJoiner.JoinKMPServer(selection);
         }
 
@@ -462,7 +463,14 @@ namespace KMPLauncher
 
         private void UpdateButton_Click(object sender, EventArgs e)
         {
-            KMPUpdater.Update(UpdateInfo.DownloadURL);
+            if (UpdaterSettings.KSPExists)
+            {
+                KMPUpdater.Update(UpdateInfo.DownloadURL);
+            }
+            else
+            {
+                MessageBox.Show("KSP cannot be found, updater cannot continue.");
+            }
         }
 
         private void UpdateCheckButton_Click(object sender, EventArgs e)
@@ -498,7 +506,9 @@ namespace KMPLauncher
         {
             try
             {
-                StreamReader reader = new StreamReader(UpdaterSettings.KSPDirectory + @"\KSP.log");
+
+                FileStream fs = new FileStream(UpdaterSettings.KSPDirectory + @"\KSP.log", FileMode.Open, FileAccess.Read, FileShare.ReadWrite);
+                StreamReader reader = new StreamReader(fs);
 
                 string log = reader.ReadToEnd();
 
@@ -506,7 +516,7 @@ namespace KMPLauncher
 
                 foreach (string s in lines)
                 {
-                    if(s.StartsWith("[EXC"))
+                    if (s.StartsWith("[EXC"))
                     {
                         KSPLogBox.AppendText(s, Color.Red);
                     }
@@ -564,12 +574,18 @@ namespace KMPLauncher
 
 
             }
-            catch (FileNotFoundException)
+            catch (IOException)
             {
-                KSPLogBox.Text = "No log found.";
+                KSPLogBox.Text = "Log not found.";
             }
-
-            KMPLogLink.Text = UpdaterSettings.KSPDirectory + @"\KSP.log";
+            if (File.Exists(UpdaterSettings.KSPDirectory + @"\KSP.log"))
+            {
+                KMPLogLink.Text = UpdaterSettings.KSPDirectory + @"\KSP.log";
+            }
+            else
+            {
+                KMPLogLink.Text = "";
+            }
         }
 
         private void Logging_Enter(object sender, EventArgs e)
@@ -579,7 +595,14 @@ namespace KMPLauncher
 
         private void KMPLogLink_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
         {
-            Process.Start(UpdaterSettings.KSPDirectory + @"\KSP.log");
+            try
+            {
+                Process.Start(UpdaterSettings.KSPDirectory + @"\KSP.log");
+            }
+            catch
+            {
+
+            }
 
         }
         
