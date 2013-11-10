@@ -549,10 +549,28 @@ namespace KMPLauncher
 
                 string log = reader.ReadToEnd();
 
-                KSPLogBox.Text = log;
-
-
                 string[] lines = log.Split(new string[] { "\n" }, StringSplitOptions.RemoveEmptyEntries);
+
+                foreach (string s in lines)
+                {
+                    if(s.StartsWith("[EXC"))
+                    {
+                        KSPLogBox.AppendText(s, Color.Red);
+                    }
+                    else if (s.StartsWith("[ERR"))
+                    {
+                        KSPLogBox.AppendText(s, Color.DarkRed);
+                    }
+                    else if (s.StartsWith("[WRN"))
+                    {
+                        KSPLogBox.AppendText(s, Color.Orange);
+                    }
+                    else
+                    {
+                        KSPLogBox.AppendText(s);
+                    }
+                }
+
 
                 string startedInfo = "";
                 foreach (string s in lines)
@@ -608,7 +626,7 @@ namespace KMPLauncher
 
         private void KMPLogLink_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
         {
-            Process.Start(UpdaterSettings.LAUNCHER_FOLDER + "KSP.log");
+            Process.Start(UpdaterSettings.KSPDirectory + @"\KSP.log");
 
         }
         

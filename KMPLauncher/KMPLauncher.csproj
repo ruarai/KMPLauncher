@@ -79,6 +79,7 @@
     <Compile Include="KMPServer.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="RichTextBoxExtensions.cs" />
     <Compile Include="ServerInformationRetriever.cs" />
     <Compile Include="KMPUpdater.cs" />
     <Compile Include="UpdateInfo.cs" />
