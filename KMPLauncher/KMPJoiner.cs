@@ -8,7 +8,7 @@ namespace KMPLauncher
     {
         public static void JoinKMPServer(KMPServer server)
         {
-            if (server.Version == UpdaterSettings.CurrentKMPUpdate)
+            if (server.Version == UpdaterSettings.CurrentKMPUpdate | !server.HasHTTPConnection)
             {
                 if (UpdaterSettings.KSPExists & UpdaterSettings.KMPExists)
                 {
