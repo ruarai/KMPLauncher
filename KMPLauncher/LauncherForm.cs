@@ -621,7 +621,7 @@ namespace KMPLauncher
 
         private void Logging_Enter(object sender, EventArgs e)
         {
-            LoadLog();
+            LoadLog();//Reload the log when you switch to the logging tab
         }
 
         private void KMPLogLink_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
