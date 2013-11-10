@@ -514,6 +514,8 @@ namespace KMPLauncher
 
                 string[] lines = log.Split(new string[] { "\n" }, StringSplitOptions.RemoveEmptyEntries);
 
+                KSPLogBox.Clear();
+
                 foreach (string s in lines)
                 {
                     if (s.StartsWith("[EXC"))
