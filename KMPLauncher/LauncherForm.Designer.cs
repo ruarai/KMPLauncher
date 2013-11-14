@@ -77,7 +77,6 @@
             this.KMPLogLink = new System.Windows.Forms.LinkLabel();
             this.ReloadLogButton = new System.Windows.Forms.Button();
             this.KSPLogBox = new System.Windows.Forms.RichTextBox();
-            this.ServerlistNetworker = new System.ComponentModel.BackgroundWorker();
             this.folderBrowserDialog1 = new System.Windows.Forms.FolderBrowserDialog();
             this.tabControl1.SuspendLayout();
             this.tabPage2.SuspendLayout();
@@ -669,7 +668,6 @@
         private System.Windows.Forms.TextBox textBoxName;
         private System.Windows.Forms.TextBox textBoxAddress;
         private System.Windows.Forms.Button AddNewServer;
-        private System.ComponentModel.BackgroundWorker ServerlistNetworker;
         private System.Windows.Forms.Button RefreshButton;
         private System.Windows.Forms.ListBox PlayerListBox;
         private System.Windows.Forms.GroupBox groupBox1;
