@@ -172,7 +172,7 @@
             this.tabPage2.Location = new System.Drawing.Point(4, 22);
             this.tabPage2.Name = "tabPage2";
             this.tabPage2.Padding = new System.Windows.Forms.Padding(3);
-            this.tabPage2.Size = new System.Drawing.Size(948, 554);
+            this.tabPage2.Size = new System.Drawing.Size(957, 533);
             this.tabPage2.TabIndex = 1;
             this.tabPage2.Text = "Servers";
             this.tabPage2.UseVisualStyleBackColor = true;
@@ -531,7 +531,7 @@
             // FolderBrowseButton
             // 
             this.FolderBrowseButton.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.FolderBrowseButton.Location = new System.Drawing.Point(682, 10);
+            this.FolderBrowseButton.Location = new System.Drawing.Point(882, 9);
             this.FolderBrowseButton.Name = "FolderBrowseButton";
             this.FolderBrowseButton.Size = new System.Drawing.Size(63, 23);
             this.FolderBrowseButton.TabIndex = 2;
@@ -545,7 +545,7 @@
             | System.Windows.Forms.AnchorStyles.Right)));
             this.directoryPath.Location = new System.Drawing.Point(91, 12);
             this.directoryPath.Name = "directoryPath";
-            this.directoryPath.Size = new System.Drawing.Size(585, 20);
+            this.directoryPath.Size = new System.Drawing.Size(785, 20);
             this.directoryPath.TabIndex = 1;
             this.directoryPath.TextChanged += new System.EventHandler(this.directoryPath_TextChanged);
             // 

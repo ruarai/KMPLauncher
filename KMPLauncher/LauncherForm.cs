@@ -12,8 +12,8 @@ namespace KMPLauncher
     {
         List<KMPServer> PlayerServers = new List<KMPServer>();
 
-        KMPServer selection = new KMPServer();//The server the user had last selected
-        ListViewItem lastselecteditem = new ListViewItem();
+        KMPServer LastSelectedServer = new KMPServer();//The server the user had last selected
+        ListViewItem LastSelectedListViewItem = new ListViewItem();
 
         ListViewGroup PlayerServerGroup = new ListViewGroup("Player Added Servers");
 
@@ -164,34 +164,34 @@ namespace KMPLauncher
         private void EditButton_Click(object sender, EventArgs e)
         {
 
-            selection.Name = textBoxName.Text;
+            LastSelectedServer.Name = textBoxName.Text;
 
-            selection.Address = textBoxAddress.Text;
+            LastSelectedServer.Address = textBoxAddress.Text;
 
             ServerInformationRetrieverAsync retriever = new ServerInformationRetrieverAsync();
 
             retriever.ServerRetrieved +=retriever_EditServerRetrieved;
 
-            retriever.RetrieveAsync(selection, 8081);
+            retriever.RetrieveAsync(LastSelectedServer, 8081);
 
         }
 
         private void retriever_EditServerRetrieved(KMPServer s)
         {
-            selection = s;
+            LastSelectedServer = s;
 
-            lastselecteditem.SubItems.Clear();
+            LastSelectedListViewItem.SubItems.Clear();
 
-            lastselecteditem.Text = selection.Name;
+            LastSelectedListViewItem.Text = LastSelectedServer.Name;
 
-            lastselecteditem.SubItems.Add(selection.IP + ":" + selection.Port);
-            lastselecteditem.SubItems.Add(selection.Version);
-            lastselecteditem.SubItems.Add(selection.Players + "/" + selection.MaxPlayers);
-            lastselecteditem.SubItems.Add(selection.Information);
+            LastSelectedListViewItem.SubItems.Add(LastSelectedServer.IP + ":" + LastSelectedServer.Port);
+            LastSelectedListViewItem.SubItems.Add(LastSelectedServer.Version);
+            LastSelectedListViewItem.SubItems.Add(LastSelectedServer.Players + "/" + LastSelectedServer.MaxPlayers);
+            LastSelectedListViewItem.SubItems.Add(LastSelectedServer.Information);
 
-            if (!selection.HasHTTPConnection)
+            if (!LastSelectedServer.HasHTTPConnection)
             {
-                lastselecteditem.ForeColor = Color.DarkRed;
+                LastSelectedListViewItem.ForeColor = Color.DarkRed;
             }
         }
 
@@ -205,7 +205,7 @@ namespace KMPLauncher
         private void JoinButton_Click(object sender, EventArgs e)
         {
             UpdateUpdaterSettings();
-            KMPJoiner.JoinKMPServer(selection);
+            KMPJoiner.JoinKMPServer(LastSelectedServer);
         }
 
         private void RefreshButton_Click(object sender, EventArgs e)
@@ -215,38 +215,38 @@ namespace KMPLauncher
 
         private void ServerInformationListBox_ItemSelectionChanged(object sender, ListViewItemSelectionChangedEventArgs e)
         {
-            lastselecteditem.BackColor = SystemColors.Window;//Remove highlight from last selection
+            LastSelectedListViewItem.BackColor = SystemColors.Window;//Remove highlight from last selection
 
             e.Item.BackColor = SystemColors.Highlight;//Add highlight to new selection
 
-            lastselecteditem = e.Item;//Make this 'last selection'
+            LastSelectedListViewItem = e.Item;//Make this 'last selection'
 
-            selection = new KMPServer();
+            LastSelectedServer = new KMPServer();
             foreach (KMPServer s in PlayerServers)
             {
                 if (s.Address == e.Item.SubItems[1].Text)
                 {
-                    selection = s;
+                    LastSelectedServer = s;
                     break;
                 }
             }
 
-            textBoxName.Text = selection.Name;
-            textBoxAddress.Text = selection.Address;
+            textBoxName.Text = LastSelectedServer.Name;
+            textBoxAddress.Text = LastSelectedServer.Address;
 
             textBoxAddress.ForeColor = SystemColors.WindowText;
             textBoxName.ForeColor = SystemColors.WindowText;
 
             ServerInformationListBox.Items.Clear();
 
-            ServerInformationListBox.Items.Add("Whitelist: " + selection.Whitelisted.ToString().ToLower());
-            ServerInformationListBox.Items.Add("Screenshots Save: " + selection.Screenshots.ToString().ToLower());
-            ServerInformationListBox.Items.Add("Screenshot Height: " + selection.ScreenshotHeight.ToString());
-            ServerInformationListBox.Items.Add("Update Rate: " + selection.UpdateRate.ToString());
-            ServerInformationListBox.Items.Add("Inactive Ship Limit: " + selection.InactiveShipLimit.ToString());
+            ServerInformationListBox.Items.Add("Whitelist: " + LastSelectedServer.Whitelisted.ToString().ToLower());
+            ServerInformationListBox.Items.Add("Screenshots Save: " + LastSelectedServer.Screenshots.ToString().ToLower());
+            ServerInformationListBox.Items.Add("Screenshot Height: " + LastSelectedServer.ScreenshotHeight.ToString());
+            ServerInformationListBox.Items.Add("Update Rate: " + LastSelectedServer.UpdateRate.ToString());
+            ServerInformationListBox.Items.Add("Inactive Ship Limit: " + LastSelectedServer.InactiveShipLimit.ToString());
 
             PlayerListBox.Items.Clear();
-            foreach (string s in selection.PlayerList)
+            foreach (string s in LastSelectedServer.PlayerList)
             {
                 PlayerListBox.Items.Add(s);
             }
@@ -255,8 +255,8 @@ namespace KMPLauncher
         
         private void DeleteButton_Click(object sender, EventArgs e)
         {
-            lastselecteditem.Remove();
-            PlayerServers.Remove(selection);
+            LastSelectedListViewItem.Remove();
+            PlayerServers.Remove(LastSelectedServer);
         }
         #endregion
 
