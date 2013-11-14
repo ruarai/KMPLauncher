@@ -33,16 +33,19 @@ namespace KMPLauncher
 
         static void retriever_DownloadStringCompleted(object sender, DownloadStringCompletedEventArgs e)
         {
-            string[] lines = e.Result.Split(new string[] { "\n" }, StringSplitOptions.RemoveEmptyEntries);//Split file into lines
+            if (e.Error == null)
+            {
+                string[] lines = e.Result.Split(new string[] { "\n" }, StringSplitOptions.RemoveEmptyEntries);//Split file into lines
 
 
-            UpdateInfo.LatestVersion = lines[0];
-            UpdateInfo.DownloadURL = lines[1];
-            UpdateInfo.ForumURL = lines[2];
-            UpdateInfo.GitHubURL = lines[3];
-            UpdateInfo.GitHubIssuesURL = lines[4];
+                UpdateInfo.LatestVersion = lines[0];
+                UpdateInfo.DownloadURL = lines[1];
+                UpdateInfo.ForumURL = lines[2];
+                UpdateInfo.GitHubURL = lines[3];
+                UpdateInfo.GitHubIssuesURL = lines[4];
 
-            RetrieveComplete();
+                RetrieveComplete();
+            }
         }
 
     }

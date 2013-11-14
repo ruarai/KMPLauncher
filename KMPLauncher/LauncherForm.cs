@@ -330,14 +330,8 @@ namespace KMPLauncher
         private void CheckUpdate()
         {
             KMPVersionLabel.Text = UpdaterSettings.CurrentKMPUpdate;
-            try
-            {
-                UpdateInformationRetriever.Retrieve();
-            }
-            catch (System.Net.WebException)
-            {
-                MessageBox.Show("Failed to retrieve latest KMP version!");
-            }
+            
+            UpdateInformationRetriever.Retrieve();
 
             ChangelogRetriever.Retrieve();
         }
@@ -520,30 +514,36 @@ namespace KMPLauncher
 
                 string LogCreationDate = startedInfo.Replace("Log started:", "").Trim();
 
+                try
+                {
 
-                DateTime CreationDateTime = Convert.ToDateTime(LogCreationDate);
+                    DateTime CreationDateTime = Convert.ToDateTime(LogCreationDate);
 
 
-                string TimeSince = "";
-                TimeSpan ts = DateTime.Now.Subtract(CreationDateTime);
-                if (ts.TotalHours < 1)
-                    if (ts.Minutes == 1)
-                        TimeSince = ts.Minutes + " minute ago";
+                    string TimeSince = "";
+                    TimeSpan ts = DateTime.Now.Subtract(CreationDateTime);
+                    if (ts.TotalHours < 1)
+                        if (ts.Minutes == 1)
+                            TimeSince = ts.Minutes + " minute ago";
+                        else
+                            TimeSince = ts.Minutes + " minutes ago";
+                    else if (ts.TotalDays < 1)
+                        if (ts.Hours == 1)
+                            TimeSince = ts.Hours + " hour ago";
+                        else
+                            TimeSince = ts.Hours + " hours ago";
                     else
-                        TimeSince = ts.Minutes + " minutes ago";
-                else if (ts.TotalDays < 1)
-                    if (ts.Hours == 1)
-                        TimeSince = ts.Hours + " hour ago";
-                    else
-                        TimeSince = ts.Hours + " hours ago";
-                else
-                    if (ts.Days == 1)
-                        TimeSince = ts.Days + " day ago";
-                    else
-                        TimeSince = ts.Days + " days ago";
+                        if (ts.Days == 1)
+                            TimeSince = ts.Days + " day ago";
+                        else
+                            TimeSince = ts.Days + " days ago";
 
-                LogGroupBox.Text = "Kerbal Space Program Log " + "(created " + TimeSince + ")";
+                    LogGroupBox.Text = "Kerbal Space Program Log " + "(created " + TimeSince + ")";
+                }
+                catch (Exception)
+                {
 
+                }
 
 
             }
