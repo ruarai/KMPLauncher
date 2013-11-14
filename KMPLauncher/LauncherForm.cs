@@ -25,8 +25,9 @@ namespace KMPLauncher
             InitializeComponent();
             ChangelogBox.BackColor = System.Drawing.SystemColors.Window;
             KSPLogBox.BackColor = System.Drawing.SystemColors.Window;
-            KMPUpdater.UpdateComplete += KMPUpdater_UpdateComplete;
 
+            KMPUpdater.UpdateComplete += KMPUpdater_UpdateComplete;
+            KMPUpdater.UpdateProgressChange += KMPUpdater_UpdateProgressChange;
 
             InitLauncherDirectory();
 
@@ -37,6 +38,7 @@ namespace KMPLauncher
 
             CheckUpdate();
         }
+
 
 
         private void InitLauncherDirectory()
@@ -468,6 +470,7 @@ namespace KMPLauncher
         {
             if (UpdaterSettings.KSPExists)
             {
+                UpdateButton.Enabled = false;
                 KMPUpdater.Update(UpdateInfo.DownloadURL);
             }
             else
@@ -485,6 +488,14 @@ namespace KMPLauncher
         void KMPUpdater_UpdateComplete()
         {
             UpdateUpdaterSettings();
+            UpdateButton.Enabled = true;
+            UpdateButton.Text = "Update KMP";
+        }
+
+
+        void KMPUpdater_UpdateProgressChange(int percentage)
+        {
+            UpdateButton.Text = "Updating:" + percentage + "%";
         }
         #endregion
 

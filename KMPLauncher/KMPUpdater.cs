@@ -10,10 +10,12 @@ using System.Windows.Forms;
 namespace KMPLauncher
 {
     public delegate void KMPUpdaterUpdateComplete();
+    public delegate void KMPUpdaterUpdateProgress(int percentage);
 
     static class KMPUpdater
     {
         public static event KMPUpdaterUpdateComplete UpdateComplete;
+        public static event KMPUpdaterUpdateProgress UpdateProgressChange;
 
         public static void Update(string UpdateFileURL)
         {
@@ -23,7 +25,14 @@ namespace KMPLauncher
 
             downloader.DownloadFileCompleted += downloader_DownloadFileCompleted;
 
+            downloader.DownloadProgressChanged += downloader_DownloadProgressChanged;
+
             downloader.DownloadFileAsync(downloadUri, UpdaterSettings.LAUNCHER_FOLDER + UpdaterSettings.UPDATE_FILE);
+        }
+
+        static void downloader_DownloadProgressChanged(object sender, DownloadProgressChangedEventArgs e)
+        {
+            UpdateProgressChange(e.ProgressPercentage);
         }
 
         static void downloader_DownloadFileCompleted(object sender, System.ComponentModel.AsyncCompletedEventArgs e)
