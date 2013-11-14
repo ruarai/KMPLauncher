@@ -3,25 +3,39 @@ using System.Net;
 
 namespace KMPLauncher
 {
-    static class ServerInformationRetriever
-    {
-        public static KMPServer Retrieve(string IP, int HTTPPort)
-        {
-            KMPServer server = new KMPServer();
+    public delegate void RetrieverServerRetrieved(KMPServer s);
 
+
+    class ServerInformationRetrieverAsync
+    {
+        public event RetrieverServerRetrieved ServerRetrieved;
+
+        public void RetrieveAsync(KMPServer s,int HTTPPort)
+        {
             WebClient retriever = new WebClient();
 
-            retriever.Headers.Add("KMPLAUNCHER", "SERVER_INFO_REQUEST");//Mostly unneeded. Only a courtesy thing for server owners.
+            retriever.DownloadStringCompleted += retriever_DownloadStringCompleted;
 
-            string url = "http://" + IP + ":" + HTTPPort + "/";//Make a nice URL out of the IP and Port
+            Uri url = new Uri("http://" + s.IP + ":" + HTTPPort + "/");//Make a nice URL out of the IP and Port
             
-            string page = retriever.DownloadString(url);
+            retriever.DownloadStringAsync(url,(object)s);//Parse the server along when sending
 
-            string[] lines = page.Split(new string[] { "\n" }, StringSplitOptions.RemoveEmptyEntries);
+        }
+
+        void retriever_DownloadStringCompleted(object sender, DownloadStringCompletedEventArgs e)
+        {
+            KMPServer server = (KMPServer)e.UserState;
+
+            if(e.Error != null)
+            {
+                ServerRetrieved(server);
+                return;
+            }
+
+            string[] lines = e.Result.Split(new string[] { "\n" }, StringSplitOptions.RemoveEmptyEntries);
 
 
-
-
+            server.HasHTTPConnection = true;
 
 
             server.Version = lines[0].Substring("Version: ".Length, lines[0].Length - "Version: ".Length);//Version
@@ -29,7 +43,7 @@ namespace KMPLauncher
 
             string PlayerLine = lines[2].Substring("Num Players: ".Length, lines[2].Length - "Num Players: ".Length);//Player count
             string[] SplitPlayers = PlayerLine.Split('/');
-            
+
             server.Players = int.Parse(SplitPlayers[0]);
             server.MaxPlayers = int.Parse(SplitPlayers[1]);
 
@@ -38,7 +52,7 @@ namespace KMPLauncher
             String[] IndividualPlayers = FullPlayers.Split(',');
 
             foreach (string p in IndividualPlayers) server.PlayerList.Add(p.Trim());
-                
+
 
             server.Information = lines[4].Substring("Information: ".Length, lines[4].Length - "Information: ".Length);//Information
 
@@ -58,9 +72,7 @@ namespace KMPLauncher
             server.Whitelisted = bool.Parse(lines[9].Substring("Whitelisted: ".Length, lines[9].Length - "Whitelisted: ".Length));//Is it whitelisted?
 
 
-
-
-            return server;
+            ServerRetrieved(server);
         }
     }
 }

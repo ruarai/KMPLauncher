@@ -29,12 +29,13 @@ namespace KMPLauncher
             KMPUpdater.UpdateComplete += KMPUpdater_UpdateComplete;
             KMPUpdater.UpdateProgressChange += KMPUpdater_UpdateProgressChange;
 
+
             InitLauncherDirectory();
 
             LoadServers();
             LoadUpdaterSettings();
 
-            RefreshServerList();
+            FillServerList();
 
             CheckUpdate();
         }
@@ -50,41 +51,41 @@ namespace KMPLauncher
         }
 
         #region ServerListing
-        private void RefreshServerList()
+
+
+        private void FillServerList()
         {
-            RefreshButton.Enabled = false;
             listView1.Items.Clear();
 
+            ServerInformationRetrieverAsync retriever = new ServerInformationRetrieverAsync();
 
-            if (!ServerlistNetworker.IsBusy)
-            {
-                ServerlistNetworker.RunWorkerAsync();
-            }
-
-        }
-
-
-        private void PopulateServerList()
-        {
+            retriever.ServerRetrieved += retriever_ServerRetrieved;
             foreach (KMPServer s in PlayerServers)
             {
-                ListViewItem serveritem = new ListViewItem(s.Name);
-                serveritem.SubItems.Add(s.IP + ":" + s.Port);
-                serveritem.SubItems.Add(s.Version);
-                serveritem.SubItems.Add(s.Players + "/" + s.MaxPlayers);
-                serveritem.SubItems.Add(s.Information);
-
-                if (!s.HasHTTPConnection)
-                {
-                    serveritem.ForeColor = Color.DarkRed;
-                }
-
-                serveritem.Group = PlayerServerGroup;
-
-                listView1.Groups.Add(PlayerServerGroup);
-                listView1.Items.Add(serveritem);
+                retriever.RetrieveAsync(s, 8081);
+                
             }
-        } 
+        }
+
+        void retriever_ServerRetrieved(KMPServer s)
+        {
+            ListViewItem serveritem = new ListViewItem(s.Name);
+            serveritem.SubItems.Add(s.IP + ":" + s.Port);
+            serveritem.SubItems.Add(s.Version);
+            serveritem.SubItems.Add(s.Players + "/" + s.MaxPlayers);
+            serveritem.SubItems.Add(s.Information);
+
+            if (!s.HasHTTPConnection)
+            {
+                serveritem.ForeColor = Color.DarkRed;
+            }
+
+            serveritem.Group = PlayerServerGroup;
+
+            listView1.Groups.Add(PlayerServerGroup);
+            listView1.Items.Add(serveritem);
+        }
+
         #endregion
 
         #region ServerSaveLoad
@@ -135,71 +136,6 @@ namespace KMPLauncher
         #endregion
 
 
-        #region ServerListRetriever
-        private void ServerlistNetworker_DoWork(object sender, DoWorkEventArgs e)
-        {
-            BackgroundWorker worker = sender as BackgroundWorker;
-
-            List<KMPServer> Playerserversinternal = PlayerServers;
-
-            worker.ReportProgress(0);
-            int index = 1;
-            foreach (KMPServer s in Playerserversinternal)
-            {
-                try
-                {
-                    KMPServer filled = ServerInformationRetriever.Retrieve(s.IP, 8081);
-
-                    s.MaxPlayers = filled.MaxPlayers;//This is terrible, I know. I wish it wasn't so mean to me and just let me do s = filled
-                    s.Players = filled.Players;
-                    s.Information = filled.Information;
-                    s.Version = filled.Version;
-                    s.PlayerList = filled.PlayerList;
-                    s.UpdateRate = filled.UpdateRate;
-                    s.Whitelisted = filled.Whitelisted;
-                    s.Screenshots = filled.Screenshots;
-                    s.ScreenshotHeight = filled.ScreenshotHeight;
-                    s.InactiveShipLimit = filled.InactiveShipLimit;
-                    s.HasHTTPConnection = true;
-
-
-
-                    float relativepercentage = (float)index / (float)Playerserversinternal.Count;
-
-                    int percentage = Convert.ToInt32(relativepercentage * 100.0f);
-
-                    worker.ReportProgress(percentage);
-
-                }
-                catch (System.Net.WebException)
-                {
-                    s.Information = "-NO HTTP CONNECTION-";
-                    s.HasHTTPConnection = false;
-                }
-                index++;
-            }
-            e.Result = Playerserversinternal;
-        }
-
-        private void ServerlistNetworker_ProgressChanged(object sender, ProgressChangedEventArgs e)
-        {
-            this.Text = "Kerbal Multiplayer Launcher - Refreshing: " + e.ProgressPercentage + "%";
-            
-        }
-
-        private void ServerlistNetworker_RunWorkerCompleted(object sender, RunWorkerCompletedEventArgs e)
-        {
-            PlayerServers = (List<KMPServer>)e.Result;
-
-            this.Text = "Kerbal Multiplayer Launcher";
-            RefreshButton.Enabled = true;
-
-            PopulateServerList();
-        }
-        
-        #endregion
-
-
         #region ServerListEvents
         private void Form1_FormClosing(object sender, FormClosingEventArgs e)
         {
@@ -209,57 +145,58 @@ namespace KMPLauncher
 
         private void AddNewServer_Click(object sender, EventArgs e)
         {
+            foreach (KMPServer s in PlayerServers)
+            {
+                if (s.Address == textBoxAddress.Text)
+                {
+                    MessageBox.Show("Server already added.");
+                    return;//Don't bother adding duplicate server!
+                }
+            }
+
             KMPServer server = new KMPServer();
             server.Name = textBoxName.Text;
 
-            string address = textBoxAddress.Text;
-            string[] splitaddress = address.Split(':');
-
-            server.IP = splitaddress[0];
-            try
-            {
-                server.Port = int.Parse(splitaddress[1]);
-            }
-            catch (Exception)
-            {
-                server.Port = 2076;
-            }
-
-
-
+            server.Address = textBoxAddress.Text;
 
             PlayerServers.Add(server);
 
 
-            RefreshServerList();
+            FillServerList();
         }
 
         private void EditButton_Click(object sender, EventArgs e)
         {
-            PlayerServers.Remove(selection);
 
             selection.Name = textBoxName.Text;
 
-            string address = textBoxAddress.Text;
-            string[] splitaddress = address.Split(':');
+            selection.Address = textBoxAddress.Text;
 
-            selection.IP = splitaddress[0];
-            try
+            ServerInformationRetrieverAsync retriever = new ServerInformationRetrieverAsync();
+
+            retriever.ServerRetrieved +=retriever_EditServerRetrieved;
+
+            retriever.RetrieveAsync(selection, 8081);
+
+        }
+
+        private void retriever_EditServerRetrieved(KMPServer s)
+        {
+            selection = s;
+
+            lastselecteditem.SubItems.Clear();
+
+            lastselecteditem.Text = selection.Name;
+
+            lastselecteditem.SubItems.Add(selection.IP + ":" + selection.Port);
+            lastselecteditem.SubItems.Add(selection.Version);
+            lastselecteditem.SubItems.Add(selection.Players + "/" + selection.MaxPlayers);
+            lastselecteditem.SubItems.Add(selection.Information);
+
+            if (!selection.HasHTTPConnection)
             {
-                selection.Port = int.Parse(splitaddress[1]);
+                lastselecteditem.ForeColor = Color.DarkRed;
             }
-            catch (Exception)
-            {
-                selection.Port = 2076;
-            }
-
-
-
-
-            PlayerServers.Add(selection);
-
-
-            RefreshServerList();
         }
 
 
@@ -277,7 +214,7 @@ namespace KMPLauncher
 
         private void RefreshButton_Click(object sender, EventArgs e)
         {
-            RefreshServerList();
+            FillServerList();
         }
 
         private void ServerInformationListBox_ItemSelectionChanged(object sender, ListViewItemSelectionChangedEventArgs e)
@@ -319,14 +256,16 @@ namespace KMPLauncher
             }
 
         } 
+        
+        private void DeleteButton_Click(object sender, EventArgs e)
+        {
+            lastselecteditem.Remove();
+            PlayerServers.Remove(selection);
+        }
         #endregion
 
         #region PrettyTextBoxes
-        private void DeleteButton_Click(object sender, EventArgs e)
-        {
-            PlayerServers.Remove(selection);
-            RefreshServerList();
-        }
+        
 
         private void textBoxName_Enter(object sender, EventArgs e)
         {

@@ -620,13 +620,6 @@
             this.KSPLogBox.TabIndex = 12;
             this.KSPLogBox.Text = "";
             // 
-            // ServerlistNetworker
-            // 
-            this.ServerlistNetworker.WorkerReportsProgress = true;
-            this.ServerlistNetworker.DoWork += new System.ComponentModel.DoWorkEventHandler(this.ServerlistNetworker_DoWork);
-            this.ServerlistNetworker.ProgressChanged += new System.ComponentModel.ProgressChangedEventHandler(this.ServerlistNetworker_ProgressChanged);
-            this.ServerlistNetworker.RunWorkerCompleted += new System.ComponentModel.RunWorkerCompletedEventHandler(this.ServerlistNetworker_RunWorkerCompleted);
-            // 
             // folderBrowserDialog1
             // 
             this.folderBrowserDialog1.RootFolder = System.Environment.SpecialFolder.ProgramFilesX86;
