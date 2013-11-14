@@ -29,6 +29,8 @@ namespace KMPLauncher
             KMPUpdater.UpdateComplete += KMPUpdater_UpdateComplete;
             KMPUpdater.UpdateProgressChange += KMPUpdater_UpdateProgressChange;
 
+            UpdateInformationRetriever.RetrieveComplete += UpdateInformationRetriever_RetrieveComplete;
+            ChangelogRetriever.RetrieveComplete += ChangelogRetriever_RetrieveComplete;
 
             InitLauncherDirectory();
 
@@ -39,6 +41,7 @@ namespace KMPLauncher
 
             CheckUpdate();
         }
+
 
 
 
@@ -336,6 +339,13 @@ namespace KMPLauncher
                 MessageBox.Show("Failed to retrieve latest KMP version!");
             }
 
+            ChangelogRetriever.Retrieve();
+        }
+
+
+        void UpdateInformationRetriever_RetrieveComplete()
+        {
+
             KMPLatestUpdateLabel.Text = UpdateInfo.LatestVersion;
             try
             {
@@ -346,12 +356,18 @@ namespace KMPLauncher
                 ChangelogGroupBox.Text = "Update Changelog";
             }
 
+
             KMPForumLink.Text = UpdateInfo.ForumURL;
             KMPGithubLink.Text = UpdateInfo.GitHubURL;
             KMPIssuesLink.Text = UpdateInfo.GitHubIssuesURL;
+        }
 
-            ChangelogBox.Text = ChangelogRetriever.Retrieve();
-        } 
+
+        void ChangelogRetriever_RetrieveComplete(string changelog)
+        {
+            ChangelogBox.Text = changelog;
+        }
+
         #endregion
 
         #region UpdaterSaveLoad

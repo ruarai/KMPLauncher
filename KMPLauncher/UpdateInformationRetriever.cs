@@ -5,6 +5,8 @@ using System.Net;
 
 namespace KMPLauncher
 {
+    public delegate void InfoRetrieverRetrieveComplete();
+
     static class UpdateInformationRetriever
     {
 
@@ -15,17 +17,23 @@ namespace KMPLauncher
         //http://www.forumurl.com/lalala
         //http://www.github.com/lalala
         //http://www.github.com/lalala/issues
-        
+
+        public static event InfoRetrieverRetrieveComplete RetrieveComplete;
 
         public static void Retrieve()
         {
             WebClient retriever = new WebClient();
 
+            retriever.DownloadStringCompleted += retriever_DownloadStringCompleted;
 
-            string page = retriever.DownloadString(UpdateInfoUri);
+            retriever.DownloadStringAsync(UpdateInfoUri);
 
 
-            string[] lines = page.Split(new string[] { "\n" }, StringSplitOptions.RemoveEmptyEntries);//Split file into lines
+        }
+
+        static void retriever_DownloadStringCompleted(object sender, DownloadStringCompletedEventArgs e)
+        {
+            string[] lines = e.Result.Split(new string[] { "\n" }, StringSplitOptions.RemoveEmptyEntries);//Split file into lines
 
 
             UpdateInfo.LatestVersion = lines[0];
@@ -33,6 +41,8 @@ namespace KMPLauncher
             UpdateInfo.ForumURL = lines[2];
             UpdateInfo.GitHubURL = lines[3];
             UpdateInfo.GitHubIssuesURL = lines[4];
+
+            RetrieveComplete();
         }
 
     }

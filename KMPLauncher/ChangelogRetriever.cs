@@ -8,18 +8,30 @@ using System.Net;
 
 namespace KMPLauncher
 {
+    public delegate void ChangelogRetrieverRetrieveComplete(string changelog);
+
     static class ChangelogRetriever
     {
-        public static string Retrieve()
+        public static event ChangelogRetrieverRetrieveComplete RetrieveComplete;
+
+        public static void Retrieve()
         {
             WebClient retriever = new WebClient();
-            try
+
+            retriever.DownloadStringCompleted += retriever_DownloadStringCompleted;
+
+            retriever.DownloadStringAsync(new Uri("https://dl.dropboxusercontent.com/u/6898485/changelog.txt"));
+        }
+
+        static void retriever_DownloadStringCompleted(object sender, DownloadStringCompletedEventArgs e)
+        {
+            if (e.Error == null)
             {
-                return retriever.DownloadString("https://dl.dropboxusercontent.com/u/6898485/changelog.txt");
+                RetrieveComplete(e.Result);
             }
-            catch (WebException)
+            else
             {
-                return "No connection to changelog.";
+                RetrieveComplete("Failed to retrieve changelog");
             }
         }
     }
