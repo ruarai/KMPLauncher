@@ -579,7 +579,7 @@
             this.LogGroupBox.Controls.Add(this.KSPLogBox);
             this.LogGroupBox.Location = new System.Drawing.Point(6, 6);
             this.LogGroupBox.Name = "LogGroupBox";
-            this.LogGroupBox.Size = new System.Drawing.Size(943, 454);
+            this.LogGroupBox.Size = new System.Drawing.Size(943, 434);
             this.LogGroupBox.TabIndex = 0;
             this.LogGroupBox.TabStop = false;
             this.LogGroupBox.Text = "Kerbal Space Program Log";
@@ -588,7 +588,7 @@
             // 
             this.KMPLogLink.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
             this.KMPLogLink.AutoSize = true;
-            this.KMPLogLink.Location = new System.Drawing.Point(6, 416);
+            this.KMPLogLink.Location = new System.Drawing.Point(6, 396);
             this.KMPLogLink.Name = "KMPLogLink";
             this.KMPLogLink.Size = new System.Drawing.Size(49, 13);
             this.KMPLogLink.TabIndex = 14;
@@ -599,7 +599,7 @@
             // ReloadLogButton
             // 
             this.ReloadLogButton.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-            this.ReloadLogButton.Location = new System.Drawing.Point(862, 411);
+            this.ReloadLogButton.Location = new System.Drawing.Point(862, 391);
             this.ReloadLogButton.Name = "ReloadLogButton";
             this.ReloadLogButton.Size = new System.Drawing.Size(75, 23);
             this.ReloadLogButton.TabIndex = 13;
@@ -615,7 +615,7 @@
             this.KSPLogBox.Location = new System.Drawing.Point(6, 19);
             this.KSPLogBox.Name = "KSPLogBox";
             this.KSPLogBox.ReadOnly = true;
-            this.KSPLogBox.Size = new System.Drawing.Size(931, 387);
+            this.KSPLogBox.Size = new System.Drawing.Size(931, 367);
             this.KSPLogBox.TabIndex = 12;
             this.KSPLogBox.Text = "";
             // 
