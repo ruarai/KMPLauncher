@@ -9,10 +9,12 @@ using System.Windows.Forms;
 
 namespace KMPLauncher
 {
+    public delegate void KMPUpdaterUpdateComplete();
+
     static class KMPUpdater
     {
+        public static event KMPUpdaterUpdateComplete UpdateComplete;
 
-        
         public static void Update(string UpdateFileURL)
         {
             WebClient downloader = new WebClient();
@@ -33,8 +35,12 @@ namespace KMPLauncher
 
             File.Delete(UpdaterSettings.LAUNCHER_FOLDER + UpdaterSettings.UPDATE_FILE);
             
+            UpdateComplete();
+
 
             MessageBox.Show("Downloaded and updated KMP.");
+
+
             
         }
     }

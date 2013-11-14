@@ -25,6 +25,8 @@ namespace KMPLauncher
             InitializeComponent();
             ChangelogBox.BackColor = System.Drawing.SystemColors.Window;
             KSPLogBox.BackColor = System.Drawing.SystemColors.Window;
+            KMPUpdater.UpdateComplete += KMPUpdater_UpdateComplete;
+
 
             InitLauncherDirectory();
 
@@ -35,6 +37,7 @@ namespace KMPLauncher
 
             CheckUpdate();
         }
+
 
         private void InitLauncherDirectory()
         {
@@ -476,7 +479,13 @@ namespace KMPLauncher
         private void UpdateCheckButton_Click(object sender, EventArgs e)
         {
             UpdateUpdaterSettings();
-        } 
+        }
+
+
+        void KMPUpdater_UpdateComplete()
+        {
+            UpdateUpdaterSettings();
+        }
         #endregion
 
         #region Links

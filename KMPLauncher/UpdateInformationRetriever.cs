@@ -12,6 +12,9 @@ namespace KMPLauncher
         //The file itself looks like
         //0.1.2.0
         //http://www.kerbalspaceport.com/wp/wp-content/themes/kerbal/inc/download.php?f=uploads/2013/11/KMP_Client3.zip
+        //http://www.forumurl.com/lalala
+        //http://www.github.com/lalala
+        //http://www.github.com/lalala/issues
         
 
         public static void Retrieve()
