@@ -47,8 +47,6 @@ namespace KMPLauncher
             UpdateComplete();
 
 
-            MessageBox.Show("Downloaded and updated KMP.");
-
 
             
         }
