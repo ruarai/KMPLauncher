@@ -108,7 +108,7 @@
             this.listView1.Location = new System.Drawing.Point(6, 33);
             this.listView1.MultiSelect = false;
             this.listView1.Name = "listView1";
-            this.listView1.Size = new System.Drawing.Size(934, 283);
+            this.listView1.Size = new System.Drawing.Size(934, 303);
             this.listView1.TabIndex = 0;
             this.listView1.UseCompatibleStateImageBehavior = false;
             this.listView1.View = System.Windows.Forms.View.Details;
@@ -151,7 +151,7 @@
             this.tabControl1.Location = new System.Drawing.Point(12, 12);
             this.tabControl1.Name = "tabControl1";
             this.tabControl1.SelectedIndex = 0;
-            this.tabControl1.Size = new System.Drawing.Size(963, 452);
+            this.tabControl1.Size = new System.Drawing.Size(963, 472);
             this.tabControl1.TabIndex = 1;
             // 
             // tabPage2
@@ -171,7 +171,7 @@
             this.tabPage2.Location = new System.Drawing.Point(4, 22);
             this.tabPage2.Name = "tabPage2";
             this.tabPage2.Padding = new System.Windows.Forms.Padding(3);
-            this.tabPage2.Size = new System.Drawing.Size(955, 426);
+            this.tabPage2.Size = new System.Drawing.Size(955, 446);
             this.tabPage2.TabIndex = 1;
             this.tabPage2.Text = "Servers";
             this.tabPage2.UseVisualStyleBackColor = true;
@@ -179,7 +179,7 @@
             // EditButton
             // 
             this.EditButton.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
-            this.EditButton.Location = new System.Drawing.Point(59, 379);
+            this.EditButton.Location = new System.Drawing.Point(59, 399);
             this.EditButton.Name = "EditButton";
             this.EditButton.Size = new System.Drawing.Size(47, 23);
             this.EditButton.TabIndex = 14;
@@ -191,7 +191,7 @@
             // 
             this.groupBox2.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
             this.groupBox2.Controls.Add(this.ServerInformationListBox);
-            this.groupBox2.Location = new System.Drawing.Point(514, 322);
+            this.groupBox2.Location = new System.Drawing.Point(514, 342);
             this.groupBox2.Name = "groupBox2";
             this.groupBox2.Size = new System.Drawing.Size(218, 93);
             this.groupBox2.TabIndex = 10;
@@ -241,7 +241,7 @@
             // 
             this.groupBox1.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
             this.groupBox1.Controls.Add(this.PlayerListBox);
-            this.groupBox1.Location = new System.Drawing.Point(738, 322);
+            this.groupBox1.Location = new System.Drawing.Point(738, 342);
             this.groupBox1.Name = "groupBox1";
             this.groupBox1.Size = new System.Drawing.Size(200, 93);
             this.groupBox1.TabIndex = 9;
@@ -271,7 +271,7 @@
             // AddNewServer
             // 
             this.AddNewServer.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
-            this.AddNewServer.Location = new System.Drawing.Point(112, 379);
+            this.AddNewServer.Location = new System.Drawing.Point(112, 399);
             this.AddNewServer.Name = "AddNewServer";
             this.AddNewServer.Size = new System.Drawing.Size(47, 23);
             this.AddNewServer.TabIndex = 6;
@@ -294,7 +294,7 @@
             // 
             this.textBoxName.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
             this.textBoxName.ForeColor = System.Drawing.SystemColors.InactiveCaptionText;
-            this.textBoxName.Location = new System.Drawing.Point(9, 327);
+            this.textBoxName.Location = new System.Drawing.Point(9, 347);
             this.textBoxName.Name = "textBoxName";
             this.textBoxName.Size = new System.Drawing.Size(150, 20);
             this.textBoxName.TabIndex = 4;
@@ -305,7 +305,7 @@
             // 
             this.textBoxAddress.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
             this.textBoxAddress.ForeColor = System.Drawing.SystemColors.InactiveCaptionText;
-            this.textBoxAddress.Location = new System.Drawing.Point(9, 353);
+            this.textBoxAddress.Location = new System.Drawing.Point(9, 373);
             this.textBoxAddress.Name = "textBoxAddress";
             this.textBoxAddress.Size = new System.Drawing.Size(150, 20);
             this.textBoxAddress.TabIndex = 2;
@@ -323,7 +323,7 @@
             this.tabPage1.Location = new System.Drawing.Point(4, 22);
             this.tabPage1.Name = "tabPage1";
             this.tabPage1.Padding = new System.Windows.Forms.Padding(3);
-            this.tabPage1.Size = new System.Drawing.Size(955, 426);
+            this.tabPage1.Size = new System.Drawing.Size(955, 446);
             this.tabPage1.TabIndex = 0;
             this.tabPage1.Text = "Updater - Changelog - Resources";
             this.tabPage1.UseVisualStyleBackColor = true;
@@ -563,7 +563,7 @@
             this.Logging.Location = new System.Drawing.Point(4, 22);
             this.Logging.Name = "Logging";
             this.Logging.Padding = new System.Windows.Forms.Padding(3);
-            this.Logging.Size = new System.Drawing.Size(955, 426);
+            this.Logging.Size = new System.Drawing.Size(955, 446);
             this.Logging.TabIndex = 2;
             this.Logging.Text = "Logs";
             this.Logging.UseVisualStyleBackColor = true;
@@ -579,7 +579,7 @@
             this.LogGroupBox.Controls.Add(this.KSPLogBox);
             this.LogGroupBox.Location = new System.Drawing.Point(6, 6);
             this.LogGroupBox.Name = "LogGroupBox";
-            this.LogGroupBox.Size = new System.Drawing.Size(943, 434);
+            this.LogGroupBox.Size = new System.Drawing.Size(943, 454);
             this.LogGroupBox.TabIndex = 0;
             this.LogGroupBox.TabStop = false;
             this.LogGroupBox.Text = "Kerbal Space Program Log";
@@ -588,7 +588,7 @@
             // 
             this.KMPLogLink.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
             this.KMPLogLink.AutoSize = true;
-            this.KMPLogLink.Location = new System.Drawing.Point(15, 410);
+            this.KMPLogLink.Location = new System.Drawing.Point(6, 416);
             this.KMPLogLink.Name = "KMPLogLink";
             this.KMPLogLink.Size = new System.Drawing.Size(49, 13);
             this.KMPLogLink.TabIndex = 14;
@@ -599,7 +599,7 @@
             // ReloadLogButton
             // 
             this.ReloadLogButton.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-            this.ReloadLogButton.Location = new System.Drawing.Point(862, 405);
+            this.ReloadLogButton.Location = new System.Drawing.Point(862, 411);
             this.ReloadLogButton.Name = "ReloadLogButton";
             this.ReloadLogButton.Size = new System.Drawing.Size(75, 23);
             this.ReloadLogButton.TabIndex = 13;
@@ -615,7 +615,7 @@
             this.KSPLogBox.Location = new System.Drawing.Point(6, 19);
             this.KSPLogBox.Name = "KSPLogBox";
             this.KSPLogBox.ReadOnly = true;
-            this.KSPLogBox.Size = new System.Drawing.Size(931, 380);
+            this.KSPLogBox.Size = new System.Drawing.Size(931, 387);
             this.KSPLogBox.TabIndex = 12;
             this.KSPLogBox.Text = "";
             // 
