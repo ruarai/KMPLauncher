@@ -145,15 +145,11 @@ namespace KMPLauncher
 
         private void AddNewServer_Click(object sender, EventArgs e)
         {
-            foreach (KMPServer s in PlayerServers)
+            if (PlayerServers.Exists(ser => ser.Address == textBoxAddress.Text))
             {
-                if (s.Address == textBoxAddress.Text)
-                {
-                    MessageBox.Show("Server already added.");
-                    return;//Don't bother adding duplicate server!
-                }
+                MessageBox.Show("Server already exists.");
+                return;
             }
-
             KMPServer server = new KMPServer();
             server.Name = textBoxName.Text;
 
