@@ -438,9 +438,9 @@ namespace KMPLauncher
         }
 
 
-        void KMPUpdater_UpdateProgressChange(int percentage)
+        void KMPUpdater_UpdateProgressChange(System.Net.DownloadProgressChangedEventArgs e)
         {
-            UpdateButton.Text = "Updating:" + percentage + "%";
+            UpdateButton.Text = "Updating:" + e.ProgressPercentage + "%";
         }
         #endregion
 
