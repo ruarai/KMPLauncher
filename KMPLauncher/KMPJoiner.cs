@@ -58,7 +58,7 @@ namespace KMPLauncher
             }
             else
             {
-                MessageBox.Show("Version mis-match.");
+                MessageBox.Show("Version mis-match between server and client. \nServer Version: " + server.Version + "\nClient Version: " + UpdaterSettings.CurrentKMPUpdate);
             }
         }
     }
