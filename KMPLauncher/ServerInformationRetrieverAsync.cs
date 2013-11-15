@@ -51,6 +51,7 @@ namespace KMPLauncher
             string FullPlayers = lines[3].Substring("Players: ".Length, lines[3].Length - "Players: ".Length);//Actual players
             String[] IndividualPlayers = FullPlayers.Split(',');
 
+            server.PlayerList.Clear();
             foreach (string p in IndividualPlayers) server.PlayerList.Add(p.Trim());
 
 
