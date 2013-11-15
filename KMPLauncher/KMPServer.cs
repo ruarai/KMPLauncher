@@ -37,8 +37,23 @@ namespace KMPLauncher
             set
             {
                 string[] split = value.Split(':');
-                IP = split[0];
-                Port = int.Parse(split[1]);
+                try
+                {
+                    IP = split[0];
+                }
+                catch (Exception)
+                {
+                    IP = value;
+                }
+                try
+                {
+                    Port = int.Parse(split[1]);
+                }
+                catch (Exception)
+                {
+                    Port = 2076;
+                }
+                
             }
         }
     }
