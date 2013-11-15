@@ -26,11 +26,12 @@ namespace KMPLauncher
         {
             KMPServer server = (KMPServer)e.UserState;
 
-            if(e.Error != null)
+            if(e.Error != null | e.Cancelled)
             {
                 ServerRetrieved(server);
                 return;
             }
+
 
             string[] lines = e.Result.Split(new string[] { "\n" }, StringSplitOptions.RemoveEmptyEntries);
 
