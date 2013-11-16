@@ -472,78 +472,86 @@ namespace KMPLauncher
             try
             {
 
+                KSPLogBox.Clear();
+
                 FileStream fs = new FileStream(UpdaterSettings.KSPDirectory + @"\KSP.log", FileMode.Open, FileAccess.Read, FileShare.ReadWrite);
                 StreamReader reader = new StreamReader(fs);
 
                 string log = reader.ReadToEnd();
 
-                string[] lines = log.Split(new string[] { "\n" }, StringSplitOptions.RemoveEmptyEntries);
-
-                KSPLogBox.Clear();
-
-                foreach (string s in lines)
+                if (fs.Length < 1024 * 1024)//Only do fancy log reading if filesize is below 1KB
                 {
-                    if (s.StartsWith("[EXC"))
+                    string[] lines = log.Split(new string[] { "\n" }, StringSplitOptions.RemoveEmptyEntries);
+
+                    foreach (string s in lines)
                     {
-                        KSPLogBox.AppendText(s, Color.Red);
-                    }
-                    else if (s.StartsWith("[ERR"))
-                    {
-                        KSPLogBox.AppendText(s, Color.DarkRed);
-                    }
-                    else if (s.StartsWith("[WRN"))
-                    {
-                        KSPLogBox.AppendText(s, Color.Orange);
-                    }
-                    else
-                    {
-                        KSPLogBox.AppendText(s);
-                    }
-                }
-
-
-                string startedInfo = "";
-                foreach (string s in lines)
-                {
-                    if (s.StartsWith("Log started:"))
-                    {
-                        startedInfo = s;
-                        break;
-                    }
-                }
-
-                string LogCreationDate = startedInfo.Replace("Log started:", "").Trim();
-
-                try
-                {
-
-                    DateTime CreationDateTime = Convert.ToDateTime(LogCreationDate);
-
-
-                    string TimeSince = "";
-                    TimeSpan ts = DateTime.Now.Subtract(CreationDateTime);
-                    if (ts.TotalHours < 1)
-                        if (ts.Minutes == 1)
-                            TimeSince = ts.Minutes + " minute ago";
+                        if (s.StartsWith("[EXC"))
+                        {
+                            KSPLogBox.AppendText(s, Color.Red);
+                        }
+                        else if (s.StartsWith("[ERR"))
+                        {
+                            KSPLogBox.AppendText(s, Color.DarkRed);
+                        }
+                        else if (s.StartsWith("[WRN"))
+                        {
+                            KSPLogBox.AppendText(s, Color.Orange);
+                        }
                         else
-                            TimeSince = ts.Minutes + " minutes ago";
-                    else if (ts.TotalDays < 1)
-                        if (ts.Hours == 1)
-                            TimeSince = ts.Hours + " hour ago";
-                        else
-                            TimeSince = ts.Hours + " hours ago";
-                    else
-                        if (ts.Days == 1)
-                            TimeSince = ts.Days + " day ago";
-                        else
-                            TimeSince = ts.Days + " days ago";
+                        {
+                            KSPLogBox.AppendText(s);
+                        }
+                    }
 
-                    LogGroupBox.Text = "Kerbal Space Program Log " + "(created " + TimeSince + ")";
+
+                    string startedInfo = "";
+                    foreach (string s in lines)
+                    {
+                        if (s.StartsWith("Log started:"))
+                        {
+                            startedInfo = s;
+                            break;
+                        }
+                    }
+
+                    string LogCreationDate = startedInfo.Replace("Log started:", "").Trim();
+
+                    try
+                    {
+
+                        DateTime CreationDateTime = Convert.ToDateTime(LogCreationDate);
+
+
+                        string TimeSince = "";
+                        TimeSpan ts = DateTime.Now.Subtract(CreationDateTime);
+                        if (ts.TotalHours < 1)
+                            if (ts.Minutes == 1)
+                                TimeSince = ts.Minutes + " minute ago";
+                            else
+                                TimeSince = ts.Minutes + " minutes ago";
+                        else if (ts.TotalDays < 1)
+                            if (ts.Hours == 1)
+                                TimeSince = ts.Hours + " hour ago";
+                            else
+                                TimeSince = ts.Hours + " hours ago";
+                        else
+                            if (ts.Days == 1)
+                                TimeSince = ts.Days + " day ago";
+                            else
+                                TimeSince = ts.Days + " days ago";
+
+                        LogGroupBox.Text = "Kerbal Space Program Log " + "(created " + TimeSince + ")";
+                    }
+                    catch (Exception)
+                    {
+
+                    }
                 }
-                catch (Exception)
+                else
                 {
-
+                    KSPLogBox.Text = log;
                 }
+
 
 
             }
