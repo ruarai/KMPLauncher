@@ -41,7 +41,7 @@ namespace KMPLauncher
                 {
                     IP = split[0];
                 }
-                catch (Exception)
+                catch
                 {
                     IP = value;
                 }
@@ -49,7 +49,7 @@ namespace KMPLauncher
                 {
                     Port = int.Parse(split[1]);
                 }
-                catch (Exception)
+                catch
                 {
                     Port = 2076;
                 }
