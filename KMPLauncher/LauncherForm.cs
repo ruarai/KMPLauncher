@@ -542,7 +542,7 @@ namespace KMPLauncher
 
                         LogGroupBox.Text = "Kerbal Space Program Log " + "(created " + TimeSince + ")";
                     }
-                    catch (Exception)
+                    catch
                     {
 
                     }
