@@ -11,7 +11,7 @@ namespace KMPLauncher
     {
         static string LOG = Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments) + @"\KMPDEBUGLOG.txt";
 
-        static bool DoLog = true;
+        static bool DoLog = false;
 
         public static void Write(string log)
         {
