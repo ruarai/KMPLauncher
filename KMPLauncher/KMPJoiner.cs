@@ -1,7 +1,7 @@
 ﻿using System.Diagnostics;
 using System.IO;
 using System.Windows.Forms;
-
+using System.Xml;
 namespace KMPLauncher
 {
     static class KMPJoiner
@@ -12,7 +12,7 @@ namespace KMPLauncher
             {
                 if (UpdaterSettings.KSPExists & UpdaterSettings.KMPExists)
                 {
-                    if (!File.Exists(UpdaterSettings.KMPDirectory + @"\PluginData\KerbalMultiPlayer\KMPClientConfig.txt"))
+                    if (!File.Exists(UpdaterSettings.KMPDirectory + @"\PluginData\KerbalMultiPlayer\KMPClientConfig.xml"))
                     {
                         if (!Directory.Exists(UpdaterSettings.KMPDirectory + @"\PluginData\"))
                         {
@@ -24,24 +24,21 @@ namespace KMPLauncher
                         }
 
 
-                        FileStream file = File.Create(UpdaterSettings.KMPDirectory + @"\PluginData\KerbalMultiPlayer\KMPClientConfig.txt");
+                        FileStream file = File.Create(UpdaterSettings.KMPDirectory + @"\PluginData\KerbalMultiPlayer\KMPClientConfig.xml");
                         file.Close();
                     }
-                    StreamWriter wr = new StreamWriter(UpdaterSettings.KMPDirectory + @"\PluginData\KerbalMultiPlayer\KMPClientConfig.txt");
 
-                    wr.WriteLine("username");//Very lazy way to do this, I know.
-                    wr.WriteLine(UpdaterSettings.Username);
+                    XmlDocument clientConfig = new XmlDocument();
 
-                    wr.WriteLine("ip");
-                    wr.WriteLine("");
+                    clientConfig.Load(UpdaterSettings.KMPDirectory + @"\PluginData\KerbalMultiPlayer\KMPClientConfig.xml");
 
-                    wr.WriteLine("reconnect");
-                    wr.WriteLine("True");
+                    XmlNode username = clientConfig.DocumentElement.SelectSingleNode("//global/@username");
+                    XmlNode hostname = clientConfig.DocumentElement.SelectSingleNode("//favourite/@hostname");
 
-                    wr.WriteLine("fav0");
-                    wr.WriteLine(server.Address);
+                    username.Value = UpdaterSettings.Username;
+                    hostname.Value = server.Address;
 
-                    wr.Close();
+                    clientConfig.Save(UpdaterSettings.KMPDirectory + @"\PluginData\KerbalMultiPlayer\KMPClientConfig.xml");
 
                     ProcessStartInfo startInfo = new ProcessStartInfo();
 
