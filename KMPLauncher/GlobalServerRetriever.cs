@@ -40,7 +40,7 @@ namespace KMPLauncher
 
                     server.Address = splitServer[0];
 
-                    server.Port = int.Parse(splitServer[1]);
+                    server.HTTPPort = int.Parse(splitServer[1]);
 
                     serverList.Add(server);
 
