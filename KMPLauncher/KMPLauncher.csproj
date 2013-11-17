@@ -69,6 +69,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="ChangelogRetriever.cs" />
+    <Compile Include="GlobalServerRetriever.cs" />
     <Compile Include="KMPJoiner.cs" />
     <Compile Include="LauncherForm.cs">
       <SubType>Form</SubType>

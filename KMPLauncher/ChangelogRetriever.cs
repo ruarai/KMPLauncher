@@ -20,7 +20,7 @@ namespace KMPLauncher
 
             retriever.DownloadStringCompleted += retriever_DownloadStringCompleted;
 
-            retriever.DownloadStringAsync(new Uri("https://dl.dropboxusercontent.com/u/6898485/changelog.txt"));
+            retriever.DownloadStringAsync(new Uri(UpdaterSettings.UPDATE_CHANGELOG_URL));
         }
 
         static void retriever_DownloadStringCompleted(object sender, DownloadStringCompletedEventArgs e)

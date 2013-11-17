@@ -21,6 +21,8 @@ namespace KMPLauncher
         public static string SERVER_FILE = "servers.dat";
         public static string UPDATER_FILE = "updater.dat";
 
+        public static string UPDATER_INFO_URL = "https://dl.dropboxusercontent.com/u/6898485/updateinfo.txt";
+        public static string UPDATE_CHANGELOG_URL = "https://dl.dropboxusercontent.com/u/6898485/changelog.txt";
 
         public static string CurrentKMPUpdate
         {
