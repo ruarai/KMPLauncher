@@ -6,6 +6,7 @@ using System.Drawing;
 using System.IO;
 using System.Windows.Forms;
 
+
 namespace KMPLauncher
 {
     public partial class LauncherForm : Form
@@ -35,14 +36,21 @@ namespace KMPLauncher
 
             GlobalServerRetriever.Retrieved += GlobalServerRetriever_Retrieved;
 
+
+            Log.Write("Applied events. Calling InitLauncherDirectory");
             InitLauncherDirectory();
 
+            Log.Write("Calling LoadServers");
             LoadServers();
+            Log.Write("Calling LoadUpdaterSettings");
             LoadUpdaterSettings();
 
+            Log.Write("Calling FillServerList");
             FillServerList();
+            Log.Write("Calling RetrieveGlobalServerList");
             RetrieveGlobalServerList();
 
+            Log.Write("Calling CheckUpdate");
             CheckUpdate();
         }
 
