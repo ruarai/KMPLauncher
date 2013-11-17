@@ -621,7 +621,7 @@
             // 
             // folderBrowserDialog1
             // 
-            this.folderBrowserDialog1.RootFolder = System.Environment.SpecialFolder.ProgramFilesX86;
+            this.folderBrowserDialog1.ShowNewFolderButton = false;
             // 
             // LauncherForm
             // 
