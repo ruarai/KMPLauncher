@@ -8,6 +8,7 @@ namespace KMPLauncher
         public string Name = "";
         public string IP;
         public int Port;
+        public int HTTPPort = 8081;
 
         public bool HasHTTPConnection;
 

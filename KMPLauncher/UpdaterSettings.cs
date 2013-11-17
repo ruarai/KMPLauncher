@@ -23,6 +23,7 @@ namespace KMPLauncher
 
         public static string UPDATER_INFO_URL = "https://dl.dropboxusercontent.com/u/6898485/updateinfo.txt";
         public static string UPDATE_CHANGELOG_URL = "https://dl.dropboxusercontent.com/u/6898485/changelog.txt";
+        public static string GLOBAL_SERVERS_URL = "https://dl.dropboxusercontent.com/u/6898485/globalservers.txt";
 
         public static string CurrentKMPUpdate
         {

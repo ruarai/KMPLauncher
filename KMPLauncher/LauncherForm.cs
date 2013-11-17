@@ -11,12 +11,13 @@ namespace KMPLauncher
     public partial class LauncherForm : Form
     {
         List<KMPServer> PlayerServers = new List<KMPServer>();
+        List<KMPServer> GlobalServers = new List<KMPServer>();
 
         KMPServer LastSelectedServer = new KMPServer();//The server the user had last selected
         ListViewItem LastSelectedListViewItem = new ListViewItem();
 
         ListViewGroup PlayerServerGroup = new ListViewGroup("Player Added Servers");
-
+        ListViewGroup GlobalServerGroup = new ListViewGroup("Community Servers");
 
         readonly string SERVER_CONST = "STARTSERVER";
 
@@ -32,15 +33,19 @@ namespace KMPLauncher
             UpdateInformationRetriever.RetrieveComplete += UpdateInformationRetriever_RetrieveComplete;
             ChangelogRetriever.RetrieveComplete += ChangelogRetriever_RetrieveComplete;
 
+            GlobalServerRetriever.Retrieved += GlobalServerRetriever_Retrieved;
+
             InitLauncherDirectory();
 
             LoadServers();
             LoadUpdaterSettings();
 
             FillServerList();
+            RetrieveGlobalServerList();
 
             CheckUpdate();
         }
+
 
 
 
@@ -62,15 +67,16 @@ namespace KMPLauncher
 
             ServerInformationRetrieverAsync retriever = new ServerInformationRetrieverAsync();
 
-            retriever.ServerRetrieved += retriever_ServerRetrieved;
+            retriever.ServerRetrieved += retrieverLocal_ServerRetrieved;
             foreach (KMPServer s in PlayerServers)
             {
-                retriever.RetrieveAsync(s, 8081);
+                retriever.RetrieveAsync(s, s.HTTPPort);
                 
             }
         }
 
-        void retriever_ServerRetrieved(KMPServer s)
+
+        void retrieverLocal_ServerRetrieved(KMPServer s)
         {
             ListViewItem serveritem = new ListViewItem(s.Name);
             serveritem.SubItems.Add(s.IP + ":" + s.Port);
@@ -88,6 +94,48 @@ namespace KMPLauncher
             listView1.Groups.Add(PlayerServerGroup);
             listView1.Items.Add(serveritem);
         }
+
+        private void RetrieveGlobalServerList()
+        {
+            GlobalServerRetriever.Retrieve();
+        }
+
+
+        void GlobalServerRetriever_Retrieved(List<KMPServer> serverlist)
+        {
+            GlobalServers = serverlist;
+
+
+            ServerInformationRetrieverAsync retriever = new ServerInformationRetrieverAsync();
+
+            retriever.ServerRetrieved += retrieverGlobal_ServerRetrieved;
+
+            foreach (KMPServer s in GlobalServers)
+            {
+                retriever.RetrieveAsync(s, s.HTTPPort);
+            }
+        }
+
+
+        private void retrieverGlobal_ServerRetrieved(KMPServer s)
+        {
+            ListViewItem serveritem = new ListViewItem(s.Name);
+            serveritem.SubItems.Add(s.IP + ":" + s.Port);
+            serveritem.SubItems.Add(s.Version);
+            serveritem.SubItems.Add(s.Players + "/" + s.MaxPlayers);
+            serveritem.SubItems.Add(s.Information);
+
+            if (!s.HasHTTPConnection)
+            {
+                serveritem.ForeColor = Color.DarkRed;
+            }
+
+            serveritem.Group = GlobalServerGroup;
+
+            listView1.Groups.Add(GlobalServerGroup);
+            listView1.Items.Add(serveritem);
+        }
+
 
         #endregion
 
@@ -225,14 +273,33 @@ namespace KMPLauncher
             LastSelectedListViewItem = e.Item;//Make this 'last selection'
 
             LastSelectedServer = new KMPServer();
-            foreach (KMPServer s in PlayerServers)
+            if (LastSelectedListViewItem.Group == PlayerServerGroup)
             {
-                if (s.Address == e.Item.SubItems[1].Text)
+                foreach (KMPServer s in PlayerServers)
                 {
-                    LastSelectedServer = s;
-                    break;
+                    if (s.Address == e.Item.SubItems[1].Text)
+                    {
+                        LastSelectedServer = s;
+                        break;
+                    }
                 }
             }
+            else if (LastSelectedListViewItem.Group == GlobalServerGroup)
+            {
+                foreach (KMPServer s in GlobalServers)
+                {
+                    if (s.Address == e.Item.SubItems[1].Text)
+                    {
+                        LastSelectedServer = s;
+                        break;
+                    }
+                }
+            }
+            else
+            {
+                return;//dont bother if a server isn't found
+            }
+
 
             textBoxName.Text = LastSelectedServer.Name;
             textBoxAddress.Text = LastSelectedServer.Address;
