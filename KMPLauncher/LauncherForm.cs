@@ -47,8 +47,6 @@ namespace KMPLauncher
 
             Log.Write("Calling FillServerList");
             FillServerList();
-            Log.Write("Calling RetrieveGlobalServerList");
-            RetrieveGlobalServerList();
 
             Log.Write("Calling CheckUpdate");
             CheckUpdate();
@@ -81,6 +79,8 @@ namespace KMPLauncher
                 retriever.RetrieveAsync(s, s.HTTPPort);
                 
             }
+
+            GlobalServerRetriever.Retrieve();
         }
 
 
