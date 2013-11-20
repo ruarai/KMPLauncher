@@ -21,9 +21,9 @@ namespace KMPLauncher
         public static string SERVER_FILE = "servers.dat";
         public static string UPDATER_FILE = "updater.dat";
 
-        public static string UPDATER_INFO_URL = "https://dl.dropboxusercontent.com/u/6898485/updateinfo.txt";
-        public static string UPDATE_CHANGELOG_URL = "https://dl.dropboxusercontent.com/u/6898485/changelog.txt";
-        public static string GLOBAL_SERVERS_URL = "https://dl.dropboxusercontent.com/u/6898485/globalservers.txt";
+        public static string UPDATER_INFO_URL = "https://raw.github.com/ruarai/KMPL-INFO/master/updateinfo.txt";
+        public static string UPDATE_CHANGELOG_URL = "https://raw.github.com/ruarai/KMPL-INFO/master/changelog.txt";
+        public static string GLOBAL_SERVERS_URL = "https://raw.github.com/ruarai/KMPL-INFO/master/globalservers.txt";
 
         public static string CurrentKMPUpdate
         {
