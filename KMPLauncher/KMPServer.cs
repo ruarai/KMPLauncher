@@ -26,6 +26,8 @@ namespace KMPLauncher
         public int ScreenshotHeight;
 
 
+        public bool IsGlobal = false;
+
 
         public List<String> PlayerList = new List<string>();
 

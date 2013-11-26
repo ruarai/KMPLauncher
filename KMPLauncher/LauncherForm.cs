@@ -126,16 +126,16 @@ namespace KMPLauncher
 
         private void retrieverGlobal_ServerRetrieved(KMPServer s)
         {
+            if (!s.HasHTTPConnection)
+            {
+                return;//Dont even bother if no http connection.
+            }
+
             ListViewItem serveritem = new ListViewItem(s.Name);
             serveritem.SubItems.Add(s.IP + ":" + s.Port);
             serveritem.SubItems.Add(s.Version);
             serveritem.SubItems.Add(s.Players + "/" + s.MaxPlayers);
             serveritem.SubItems.Add(s.Information);
-
-            if (!s.HasHTTPConnection)
-            {
-                serveritem.ForeColor = Color.DarkRed;
-            }
 
             serveritem.Group = GlobalServerGroup;
 
