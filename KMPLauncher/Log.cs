@@ -7,7 +7,7 @@ namespace KMPLauncher
     {
         static string LOG = Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments) + @"\KMPDEBUGLOG.txt";
 
-        static bool DoLog = false;
+        private const bool DoLog = false;
 
         public static void Write(string log)
         {
@@ -15,7 +15,7 @@ namespace KMPLauncher
             {
                 StreamWriter writer = File.AppendText(LOG);
 
-                writer.WriteLine(DateTime.Now.ToString() + " " + DateTime.Now.Second + " " + log);
+                writer.WriteLine(DateTime.Now + " " + DateTime.Now.Second + " " + log);
 
                 writer.Close();
             }

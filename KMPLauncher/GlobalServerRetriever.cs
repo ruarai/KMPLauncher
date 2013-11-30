@@ -13,7 +13,7 @@ namespace KMPLauncher
         public static void Retrieve()
         {
             
-            WebClient retriever = new WebClient();
+            var retriever = new WebClient();
             retriever.DownloadStringCompleted += retriever_DownloadStringCompleted;
 
             retriever.DownloadStringAsync(new Uri(UpdaterSettings.GLOBAL_SERVERS_URL));
@@ -25,13 +25,13 @@ namespace KMPLauncher
             
             if (e.Error == null)
             {
-                List<KMPServer> serverList = new List<KMPServer>();
+                var serverList = new List<KMPServer>();
 
                 string[] lines = e.Result.Split(new string[] { "\n" }, StringSplitOptions.RemoveEmptyEntries);//Split file into lines
 
                 foreach (string s in lines)
                 {
-                    KMPServer server = new KMPServer();
+                    var server = new KMPServer();
 
                     string[] splitServer = s.Split(':');
 

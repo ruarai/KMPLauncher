@@ -22,7 +22,7 @@ namespace KMPLauncher
 
         public static void Retrieve()
         {
-            WebClient retriever = new WebClient();
+            var retriever = new WebClient();
 
             retriever.DownloadStringCompleted += retriever_DownloadStringCompleted;
 

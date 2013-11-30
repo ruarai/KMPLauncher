@@ -31,7 +31,7 @@ namespace KMPLauncher
             {
                 try
                 {
-                    return FileVersionInfo.GetVersionInfo(UpdaterSettings.KMPExecutable).FileVersion;
+                    return FileVersionInfo.GetVersionInfo(KMPExecutable).FileVersion;
                 }
                 catch
                 {

@@ -18,9 +18,9 @@ namespace KMPLauncher
 
         public static void Update(string UpdateFileURL)
         {
-            WebClient downloader = new WebClient();
+            var downloader = new WebClient();
 
-            Uri downloadUri = new Uri(UpdateFileURL);
+            var downloadUri = new Uri(UpdateFileURL);
 
             downloader.DownloadFileCompleted += downloader_DownloadFileCompleted;
 

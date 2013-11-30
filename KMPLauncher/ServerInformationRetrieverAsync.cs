@@ -12,19 +12,19 @@ namespace KMPLauncher
 
         public void RetrieveAsync(KMPServer s,int HTTPPort)
         {
-            WebClient retriever = new WebClient();
+            var retriever = new WebClient();
 
             retriever.DownloadStringCompleted += retriever_DownloadStringCompleted;
 
-            Uri url = new Uri("http://" + s.IP + ":" + HTTPPort + "/");//Make a nice URL out of the IP and Port
+            var url = new Uri("http://" + s.IP + ":" + HTTPPort + "/");//Make a nice URL out of the IP and Port
             
-            retriever.DownloadStringAsync(url,(object)s);//Parse the server along when sending
+            retriever.DownloadStringAsync(url,s);//Parse the server along when sending
 
         }
 
         void retriever_DownloadStringCompleted(object sender, DownloadStringCompletedEventArgs e)
         {
-            KMPServer server = (KMPServer)e.UserState;
+            var server = (KMPServer)e.UserState;
 
             if(e.Error != null | e.Cancelled)
             {

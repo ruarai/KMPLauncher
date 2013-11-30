@@ -12,7 +12,7 @@ namespace KMPLauncher
 
         public static void Retrieve()
         {
-            WebClient retriever = new WebClient();
+            var retriever = new WebClient();
 
             retriever.DownloadStringCompleted += retriever_DownloadStringCompleted;
 
@@ -21,14 +21,7 @@ namespace KMPLauncher
 
         static void retriever_DownloadStringCompleted(object sender, DownloadStringCompletedEventArgs e)
         {
-            if (e.Error == null)
-            {
-                RetrieveComplete(e.Result);
-            }
-            else
-            {
-                RetrieveComplete("Failed to retrieve changelog");
-            }
+            RetrieveComplete(e.Error == null ? e.Result : "Failed to retrieve changelog");
         }
     }
 }

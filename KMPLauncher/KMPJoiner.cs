@@ -28,7 +28,7 @@ namespace KMPLauncher
                         file.Close();
                     }
 
-                    XmlDocument clientConfig = new XmlDocument();
+                    var clientConfig = new XmlDocument();
 
                     clientConfig.Load(UpdaterSettings.KMPDirectory + @"\PluginData\KerbalMultiPlayer\KMPClientConfig.xml");
 
@@ -40,11 +40,11 @@ namespace KMPLauncher
 
                     clientConfig.Save(UpdaterSettings.KMPDirectory + @"\PluginData\KerbalMultiPlayer\KMPClientConfig.xml");
 
-                    ProcessStartInfo startInfo = new ProcessStartInfo();
-
-                    startInfo.WorkingDirectory = UpdaterSettings.KSPDirectory;
-
-                    startInfo.FileName = UpdaterSettings.KSPExecutable;
+                    var startInfo = new ProcessStartInfo
+                                        {
+                                            WorkingDirectory = UpdaterSettings.KSPDirectory,
+                                            FileName = UpdaterSettings.KSPExecutable
+                                        };
 
                     Process.Start(startInfo);
                 }

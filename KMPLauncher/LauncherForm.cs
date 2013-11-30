@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Diagnostics;
 using System.Drawing;
 using System.IO;
+using System.Linq;
 using System.Windows.Forms;
 
 
@@ -19,13 +20,13 @@ namespace KMPLauncher
         ListViewGroup PlayerServerGroup = new ListViewGroup("Player Added Servers");
         ListViewGroup GlobalServerGroup = new ListViewGroup("Community Servers");
 
-        readonly string SERVER_CONST = "STARTSERVER";
+        private const string SERVER_CONST = "STARTSERVER";
 
         public LauncherForm()
         {
             InitializeComponent();
-            ChangelogBox.BackColor = System.Drawing.SystemColors.Window;
-            KSPLogBox.BackColor = System.Drawing.SystemColors.Window;
+            ChangelogBox.BackColor = SystemColors.Window;
+            KSPLogBox.BackColor = SystemColors.Window;
 
             KMPUpdater.UpdateComplete += KMPUpdater_UpdateComplete;
             KMPUpdater.UpdateProgressChange += KMPUpdater_UpdateProgressChange;
@@ -70,7 +71,7 @@ namespace KMPLauncher
         {
             listView1.Items.Clear();
 
-            ServerInformationRetrieverAsync retriever = new ServerInformationRetrieverAsync();
+            var retriever = new ServerInformationRetrieverAsync();
 
             retriever.ServerRetrieved += retrieverLocal_ServerRetrieved;
             foreach (KMPServer s in PlayerServers)
@@ -85,7 +86,7 @@ namespace KMPLauncher
 
         void retrieverLocal_ServerRetrieved(KMPServer s)
         {
-            ListViewItem serveritem = new ListViewItem(s.Name);
+            var serveritem = new ListViewItem(s.Name);
             serveritem.SubItems.Add(s.IP + ":" + s.Port);
             serveritem.SubItems.Add(s.Version);
             serveritem.SubItems.Add(s.Players + "/" + s.MaxPlayers);
@@ -102,18 +103,13 @@ namespace KMPLauncher
             listView1.Items.Add(serveritem);
         }
 
-        private void RetrieveGlobalServerList()
-        {
-            GlobalServerRetriever.Retrieve();
-        }
-
 
         void GlobalServerRetriever_Retrieved(List<KMPServer> serverlist)
         {
             GlobalServers = serverlist;
 
 
-            ServerInformationRetrieverAsync retriever = new ServerInformationRetrieverAsync();
+            var retriever = new ServerInformationRetrieverAsync();
 
             retriever.ServerRetrieved += retrieverGlobal_ServerRetrieved;
 
@@ -131,7 +127,7 @@ namespace KMPLauncher
                 return;//Dont even bother if no http connection.
             }
 
-            ListViewItem serveritem = new ListViewItem(s.Name);
+            var serveritem = new ListViewItem(s.Name);
             serveritem.SubItems.Add(s.IP + ":" + s.Port);
             serveritem.SubItems.Add(s.Version);
             serveritem.SubItems.Add(s.Players + "/" + s.MaxPlayers);
@@ -149,8 +145,8 @@ namespace KMPLauncher
         #region ServerSaveLoad
         private void SaveServers()
         {
-            StreamWriter wr = new StreamWriter(UpdaterSettings.LAUNCHER_FOLDER + UpdaterSettings.SERVER_FILE);
-            wr.NewLine = Environment.NewLine;
+            var wr = new StreamWriter(UpdaterSettings.LAUNCHER_FOLDER + UpdaterSettings.SERVER_FILE)
+                         {NewLine = Environment.NewLine};
             foreach (KMPServer s in PlayerServers)
             {
                 wr.Write(SERVER_CONST);
@@ -176,13 +172,11 @@ namespace KMPLauncher
                 FileStream file = File.Create(UpdaterSettings.LAUNCHER_FOLDER + UpdaterSettings.SERVER_FILE);
                 file.Close();
             }
-            StreamReader reader = new StreamReader(UpdaterSettings.LAUNCHER_FOLDER + UpdaterSettings.SERVER_FILE);
+            var reader = new StreamReader(UpdaterSettings.LAUNCHER_FOLDER + UpdaterSettings.SERVER_FILE);
             while (reader.ReadLine() == SERVER_CONST)
             {
-                KMPServer server = new KMPServer();
-                server.Name = reader.ReadLine();
-                server.IP = reader.ReadLine();
-                server.Port = int.Parse(reader.ReadLine());
+                var server = new KMPServer
+                                 {Name = reader.ReadLine(), IP = reader.ReadLine(), Port = int.Parse(reader.ReadLine())};
                 if (!String.IsNullOrEmpty(server.IP))
                 {
                     PlayerServers.Add(server);
@@ -208,10 +202,7 @@ namespace KMPLauncher
                 MessageBox.Show("Server already exists.");
                 return;
             }
-            KMPServer server = new KMPServer();
-            server.Name = textBoxName.Text;
-
-            server.Address = textBoxAddress.Text;
+            var server = new KMPServer {Name = textBoxName.Text, Address = textBoxAddress.Text};
 
             PlayerServers.Add(server);
 
@@ -226,7 +217,7 @@ namespace KMPLauncher
 
             LastSelectedServer.Address = textBoxAddress.Text;
 
-            ServerInformationRetrieverAsync retriever = new ServerInformationRetrieverAsync();
+            var retriever = new ServerInformationRetrieverAsync();
 
             retriever.ServerRetrieved +=retriever_EditServerRetrieved;
 
@@ -282,24 +273,18 @@ namespace KMPLauncher
             LastSelectedServer = new KMPServer();
             if (LastSelectedListViewItem.Group == PlayerServerGroup)
             {
-                foreach (KMPServer s in PlayerServers)
+                foreach (KMPServer s in PlayerServers.Where(s => s.Address == e.Item.SubItems[1].Text))
                 {
-                    if (s.Address == e.Item.SubItems[1].Text)
-                    {
-                        LastSelectedServer = s;
-                        break;
-                    }
+                    LastSelectedServer = s;
+                    break;
                 }
             }
             else if (LastSelectedListViewItem.Group == GlobalServerGroup)
             {
-                foreach (KMPServer s in GlobalServers)
+                foreach (KMPServer s in GlobalServers.Where(s => s.Address == e.Item.SubItems[1].Text))
                 {
-                    if (s.Address == e.Item.SubItems[1].Text)
-                    {
-                        LastSelectedServer = s;
-                        break;
-                    }
+                    LastSelectedServer = s;
+                    break;
                 }
             }
             else
@@ -318,9 +303,9 @@ namespace KMPLauncher
 
             ServerInformationListBox.Items.Add("Whitelist: " + LastSelectedServer.Whitelisted.ToString().ToLower());
             ServerInformationListBox.Items.Add("Screenshots Save: " + LastSelectedServer.Screenshots.ToString().ToLower());
-            ServerInformationListBox.Items.Add("Screenshot Height: " + LastSelectedServer.ScreenshotHeight.ToString());
-            ServerInformationListBox.Items.Add("Update Rate: " + LastSelectedServer.UpdateRate.ToString());
-            ServerInformationListBox.Items.Add("Inactive Ship Limit: " + LastSelectedServer.InactiveShipLimit.ToString());
+            ServerInformationListBox.Items.Add("Screenshot Height: " + LastSelectedServer.ScreenshotHeight);
+            ServerInformationListBox.Items.Add("Update Rate: " + LastSelectedServer.UpdateRate);
+            ServerInformationListBox.Items.Add("Inactive Ship Limit: " + LastSelectedServer.InactiveShipLimit);
 
             PlayerListBox.Items.Clear();
             foreach (string s in LastSelectedServer.PlayerList)
@@ -441,7 +426,7 @@ namespace KMPLauncher
         #region UpdaterSaveLoad
         private void SaveUpdaterSettings()
         {
-            StreamWriter wr = new StreamWriter(UpdaterSettings.LAUNCHER_FOLDER + UpdaterSettings.UPDATER_FILE);
+            var wr = new StreamWriter(UpdaterSettings.LAUNCHER_FOLDER + UpdaterSettings.UPDATER_FILE);
 
 
             wr.Write(UpdaterSettings.KSPDirectory);
@@ -459,7 +444,7 @@ namespace KMPLauncher
                 FileStream file = File.Create(UpdaterSettings.LAUNCHER_FOLDER + UpdaterSettings.UPDATER_FILE);
                 file.Close();
             }
-            StreamReader reader = new StreamReader(UpdaterSettings.LAUNCHER_FOLDER + UpdaterSettings.UPDATER_FILE);
+            var reader = new StreamReader(UpdaterSettings.LAUNCHER_FOLDER + UpdaterSettings.UPDATER_FILE);
 
             directoryPath.Text = reader.ReadLine();
 
@@ -548,8 +533,8 @@ namespace KMPLauncher
 
                 KSPLogBox.Clear();
 
-                FileStream fs = new FileStream(UpdaterSettings.KSPDirectory + @"\KSP.log", FileMode.Open, FileAccess.Read, FileShare.ReadWrite);
-                StreamReader reader = new StreamReader(fs);
+                var fs = new FileStream(UpdaterSettings.KSPDirectory + @"\KSP.log", FileMode.Open, FileAccess.Read, FileShare.ReadWrite);
+                var reader = new StreamReader(fs);
 
                 string log = reader.ReadToEnd();
 
@@ -596,7 +581,7 @@ namespace KMPLauncher
                         DateTime CreationDateTime = Convert.ToDateTime(LogCreationDate);
 
 
-                        string TimeSince = "";
+                        string TimeSince;
                         TimeSpan ts = DateTime.Now.Subtract(CreationDateTime);
                         if (ts.TotalHours < 1)
                             if (ts.Minutes == 1)
@@ -663,10 +648,6 @@ namespace KMPLauncher
         
         #endregion
 
-        private void listView1_ColumnClick(object sender, ColumnClickEventArgs e)
-        {
-            
-        }
 
 
         
