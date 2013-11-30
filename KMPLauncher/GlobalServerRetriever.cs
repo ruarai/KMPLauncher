@@ -33,9 +33,9 @@ namespace KMPLauncher
                 {
                     KMPServer server = new KMPServer();
 
-                    string[] splitServer = s.Split('/');
+                    string[] splitServer = s.Split(':');
 
-                    server.Address = splitServer[0];
+                    server.IP = splitServer[0];
 
                     server.IsGlobal = true;
 

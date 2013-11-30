@@ -41,6 +41,7 @@ namespace KMPLauncher
 
             server.Version = lines[0].Substring("Version: ".Length, lines[0].Length - "Version: ".Length);//Version
 
+            server.Port = int.Parse(lines[1].Substring("Port: ".Length, lines[1].Length - "Port: ".Length));//Port (for global servers where port is not passed to launcher)
 
             string PlayerLine = lines[2].Substring("Num Players: ".Length, lines[2].Length - "Num Players: ".Length);//Player count
             string[] SplitPlayers = PlayerLine.Split('/');
